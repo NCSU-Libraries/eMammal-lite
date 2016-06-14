@@ -15,3 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore files with secret information.
+/config/secrets.yml
+/config/database.yml
