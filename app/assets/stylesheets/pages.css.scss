@@ -1,0 +1,104 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* NCSU Brand colors */
+$BioIndigo: #4156A1;
+$PyromanFlame: #D14905;
+$HuntYellow: #FDD100;
+$InnovationBlue: #427E93;
+$GenomicGreen: #7D8C1F;
+$ReynoldsRed: #990000;
+$WolfpackRed: #CC0000;
+
+/* Landing page */
+.landing {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  justify-content: space-around;
+}
+
+@mixin corner-triangle($translateX, $translateY, $rotate) {
+  -webkit-transform: translate($translateX, $translateY) rotate($rotate);
+  -moz-transform: translate($translateX, $translateY) rotate($rotate);
+  -ms-transform: translate($translateX, $translateY) rotate($rotate);
+  -o-transform: translate($translateX, $translateY) rotate($rotate);
+  transform: translate($translateX, $translateY) rotate($rotate);
+}
+
+$sideLength: 112px;
+
+.dog-ear {
+  background-color: $PyromanFlame;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $sideLength;
+  height: $sideLength;
+  @include corner-triangle($sideLength / 2, $sideLength / -2, 45deg);
+
+  justify-content: flex-end;
+
+  .dog-ear-text {
+    color: white;
+    font-size: 16px;
+    letter-spacing: 6px;
+    margin-bottom: 6px;
+  }
+}
+
+.emammal-logo {
+  width: 71.5vmin;
+
+  .logo-text {
+    color: $PyromanFlame;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 8.6%;
+  }
+}
+
+.lib-logo {
+  width: 25vmin;
+}
+
+.down-arrow {
+  position: absolute;
+  bottom: 2.5%;
+  left: calc((100% - 11.5%) / 2);
+  width: 11.5%;
+  height: auto;
+
+  &:hover {
+    background-color: lighten($BioIndigo, 40%);
+  }
+}
+
+/* About page */
+
+.about {
+  height: 100vh;
+  width: 100vw;
+  color: $BioIndigo;
+}
+
+.about-container {
+  padding-top: 6.6%;
+  width: 76%;
+  margin-bottom: 11.2%;
+
+  .about-title {
+    margin-top: 0;
+  }
+
+  .about-body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .begin-btn {
+    width: 155px;
+  }
+}

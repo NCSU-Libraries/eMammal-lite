@@ -1,0 +1,91 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "_include-media.scss";
+@import "https://cdn.ncsu.edu/brand-assets/fonts/include.css";
+
+/* NCSU Brand colors */
+$BioIndigo: #4156A1;
+$PyromanFlame: #D14905;
+$HuntYellow: #FDD100;
+$InnovationBlue: #427E93;
+$GenomicGreen: #7D8C1F;
+$ReynoldsRed: #990000;
+$WolfpackRed: #CC0000;
+
+/* Universal */
+body {
+  font-family: UniversRoman;
+  background-color: white;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Images */
+
+
+.center-img-resposive {
+  width: 100%;
+  max-height: 100%;
+}
+
+/* Text */
+.light-text {
+  font-family: UniversLight;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.emammal-text-input {
+  border-width: thin;
+  border-radius: 25px;
+  border-color: lighten($BioIndigo, 40%);
+}
+
+/* Button styles */
+.emammal-btn {
+  border-width: thin;
+  border-radius: 25px;
+  width: 155px;
+
+  &:focus, &:active:focus, &:focus:visited {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: lighten($BioIndigo, 8%);
+    color: white;
+  }
+}
+
+.light-btn {
+  border-color: $BioIndigo;
+  color: $BioIndigo;
+
+  &:focus, &:active, &:active:focus {
+    background-color: $BioIndigo;
+    color: white;
+  }
+}
+
+.dark-btn {
+  border-color: white;
+
+  &:focus, &:active, &:active:focus {
+    background-color: white;
+    color: $BioIndigo;
+  }
+}

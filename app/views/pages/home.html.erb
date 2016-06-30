@@ -1,0 +1,43 @@
+<div class="landing flex-column-center">
+  <div class="dog-ear flex-column-center">
+    <h1 class="light-text dog-ear-text">LITE</h1>
+  </div>
+  <div class="emammal-logo">
+    <%= image_tag("Landing/Large_eMammal_Logo.png", alt: "eMammal Lite", class: "center-img-resposive") %>
+    <h1 class="logo-text">See Wildlife, Do Science</h1>
+  </div>
+  <div class="lib-logo">
+    <%= image_tag("Landing/libraries-logo-red.png", alt: "eMammal Lite", class: "center-img-resposive") %>
+  </div>
+  <div class="down-arrow">
+    <%= image_tag("Landing/Home_down-button@3x.png", alt: "eMammal Lite", class: "center-img-resposive") %>
+  </div>
+</div>
+
+<div id="landing-about" class="about flex-column-center">
+  <div class="about-container">
+    <div class="about-title">
+        <h1 class="bold-text">About</h1>
+    </div>
+
+    <div class="about-body">
+      <p>
+        <strong>eMammal</strong> is a system for collecting, storing, and sharing camera trap data. The system is designed for scientists, citizen scientists, and anyone who wants to join in the fun and discovery of camera trapping. Professional and volunteer camera trappers use our software to look at pictures, identify animals, and upload them to the Smithsonian Data Repository for review and storage. These pictures provide a unique view into the hidden world of wildlife.
+      </p>
+      <p>
+        <strong>Now let's see how you compare at identifying these animals</strong>
+      </p>
+    </div>
+  </div>
+
+  <%= link_to "Begin", "#", role: "button", class: "btn btn-default emammal-btn light-btn bold-text begin-btn" %>
+</div>
+
+<!-- Simple script to scroll to about info on button click  -->
+<script type="text/javascript">
+  $(".down-arrow").click(function() {
+    $('html,body').animate({
+        scrollTop: $("#landing-about").offset().top},
+        'slow');
+  });
+</script>
