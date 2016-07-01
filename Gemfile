@@ -6,7 +6,7 @@ gem 'rails', '4.2.6'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
 # devise
-gem 'devise', '4.1.1'
+# gem 'devise', '4.1.1'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3'
 # Use SCSS for stylesheets

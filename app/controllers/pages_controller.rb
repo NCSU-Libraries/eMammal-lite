@@ -4,4 +4,8 @@ class PagesController < ApplicationController
 
   def about
   end
+
+  def identify
+    @photo = random_photo
+  end
 end

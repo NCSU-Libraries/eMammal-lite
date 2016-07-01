@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "_include-media.scss";
+
 /* NCSU Brand colors */
 $BioIndigo: #4156A1;
 $PyromanFlame: #D14905;
@@ -11,6 +13,7 @@ $GenomicGreen: #7D8C1F;
 $ReynoldsRed: #990000;
 $WolfpackRed: #CC0000;
 
+
 /* Landing page */
 .landing {
   height: 100vh;
@@ -18,6 +21,13 @@ $WolfpackRed: #CC0000;
   overflow-x: hidden;
   position: relative;
   justify-content: space-around;
+
+
+  @include media(">tablet") {
+    background-image: url("https://s3.amazonaws.com/emammalphoto/d19515s40i5_o.jpg");
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 @mixin corner-triangle($translateX, $translateY, $rotate) {
@@ -51,6 +61,7 @@ $sideLength: 112px;
 
 .emammal-logo {
   width: 71.5vmin;
+  margin-top: 9.8%;
 
   .logo-text {
     color: $PyromanFlame;
@@ -65,16 +76,17 @@ $sideLength: 112px;
 }
 
 .down-arrow {
-  position: absolute;
-  bottom: 2.5%;
+  margin-bottom: 2.5%;
   left: calc((100% - 11.5%) / 2);
   width: 11.5%;
+  max-width: 88px;
   height: auto;
 
   &:hover {
     background-color: lighten($BioIndigo, 40%);
   }
 }
+
 
 /* About page */
 
@@ -101,4 +113,39 @@ $sideLength: 112px;
   .begin-btn {
     width: 155px;
   }
+}
+
+
+/* Identify page */
+
+@mixin card-dropshadow {
+  -webkit-box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
+  -moz-box-shadow:    3px 3px 5px rgba($BioIndigo, 0.3);
+  box-shadow:         3px 3px 5px rgba($BioIndigo, 0.3);
+}
+
+// .id-page {
+//   height: 100vh;
+//   width: 100vw;
+// }
+
+.card-container {
+  height: 90%;
+  width: 100%;
+
+  .card {
+    width: 75.3%;
+    height: 100%;
+    background-color: $BioIndigo;
+    @include card-dropshadow;
+
+    .trap-img {
+
+    }
+  }
+}
+
+.score-container {
+  height: 10%;
+  width: 100%;
 }
