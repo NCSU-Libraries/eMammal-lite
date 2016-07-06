@@ -40,6 +40,34 @@ body {
 }
 
 /* Text */
+.xl-header {
+  font-size: 42px;
+}
+
+.lg-header {
+  font-size: 35px;
+}
+
+.sm-header {
+  font-size: 24px;
+}
+
+.lg-text {
+  font-size: 20px;
+}
+
+.md-text {
+  font-size: 16px;
+}
+
+.body-text {
+  font-size: 16px;
+}
+
+.xs-text {
+  font-size: 14px;
+}
+
 .light-text {
   font-family: UniversLight;
 }
@@ -91,6 +119,7 @@ body {
 
 
 /* Header & page with header */
+
 .header {
   width: 100%;
   display: flex;
@@ -165,6 +194,11 @@ body {
 
   .header-page-title {
     color: white;
+  }
+
+  .page-with-header {
+    height: calc(100vh - 75px);
+    width: 100vw;
   }
 
 }

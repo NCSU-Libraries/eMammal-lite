@@ -1,3 +1,5 @@
+<% provide(:header_text, "PHOTO ARCHIVE")%>
+<%= render 'layouts/header' %>
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Photos</h1>
@@ -24,10 +26,10 @@
   </tbody>
 </table>
 
-<div class="row">
+<div class="flex-row-center">
   <% @photos.each do |photo| %>
-    <div class="col-md-2">
-      <%= image_tag(photo.source, alt: "eMammal Lite", class: "center-img-resposive") %>
+    <div class="sm-img">
+      <%= image_tag("https://s3.amazonaws.com/emammalphoto/#{photo.source}_o.jpg", alt: "eMammal Lite", class: "center-img-resposive") %>
     </div>
   <% end %>
 </div>
