@@ -12,10 +12,16 @@ photo_id = {
   American_Black_Bear: "d17682s66i23"
 }
 
-photo_id.each do |animal, id|
+
+photo_id.each.with_index do |(animal, id), index|
   Photo.create!(
-    animal: animal,
-    source: "https://s3.amazonaws.com/emammalphoto/#{id}_o.jpg"
+    animal_id: index,
+    source: id
+  )
+
+  Animal.create!(
+    name: animal,
+    sci_name: animal.to_s + " rex"
   )
 end
 

@@ -6,6 +6,6 @@ class PagesController < ApplicationController
   end
 
   def identify
-    @photo = random_photo
+    @photo = Photo.first
   end
 end
