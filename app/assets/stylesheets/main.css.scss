@@ -84,9 +84,14 @@ body {
 
 /* Button styles */
 .emammal-btn {
+  padding-top: 12px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 10px;
+
+  border-style: solid;
   border-width: thin;
   border-radius: 25px;
-  width: 155px;
 
   &:focus, &:active:focus, &:focus:visited {
     outline: none;
@@ -110,6 +115,8 @@ body {
 
 .dark-btn {
   border-color: white;
+  background-color: $BioIndigo;
+  color: white;
 
   &:focus, &:active, &:active:focus {
     background-color: white;

@@ -1,0 +1,7 @@
+<%= form_for(@identification, html: { class: "id-card-choices flex-column-center" }) do |f| %>
+  <%= hidden_field_tag "identification[photo_id]", @photo.id%>
+  <%= hidden_field_tag "identification[user_id]", 1%>
+  <%= f.button @animals[0][:name], value: @animals[0][:id], name: "identification[user_identification]", class: "emammal-btn dark-btn choice-btn lg-text" %>
+  <%= f.button @animals[1][:name], value: @animals[1][:id], name: "identification[user_identification]", class: "emammal-btn dark-btn choice-btn lg-text" %>
+  <%= f.button @animals[2][:name], value: @animals[2][:id], name: "identification[user_identification]", class: "emammal-btn dark-btn choice-btn lg-text" %>
+<% end %>

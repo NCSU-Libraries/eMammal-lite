@@ -1,11 +1,16 @@
 class Photo < ActiveRecord::Base
   belongs_to :animal
-  # Find the animal in the picture
-  # def animal_info
-  #   Animal.find_by("id": :animal_id)
-  # end
+  has_many :identifications
 
-  def random_photo
-    @photo.order("RAND()").first
+
+  # Return the stats for a photo
+  def stats
+    total_ids = self.identifications
+    {
+      :correct => total_ids.where("correct_identification = ?", true).count,
+      :incorrect => total_ids.where("correct_identification = ?", false).count,
+      :skipped => total_ids.where("correct_identification = ?", nil).count,
+      :total => total_ids.count
+    }
   end
 end

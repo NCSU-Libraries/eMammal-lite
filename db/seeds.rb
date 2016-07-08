@@ -5,23 +5,33 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require "csv"
+
 photo_id = {
-  Coyote: "d19515s40i5",
-  Puma: "d19460s14i3",
-  White_tailed_Deer: "d19492s3i31",
-  American_Black_Bear: "d17682s66i23"
+  "Coyote": "d19515s40i5",
+  "Puma": "d19460s14i3",
+  "White-tailed Deer": "d19492s3i31",
+  "American Black Bear": "d17682s66i23",
+  "Bobcat": "d16982s30i3",
+  "Grey Fox": "d19658s62i5"
 }
 
 
 photo_id.each.with_index do |(animal, id), index|
   Photo.create!(
-    animal_id: index,
+    animal_id: index + 1,
     source: id
   )
+end
 
+animals_text = File.read("db/seeds/animals.csv")
+csv = CSV.parse(animals_text)
+
+csv[0].each do |animal|
   Animal.create!(
     name: animal,
-    sci_name: animal.to_s + " rex"
+    sci_name: animal.to_s + " rex",
+    animal_group: rand(1..6)
   )
 end
 

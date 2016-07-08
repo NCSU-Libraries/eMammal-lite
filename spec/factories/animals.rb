@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :animal do
-    name "MyString"
-sci_name "MyString"
-string "MyString"
+    id 1
+    name "Coyote"
+    sci_name "Coyote Rex"
   end
 
 end

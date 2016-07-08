@@ -163,8 +163,13 @@ $sideLength: 112px;
     }
 
     .id-card-choices {
-      height: 40%;
-      width: auto;
+      height: 32%;
+      width: 100%;
+      justify-content: space-between;
+
+      .choice-btn {
+        width: 72%;
+      }
     }
   }
 }
