@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :animal do
-    id 1
+    sequence :id do |n|
+      n
+    end
     name "Coyote"
     sci_name "Coyote Rex"
   end

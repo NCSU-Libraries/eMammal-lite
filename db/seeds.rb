@@ -16,7 +16,6 @@ photo_id = {
   "Grey Fox": "d19658s62i5"
 }
 
-
 photo_id.each.with_index do |(animal, id), index|
   Photo.create!(
     animal_id: index + 1,

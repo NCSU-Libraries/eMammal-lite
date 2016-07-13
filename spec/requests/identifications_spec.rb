@@ -1,18 +1,37 @@
 require 'rails_helper'
 
 RSpec.describe "Identifications", type: :request do
-  describe "user identifying photos" do
-    it "renders Identify page and posts response" do
-      get identify_path
-      expect(response).to render_template('pages/identify')
+  describe "with user identifying a photo" do
 
-      # Good params
+    before(:all) do
+      @photo = FactoryGirl.create(:photo)
+      @animals = FactoryGirl.create_list(:animal, 3)
+      @photo_animal = @photo.animal
+      FactoryGirl.create(:identification)
+    end
+
+    it "correctly identifies animal" do
+      before_count = Identification.count
+      # Params with correct identification
       post identifications_path, identification: {
-        photo_id: 1,
+        photo_id: @photo.id,
         user_id: 1,
-        user_identification: 1
+        user_identification: @photo_animal.id
       }
-      expect(response).to have_http_status(200)
+      expect(Identification.count).to eq(before_count + 1)
+      expect(Identification.first.correct_identification).to be true
+    end
+
+    it "incorrectly identifies animal" do
+      before_count = Identification.count
+      # Params with incorrect identification
+      post identifications_path, identification: {
+        photo_id: @photo.id,
+        user_id: 1,
+        user_identification: 0
+      }
+      expect(Identification.count).to eq(before_count + 1)
+      expect(Identification.first.correct_identification).to be false
     end
   end
 end
