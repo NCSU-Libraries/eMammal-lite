@@ -3,14 +3,16 @@
 <div class="id-page page-with-header flex-column-center">
   <div class="card-container flex-column-center">
     <div class="card flex-column-center">
-      <div class="id-card-img">
-        <%= image_tag("https://s3.amazonaws.com/emammalphoto/#{@photo.source}_o.jpg", alt: "eMammal Lite", class: "center-img-resposive") %>
+      <div id="photo" class="id-card-img">
+        <%= render 'photo'%>
       </div>
       <div class="id-card-header flex-column-center">
         <h1 class="main-header sm-header light-text bold-text">What animal is this?</h1>
         <h2 class="sub-header light-text xs-text">choose from the options below</h2>
       </div>
-      <%= render 'identify_form'%>
+      <div id="identify_form" class="id-card-choices flex-column-center">
+        <%= render 'identify_form'%>
+      </div>
     </div>
   </div>
   <div class="score-container">

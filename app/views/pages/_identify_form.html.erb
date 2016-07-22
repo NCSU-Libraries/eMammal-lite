@@ -1,4 +1,4 @@
-<%= form_for(@identification, html: { class: "id-card-choices flex-column-center" }, remote: true) do |f| %>
+<%= form_for(@identification, html: { class: "flex-column-center" }, remote: true) do |f| %>
   <%= hidden_field_tag "identification[photo_id]", @photo.id%>
   <%= hidden_field_tag "identification[user_id]", 1%>
   <%= f.button @animals[0][:name], value: @animals[0][:id], name: "identification[user_identification]", class: "emammal-btn dark-btn choice-btn lg-text" %>

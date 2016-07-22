@@ -2,7 +2,6 @@ class Photo < ActiveRecord::Base
   belongs_to :animal
   has_many :identifications
 
-
   # Return the stats for a photo
   def stats
     total_ids = self.identifications

@@ -2,18 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "_include-media.scss";
-
-/* NCSU Brand colors */
-$BioIndigo: #4156A1;
-$PyromanFlame: #D14905;
-$HuntYellow: #FDD100;
-$InnovationBlue: #427E93;
-$GenomicGreen: #7D8C1F;
-$ReynoldsRed: #990000;
-$WolfpackRed: #CC0000;
-
-
 /* Landing page */
 
 .landing {
@@ -31,14 +19,6 @@ $WolfpackRed: #CC0000;
   }
 }
 
-@mixin corner-triangle($translateX, $translateY, $rotate) {
-  -webkit-transform: translate($translateX, $translateY) rotate($rotate);
-  -moz-transform: translate($translateX, $translateY) rotate($rotate);
-  -ms-transform: translate($translateX, $translateY) rotate($rotate);
-  -o-transform: translate($translateX, $translateY) rotate($rotate);
-  transform: translate($translateX, $translateY) rotate($rotate);
-}
-
 $sideLength: 112px;
 
 .dog-ear {
@@ -48,7 +28,7 @@ $sideLength: 112px;
   right: 0;
   width: $sideLength;
   height: $sideLength;
-  @include corner-triangle($sideLength / 2, $sideLength / -2, 45deg);
+  transform: translate($sideLength / 2, $sideLength / -2) rotate(45deg);
 
   justify-content: flex-end;
 
@@ -118,17 +98,6 @@ $sideLength: 112px;
 
 /* Identify page */
 
-@mixin card-dropshadow {
-  -webkit-box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
-  -moz-box-shadow:    3px 3px 5px rgba($BioIndigo, 0.3);
-  box-shadow:         3px 3px 5px rgba($BioIndigo, 0.3);
-}
-
-// .id-page {
-//   height: 100vh;
-//   width: 100vw;
-// }
-
 .card-container {
   height: 88%;
   width: 100%;
@@ -138,7 +107,7 @@ $sideLength: 112px;
     height: 100%;
     background-color: $BioIndigo;
     color: white;
-    @include card-dropshadow;
+    box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
 
     .id-card-img {
       height: 42.3%;
@@ -162,7 +131,7 @@ $sideLength: 112px;
     }
 
     .id-card-choices {
-      height: 32%;
+      height: 40%;
       width: 100%;
       justify-content: space-between;
 

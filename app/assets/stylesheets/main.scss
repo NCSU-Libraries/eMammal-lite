@@ -1,17 +1,3 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "_include-media.scss";
-@import "https://cdn.ncsu.edu/brand-assets/fonts/include.css";
-
-/* NCSU Brand colors */
-$BioIndigo: #4156A1;
-$PyromanFlame: #D14905;
-$HuntYellow: #FDD100;
-$InnovationBlue: #427E93;
-$GenomicGreen: #7D8C1F;
-$ReynoldsRed: #990000;
-$WolfpackRed: #CC0000;
-
 /* Universal */
 body {
   font-family: UniversRoman;
@@ -137,6 +123,20 @@ body {
   text-align: center;
 }
 
+.page-with-header {
+  filter: blur(0);
+}
+
+@keyframes blur {
+  to {
+    filter: blur(2px)
+  }
+}
+
+.blur {
+  animation: blur 0.5s forwards;
+}
+
 @include media("<=tablet") {
 
   .header {
@@ -185,8 +185,6 @@ body {
   .page-with-header {
     height: 85vh;
     width: 100vw;
-    filter: blur(0);
-    -webkit-filter: blur(0);
   }
 }
 
