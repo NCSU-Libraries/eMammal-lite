@@ -2,40 +2,43 @@
 
 var loadPageJS = function() {
 
-  // Show page information/instructions
-  var position = 0;
-  var blur = "2px";
+  var topPosition = 0;
+
+  // Show page information/instructions on icon click
   $(".header-page-icon").on("click", toggleDropDown);
 
   // Show dropdown information on page and blur underlying page
   function toggleDropDown() {
-  $(".page-with-header").toggleClass("blur");
+    $(".page-with-header").toggleClass("blur");
 
     $(".info-drop-down").animate({
-      "top": position || 0
+      "top": topPosition
     }, {
       duration: 500,
       done: function() {
-
-        // $(".page-with-header").css({"-webkit-filter": "blur(" + blur + ")"});
-
-        if (position === 0) {
-          position = $(".info-drop-down").outerHeight() * -1;
-          blur = 0;
+        // After animation finishes set position for next toggle and add event
+        //  listener for blured page
+        if (topPosition === 0) {
+          topPosition = $(".info-drop-down").outerHeight() * -1;
           $(".page-with-header").on("click", toggleDropDown);
         } else {
-          position = 0;
-          blur = "2px";
+          topPosition = 0;
           $(".page-with-header").off("click", toggleDropDown);
         }
       }
     });
   }
+
+  // Handle info drop down position on window resize
+  $(window).on("resize", function() {
+    // Set next top position variable, set top position, remove event
+    //  listener for underlying page, and remove blur
+    topPosition = 0;
+    $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
+    $(".page-with-header").off("click", toggleDropDown);
+    $(".page-with-header").removeClass("blur");
+  });
 };
 
 // $(document).ready(loadPageJS);
 $(document).on("turbolinks:load", loadPageJS);
-
-$(window).on("resize", function() {
-  $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
-});

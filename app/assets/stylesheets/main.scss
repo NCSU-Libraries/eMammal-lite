@@ -125,16 +125,13 @@ body {
 
 .page-with-header {
   filter: blur(0);
+
+  transition-property: filter;
+  transition-duration: .5s;
 }
 
-@keyframes blur {
-  to {
-    filter: blur(2px)
-  }
-}
-
-.blur {
-  animation: blur 0.5s forwards;
+.page-with-header.blur {
+  filter: blur(2px)
 }
 
 @include media("<=tablet") {
