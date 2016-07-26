@@ -25,6 +25,7 @@ body {
   max-height: 100%;
 }
 
+
 /* Text */
 .xl-header {
   font-size: 42px;
@@ -70,14 +71,11 @@ body {
 
 /* Button styles */
 .emammal-btn {
-  padding-top: 12px;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-bottom: 10px;
+  padding: 2%;
 
   border-style: solid;
   border-width: thin;
-  border-radius: 25px;
+  border-radius: 21px;
 
   &:focus, &:active:focus, &:focus:visited {
     outline: none;
@@ -138,43 +136,38 @@ body {
 
   .header {
     height: 15vh;
-    align-items: center;
   }
 
   .header-menu-btn {
     margin-left: 6%;
-    width: 11.5vmin;
-    height: 11.5vmin;
-    border-style: solid;
-    border-width: medium;
-    border-radius: 50%;
-    border-color: gray;
-    justify-content: center;
+    width: 11.5%;
+    margin-top: 5.25vh;
 
-    h1 {
-      margin: 0;
-      text-align: center;
-      font-size: 8vmin;
-      color: $BioIndigo;
+    .menu-btn {
+      width: 100%;
+      max-width: 60px;
     }
   }
 
   .header-page-title {
     width: 65.2%;
     color: $BioIndigo;
+    margin-top: 6.9vh;
 
     .header-text {
-      font-size: 20px;
+      margin: 0;
     }
   }
 
   .header-page-icon {
-    width: 5%;
+    width: 5vw;
     height: auto;
     margin-right: 12.3%;
+    margin-top: 6.9vh;
 
     img {
       width: 100%;
+      max-width: 57px;
       height: auto;
     }
   }
@@ -215,12 +208,19 @@ body {
   height: auto;
   background-color: white;
   color: $BioIndigo;
-  padding-top: 64px;
-  padding-bottom: 82px;
-  padding-left: 20%;
-  padding-right: 20%;
 
-  .info-text {
+  .info-drop-down-header {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    height: 15vh;
+    width: 100%;
+  }
 
+  .info-drop-down-text {
+    margin-top: 64px;
+    margin-bottom: 82px;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 }

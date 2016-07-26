@@ -29,16 +29,20 @@ var loadPageJS = function() {
     });
   }
 
-  // Handle info drop down position on window resize
-  $(window).on("resize", function() {
-    // Set next top position variable, set top position, remove event
-    //  listener for underlying page, and remove blur
-    topPosition = 0;
-    $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
-    $(".page-with-header").off("click", toggleDropDown);
-    $(".page-with-header").removeClass("blur");
+  // Wait until window is loaded and then attach resize event, this prevents
+  //  resize issues that occur during the page load
+  $(window).on("load", function() {
+    // Handle info drop down position on window resize
+    $(window).on("resize", function() {
+      // Set next top position variable, set top position, remove event
+      //  listener for underlying page, and remove blur
+      topPosition = 0;
+        console.log($(".info-drop-down").outerHeight());
+      $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
+      $(".page-with-header").off("click", toggleDropDown);
+      $(".page-with-header").removeClass("blur");
+    });
   });
 };
 
-// $(document).ready(loadPageJS);
 $(document).on("turbolinks:load", loadPageJS);

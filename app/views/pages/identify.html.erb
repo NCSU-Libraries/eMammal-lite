@@ -1,7 +1,7 @@
 <% provide(:header_text, "IDENTIFY")%>
 <%= render 'layouts/header' %>
 <div class="id-page page-with-header flex-column-center">
-  <div class="card-container flex-column-center">
+  <div class="card-container flex-row-center">
     <div class="card flex-column-center">
       <div id="photo" class="id-card-img">
         <%= render 'photo'%>
@@ -13,10 +13,17 @@
       <div id="identify_form" class="id-card-choices flex-column-center">
         <%= render 'identify_form'%>
       </div>
+      <div class="skip-container">
+        <h3 class="xs-text">skip ></h3>
+      </div>
+    </div>
+    <div class="next-arrow">
+      <%= image_tag("identify/next-arrow.svg", alt: "next image", class: "center-img-resposive") %>
     </div>
   </div>
-  <div class="score-container">
-
+  <div class="score-container flex-column-center">
+    <h1 class="lg-text">SCORE: 0</h1>
   </div>
 </div>
+<% provide(:info_text, "Can you make out the animals in these pictures? Let’s find out. Below you will see a Card containing a camera trap image. Choose from the choices provided to test your skills and contribute to the database of identifications. The more IDs you make, the higher your score will grow. If you get one wrong, don't worry, we’ll store it and bring it back around for you to try again later. Go ahead give it a try!")%>
 <%= render 'layouts/info_drop_down' %>

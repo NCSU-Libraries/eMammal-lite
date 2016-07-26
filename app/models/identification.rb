@@ -6,7 +6,9 @@ class Identification < ApplicationRecord
   belongs_to :animal
 
   private
+    # Set boolean for correct identification and THEN return nil
     def set_correct_identification
       self.correct_identification = self.user_identification == self.photo.animal.id
+      return
     end
 end
