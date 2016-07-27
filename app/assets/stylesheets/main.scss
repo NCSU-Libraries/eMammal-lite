@@ -63,6 +63,14 @@ body {
   font-weight: bold;
 }
 
+.oblique-text {
+  font-style: italic;
+}
+
+.no-margin-text {
+  margin: 0;
+}
+
 .emammal-text-input {
   border-width: thin;
   border-radius: 25px;
@@ -122,6 +130,8 @@ body {
 }
 
 .page-with-header {
+  width: 100vw;
+
   filter: blur(0);
 
   transition-property: filter;
@@ -140,12 +150,13 @@ body {
 
   .header-menu-btn {
     margin-left: 6%;
-    width: 11.5%;
+    width: 11.5vw;
     margin-top: 5.25vh;
 
     .menu-btn {
       width: 100%;
       max-width: 60px;
+      cursor: pointer;
     }
   }
 
@@ -164,6 +175,7 @@ body {
     height: auto;
     margin-right: 12.3%;
     margin-top: 6.9vh;
+    cursor: pointer;
 
     img {
       width: 100%;
@@ -174,33 +186,105 @@ body {
 
   .page-with-header {
     height: 85vh;
-    width: 100vw;
   }
 }
 
 @include media(">tablet") {
 
   .header {
-    height: 75px;
-    background-color: $PyromanFlame;
+    height: 110px;
+    background-color: white;
+    box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
   }
 
-  .header-menu-btn {
+  .header-menu-btn, .header-page-icon {
     display: none;
   }
 
   .header-page-title {
-    color: white;
+    color: $BioIndigo;
   }
 
   .page-with-header {
-    height: calc(100vh - 75px);
-    width: 100vw;
+    height: calc(100vh - 110px);
+    background-image: linear-gradient(rgba(255,255,255,0.95),rgba(255,255,255,0.95)), url("background-pattern-01.png");
+    background-repeat: repeat;
+    background-size: contain;
   }
 
 }
 
+
+/* Menu */
+.menu {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 69.6%;
+  background-color: white;
+
+  .menu-header {
+    width: auto;
+    height: 14.7%;
+
+    display: flex;
+    flex-direction: row;
+
+    .small-logo {
+      width: 10.3%;
+      height: auto;
+      margin-top: 6.9vh;
+      margin-left: 8.8%;
+    }
+
+    .menu-title {
+      color: #D14905;
+      margin-top: 6.9vh;
+      padding-left: 2%;
+    }
+  }
+
+  .menu-user-info {
+    width: auto;
+    height: 17.8%;
+    align-items: center;
+    background-color: $PyromanFlame;
+    color: white;
+
+    .user-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      margin-left: 8.8%;
+    }
+
+    .user-name {
+      margin-left: 6.2%;
+      margin-right: 8.8%;
+      line-height: 1.5;
+    }
+  }
+
+  .menu-nav-container {
+    width: auto;
+    height: 67.5%;
+    color: $PyromanFlame;
+
+    .menu-nav {
+      margin-top: 6.7%;
+      margin-left: 8.8%;
+      width: 70.5%;
+      height: 70%;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  }
+}
+
+
 /* Info Drop Down */
+
 .info-drop-down {
   position: absolute;
   top: -100%;

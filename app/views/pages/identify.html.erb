@@ -2,28 +2,37 @@
 <%= render 'layouts/header' %>
 <div class="id-page page-with-header flex-column-center">
   <div class="card-container flex-row-center">
-    <div class="card flex-column-center">
+    <div class="card">
       <div id="photo" class="id-card-img">
         <%= render 'photo'%>
       </div>
-      <div class="id-card-header flex-column-center">
-        <h1 class="main-header sm-header light-text bold-text">What animal is this?</h1>
-        <h2 class="sub-header light-text xs-text">choose from the options below</h2>
-      </div>
-      <div id="identify_form" class="id-card-choices flex-column-center">
-        <%= render 'identify_form'%>
-      </div>
-      <div class="skip-container">
-        <h3 class="xs-text">skip ></h3>
+      <div class="id-card-choice-container">
+        <div class="id-card-header flex-column-center">
+          <h1 class="main-header sm-header light-text bold-text">What animal is this?</h1>
+          <h2 class="sub-header light-text xs-text">choose from the options below</h2>
+        </div>
+        <div id="identify_form" class="id-card-choices flex-column-center">
+          <%= render 'identify_form'%>
+        </div>
+        <div class="skip-container">
+          <h3 class="xs-text skip-text">skip ></h3>
+        </div>
       </div>
     </div>
     <div class="next-arrow">
-      <%= image_tag("identify/next-arrow.svg", alt: "next image", class: "center-img-resposive") %>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      	 viewbox="5 -430 300 840" enable-background="new 9.2 -432.5 296.8 828.5" xml:space="preserve">
+      <path id="path-1" opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" enable-background="new    " d="
+      	M34.2,371L281-18.2L34.2-407.5"/>
+      </svg>
     </div>
   </div>
   <div class="score-container flex-column-center">
     <h1 class="lg-text">SCORE: 0</h1>
   </div>
 </div>
+
+<%= render 'shared/menu'%>
+
 <% provide(:info_text, "Can you make out the animals in these pictures? Let’s find out. Below you will see a Card containing a camera trap image. Choose from the choices provided to test your skills and contribute to the database of identifications. The more IDs you make, the higher your score will grow. If you get one wrong, don't worry, we’ll store it and bring it back around for you to try again later. Go ahead give it a try!")%>
-<%= render 'layouts/info_drop_down' %>
+<%= render 'shared/info_drop_down' %>

@@ -2,27 +2,50 @@
 
 var loadPageJS = function() {
 
-  var topPosition = 0;
+  var infoTopPosition = 0;
 
   // Show page information/instructions on icon click
   $(".header-page-icon").on("click", toggleDropDown);
+  $(".menu-btn").on("click", toggleMenu);
 
   // Show dropdown information on page and blur underlying page
   function toggleDropDown() {
     $(".page-with-header").toggleClass("blur");
 
     $(".info-drop-down").animate({
-      "top": topPosition
+      "top": infoTopPosition
     }, {
       duration: 500,
       done: function() {
         // After animation finishes set position for next toggle and add event
         //  listener for blured page
-        if (topPosition === 0) {
-          topPosition = $(".info-drop-down").outerHeight() * -1;
+        if (infoTopPosition === 0) {
+          infoTopPosition = $(".info-drop-down").outerHeight() * -1;
           $(".page-with-header").on("click", toggleDropDown);
         } else {
-          topPosition = 0;
+          infoTopPosition = 0;
+          $(".page-with-header").off("click", toggleDropDown);
+        }
+      }
+    });
+  }
+
+  // Show menu and blur underlying page
+  function toggleMenu() {
+    $(".page-with-header").toggleClass("blur");
+
+    $(".menu").animate({
+      "left": infoTopPosition
+    }, {
+      duration: 500,
+      done: function() {
+        // After animation finishes set position for next toggle and add event
+        //  listener for blured page
+        if (infoTopPosition === 0) {
+          infoTopPosition = $(".info-drop-down").outerHeight() * -1;
+          $(".page-with-header").on("click", toggleDropDown);
+        } else {
+          infoTopPosition = 0;
           $(".page-with-header").off("click", toggleDropDown);
         }
       }
@@ -36,7 +59,7 @@ var loadPageJS = function() {
     $(window).on("resize", function() {
       // Set next top position variable, set top position, remove event
       //  listener for underlying page, and remove blur
-      topPosition = 0;
+      infoTopPosition = 0;
         console.log($(".info-drop-down").outerHeight());
       $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
       $(".page-with-header").off("click", toggleDropDown);
