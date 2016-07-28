@@ -129,6 +129,12 @@ body {
   text-align: center;
 }
 
+.menu-btn {
+  width: 100%;
+  max-width: 58px;
+  cursor: pointer;
+}
+
 .page-with-header {
   width: 100vw;
 
@@ -152,12 +158,6 @@ body {
     margin-left: 6%;
     width: 11.5vw;
     margin-top: 5.25vh;
-
-    .menu-btn {
-      width: 100%;
-      max-width: 60px;
-      cursor: pointer;
-    }
   }
 
   .header-page-title {
@@ -211,7 +211,6 @@ body {
     background-repeat: repeat;
     background-size: contain;
   }
-
 }
 
 
@@ -220,34 +219,41 @@ body {
   position: absolute;
   top: 0;
   left: -100%;
-  height: 100%;
+  height: 100vh;
   width: 69.6%;
+  max-width: 300px;
   background-color: white;
 
   .menu-header {
     width: auto;
-    height: 14.7%;
-
-    display: flex;
-    flex-direction: row;
+    height: 15%;
 
     .small-logo {
       width: 10.3%;
       height: auto;
+      float: left;
       margin-top: 6.9vh;
       margin-left: 8.8%;
     }
 
     .menu-title {
-      color: #D14905;
       margin-top: 6.9vh;
       padding-left: 2%;
+      float: left;
+      color: #D14905;
+    }
+
+    .menu-menu-btn {
+      width: 11.5vw;
+      margin-top: 5.25vh;
+      margin-right: 9.6%;
+      float: right;
     }
   }
 
   .menu-user-info {
     width: auto;
-    height: 17.8%;
+    height: 17.5%;
     align-items: center;
     background-color: $PyromanFlame;
     color: white;
