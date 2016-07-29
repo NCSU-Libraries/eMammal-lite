@@ -1,6 +1,6 @@
 /* Universal */
 body {
-  font-family: UniversRoman;
+  font-family: UniversLight;
   background-color: white;
   overflow-x: hidden;
   margin: 0;
@@ -80,18 +80,21 @@ body {
 /* Button styles */
 .emammal-btn {
   padding: 2%;
+  text-align: center;
 
   border-style: solid;
   border-width: thin;
-  border-radius: 21px;
+  border-radius: 2em;
 
   &:focus, &:active:focus, &:focus:visited {
     outline: none;
+    text-decoration: none;
   }
 
   &:hover {
     background-color: lighten($BioIndigo, 8%);
     color: white;
+    text-decoration: none;
   }
 }
 
@@ -117,6 +120,31 @@ body {
 }
 
 
+/* Classes to handle blur and click-prevention when menus/dropdowns are open*/
+.will-blur {
+  filter: blur(0);
+
+  transition-property: filter;
+  transition-duration: .5s;
+
+  &.blur {
+    filter: blur(2px)
+  }
+}
+
+.prevent-click {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
 /* Header & page with header */
 
 .header {
@@ -137,15 +165,6 @@ body {
 
 .page-with-header {
   width: 100vw;
-
-  filter: blur(0);
-
-  transition-property: filter;
-  transition-duration: .5s;
-}
-
-.page-with-header.blur {
-  filter: blur(2px)
 }
 
 @include media("<=tablet") {

@@ -2,59 +2,67 @@
 
 var loadPageJS = function() {
 
-  var infoTopPosition = 0;
-  var menuLeftPosition = 0;
 
-  // Show page information/instructions on icon click
-  $(".header-page-icon").on("click", toggleDropDown);
-  $(".menu-btn").on("click", toggleMenu);
+  // Check if header is present, if it is load js for pages with a header
+  if ($(".header").length > 0) { pagesWithHeaderMobile(); }
+  if ($(".id-page ").length > 0) { identifyPage(); }
 
-  // Show dropdown information on page and blur underlying page
-  function toggleDropDown() {
-    $(".page-with-header").toggleClass("blur");
+  // JavaScript specific to pages with a header on mobile devices
+  function pagesWithHeaderMobile() {
+    // Show page information/instructions on icon click
+    $(".header-page-icon").on("click", toggleOverlays);
+    $(".menu-btn").on("click", toggleOverlays);
+    $(".prevent-click").on("click", toggleOverlays);
 
-    $(".info-drop-down").animate({
-      "top": infoTopPosition
-    }, {
-      duration: 500,
-      done: function() {
-        // After animation finishes set position for next toggle and add event
-        //  listener for blured page
-        if (infoTopPosition === 0) {
-          infoTopPosition = $(".info-drop-down").outerHeight() * -1;
-          $(".page-with-header").on("click", toggleDropDown);
-        } else {
-          infoTopPosition = 0;
-          $(".page-with-header").off("click", toggleDropDown);
+    var lastOverlay;
+    function toggleOverlays() {
+      if ($(".menu").is(":animated") || $(".info-drop-down").is(":animated")) {
+        return;
+      }
+      $(".will-blur").toggleClass("blur");
+      $(".prevent-click").toggleClass("visible");
+
+      var overlay;
+      var animatePos = {};
+      if ($(this).hasClass("prevent-click")) {
+        checkWhichOverlay(lastOverlay);
+      } else checkWhichOverlay($(this));
+
+      function checkWhichOverlay(currentOverlay) {
+        if (currentOverlay.hasClass("menu-btn")) {
+          overlay = $(".menu");
+          animatePos.left = parseInt(overlay.css("left")) === 0 ?
+            overlay.outerWidth() * -1 : 0;
+        } else if (currentOverlay.hasClass("header-page-icon")) {
+          overlay = $(".info-drop-down");
+          animatePos.top = parseInt(overlay.css("top")) === 0 ?
+            overlay.outerHeight() * -1 : 0;
         }
       }
-    });
+
+      overlay.animate(animatePos, {duration: 500});
+      lastOverlay = $(this);
+    }
+
+    console.log("loaded js for pages with mobile header");
   }
 
-  // Show menu and blur underlying page
-  function toggleMenu() {
-    console.log(menuLeftPosition);
-    $(".page-with-header").toggleClass("blur");
-    $(".menu").animate({
-      "left": menuLeftPosition
-    }, {
-      duration: 500,
-      done: function() {
+  // JavaScript specific to the identify page
+  function identifyPage() {
+    var flipper = $(".next-arrow");
 
-        // After animation finishes set position for next toggle and add event
-        //  listener for blured page
-        if (menuLeftPosition === 0) {
-          menuLeftPosition = $(".menu").outerWidth() * -1;
-          $(".page-with-header").on("click", toggleMenu);
-          $(".header-page-icon").off("click", toggleDropDown);
-        } else {
-          menuLeftPosition = 0;
-          $(".page-with-header").off("click", toggleMenu);
-          $(".header-page-icon").on("click", toggleDropDown);
-        }
-      }
-    });
+    flipper.on("click", flipCard);
+
+    function flipCard() {
+      $(".card").toggleClass("flipped");
+      $(".back").toggleClass("hidden-back");
+
+      console.log("FLIPPED!");
+    }
+
+    console.log("loaded js for id page");
   }
+
 
   // Wait until window is loaded and then attach resize event, this prevents
   //  resize issues that occur during the page load
@@ -66,19 +74,10 @@ var loadPageJS = function() {
       // Check if header is present and return if not
       if ($(".header").length < 1) { return; }
 
-      // Set next top and left position variable and local div heights
-      infoTopPosition = 0;
-      menuLeftPosition = 0;
-      var dropDownHeight = $(".info-drop-down").outerHeight();
-      // Move menu and drop-down to initial hidden positions, remove
-      //  event listener for underlying page, and remove blur
-      if ($(".menu").css("left") === "0px") {
-        $(".header-page-icon").on("click", toggleDropDown);
-      }
       $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
       $(".menu").css("left", $(".menu").outerWidth() * -1);
-      $(".page-with-header").off("click", toggleDropDown);
-      $(".page-with-header").removeClass("blur");
+      $(".will-blur").removeClass("blur");
+      $(".prevent-click").removeClass("visible");
     });
   });
 };

@@ -63,7 +63,9 @@ $sideLength: 112px;
   height: auto;
 
   &:hover {
-    background-color: lighten($BioIndigo, 40%);
+    path {
+      opacity: 1;
+    }
   }
 }
 
@@ -109,6 +111,55 @@ $sideLength: 112px;
   background-color: $BioIndigo;
   color: white;
   box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
+  transform: rotateY(0deg);
+  transform-style: preserve-3d;
+
+  transition-property: all;
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &.flipped {
+    transform: rotateY(180deg);
+    box-shadow: -3px 3px 5px rgba($BioIndigo, 0.3);
+  }
+
+  .front, .back {
+    width: 100%;
+    height: 100%;
+    background-color: $BioIndigo;
+  }
+
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+
+    .right-wrong-icon {
+      margin-top: 13%;
+      width: 41.8%;
+      height: 23.5%;
+      margin-left: auto;
+      margin-right: auto;
+      background: white;
+    }
+
+    .right-wrong-header {
+      margin-top: 5%;
+      text-align: center;
+    }
+
+    .right-wrong-text {
+      margin-top: 33.1%;
+      text-align: center;
+
+    }
+  }
+
+  // .hidden-back {
+  //   backface-visibility: hidden;
+  // }
+
 }
 
 .skip-container {
@@ -134,14 +185,14 @@ $sideLength: 112px;
   margin-left: 4%;
   cursor: pointer;
 
-  svg {
-    width: 100%
+  &:hover {
+    path#path-1 {
+      opacity: 1;
+    }
   }
-}
 
-.next-arrow:hover {
-  path#path-1 {
-    opacity: 1;
+  svg {
+    width: 100%;
   }
 }
 
