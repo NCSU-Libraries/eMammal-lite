@@ -1,11 +1,9 @@
-
+// JavaScript specific to pages with a header
 
 var loadPageJS = function() {
 
-
   // Check if header is present, if it is load js for pages with a header
   if ($(".header").length > 0) { pagesWithHeaderMobile(); }
-  if ($(".id-page ").length > 0) { identifyPage(); }
 
   // JavaScript specific to pages with a header on mobile devices
   function pagesWithHeaderMobile() {
@@ -14,11 +12,15 @@ var loadPageJS = function() {
     $(".menu-btn").on("click", toggleOverlays);
     $(".prevent-click").on("click", toggleOverlays);
 
+    // Function to show/hide overlays (menu and information about current page)
     var lastOverlay;
     function toggleOverlays() {
+      // Don't continue if animation is currently running
       if ($(".menu").is(":animated") || $(".info-drop-down").is(":animated")) {
         return;
       }
+
+      // Blur underlying screen and add invisible div to prevent clicking
       $(".will-blur").toggleClass("blur");
       $(".prevent-click").toggleClass("visible");
 
@@ -46,23 +48,6 @@ var loadPageJS = function() {
 
     console.log("loaded js for pages with mobile header");
   }
-
-  // JavaScript specific to the identify page
-  function identifyPage() {
-    var flipper = $(".next-arrow");
-
-    flipper.on("click", flipCard);
-
-    function flipCard() {
-      $(".card").toggleClass("flipped");
-      $(".back").toggleClass("hidden-back");
-
-      console.log("FLIPPED!");
-    }
-
-    console.log("loaded js for id page");
-  }
-
 
   // Wait until window is loaded and then attach resize event, this prevents
   //  resize issues that occur during the page load

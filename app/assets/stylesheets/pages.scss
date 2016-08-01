@@ -62,6 +62,11 @@ $sideLength: 112px;
   max-width: 88px;
   height: auto;
 
+  path {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+  }
+
   &:hover {
     path {
       opacity: 1;
@@ -102,21 +107,21 @@ $sideLength: 112px;
 .card-container {
   width: 100%;
   align-items: center;
+  perspective: 1000px;
 }
 
 .card {
   display: flex;
   height: 100%;
   margin-left: 6.6%;
-  background-color: $BioIndigo;
   color: white;
   box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
   transform: rotateY(0deg);
   transform-style: preserve-3d;
 
   transition-property: all;
-  transition-duration: 2s;
-  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.1);
 
   &.flipped {
     transform: rotateY(180deg);
@@ -124,15 +129,23 @@ $sideLength: 112px;
   }
 
   .front, .back {
+    display: flex;
     width: 100%;
     height: 100%;
     background-color: $BioIndigo;
+    backface-visibility: hidden;
+  }
+
+  .front {
+    transform: rotateY(0deg);
+    transform: translateZ(1px);
   }
 
   .back {
     position: absolute;
     top: 0;
     left: 0;
+    pointer-events: none;
     transform: rotateY(180deg);
 
     .right-wrong-icon {
@@ -141,7 +154,6 @@ $sideLength: 112px;
       height: 23.5%;
       margin-left: auto;
       margin-right: auto;
-      background: white;
     }
 
     .right-wrong-header {
@@ -155,11 +167,6 @@ $sideLength: 112px;
 
     }
   }
-
-  // .hidden-back {
-  //   backface-visibility: hidden;
-  // }
-
 }
 
 .skip-container {
@@ -184,6 +191,7 @@ $sideLength: 112px;
   max-width: 20px;
   margin-left: 4%;
   cursor: pointer;
+  visibility: hidden;
 
   &:hover {
     path#path-1 {
@@ -204,6 +212,10 @@ $sideLength: 112px;
       width: auto;
       flex-direction: column;
       align-items: center;
+
+      .front, .back {
+        flex-direction: column;
+      }
 
       .id-card-img {
         height: 42.3%;
@@ -271,6 +283,10 @@ $sideLength: 112px;
       flex-direction: row;
       height: auto;
       width: 63.5%;
+
+      .front, .back {
+        flex-direction: row;
+      }
 
       .id-card-img {
         width: 60%;

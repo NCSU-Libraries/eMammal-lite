@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about'
   get 'identify' => 'pages#identify'
+  get 'next_card' => 'identifications#next_card'
 
   resources :photos
   resources :identifications, only: [:create]

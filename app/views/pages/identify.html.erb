@@ -20,24 +20,20 @@
           </div>
         </div>
       </div>
-      <div class="back flex-column-center hidden-back">
-        <div class="right-wrong-icon">
-
-        </div>
-        <h1 class="right-wrong-header lg-header">Correct!</h1>
-        <h2 class="right-wrong-text xl-text oblique-text">You identified the animal</h2>
+      <div id="back_of_card" class="back flex-column-center">
+        <%= render 'back_of_card' %>
       </div>
     </div>
-    <div class="next-arrow">
+    <%= link_to next_card_path, class:"next-arrow", remote: true do %>
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-      	 viewbox="5 -430 300 840" enable-background="new 9.2 -432.5 296.8 828.5" xml:space="preserve">
-      <path id="path-1" opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" enable-background="new    " d="
+      	 viewbox="5 -430 300 840" xml:space="preserve">
+      <path id="path-1" opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
       	M34.2,371L281-18.2L34.2-407.5"/>
       </svg>
-    </div>
+    <% end %>
   </div>
   <div class="score-container flex-column-center">
-    <h1 class="lg-text">SCORE: 0</h1>
+    <h1 class="lg-text">SCORE: <span class="score">0</span></h1>
   </div>
 </div>
 

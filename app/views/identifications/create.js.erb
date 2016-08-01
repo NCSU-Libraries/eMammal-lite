@@ -1,2 +1,9 @@
-$("#identify_form").html("<%= escape_javascript(render('pages/identify_form')) %>");
-$("#photo").html("<%= escape_javascript(render('pages/photo')) %>");
+$(".card").toggleClass("flipped");
+$(".next-arrow").toggleClass("visible");
+
+// If the correct id was made increase score by 10
+if (<%= @identification.correct_identification %>) {
+  $(".score").html(parseInt($(".score").html()) + 10)
+}
+
+$("#back_of_card").html("<%= escape_javascript(render('pages/back_of_card')) %>");

@@ -142,7 +142,7 @@ body {
 }
 
 .visible {
-  visibility: visible;
+  visibility: visible !important;
 }
 
 /* Header & page with header */
