@@ -8,26 +8,25 @@ var loadPageJS = function() {
   // JavaScript specific to pages with a header on mobile devices
   function pagesWithHeaderMobile() {
     // Show page information/instructions on icon click
-    $(".header-page-icon").on("click", toggleOverlays);
+    if ($(".info-drop-down").length > 0) {
+      $(".header-page-icon").on("click", toggleOverlays);
+    }
     $(".menu-btn").on("click", toggleOverlays);
     $(".prevent-click").on("click", toggleOverlays);
 
     // Function to show/hide overlays (menu and information about current page)
-    var lastOverlay;
     function toggleOverlays() {
       // Don't continue if animation is currently running
       if ($(".menu").is(":animated") || $(".info-drop-down").is(":animated")) {
         return;
       }
 
-      // Blur underlying screen and add invisible div to prevent clicking
-      $(".will-blur").toggleClass("blur");
-      $(".prevent-click").toggleClass("visible");
-
       var overlay;
       var animatePos = {};
       if ($(this).hasClass("prevent-click")) {
-        checkWhichOverlay(lastOverlay);
+        var lastOverlay = $(".menu").css("left") === "0px" ?
+          $(".menu-btn") : $(".header-page-icon");
+          checkWhichOverlay(lastOverlay);
       } else checkWhichOverlay($(this));
 
       function checkWhichOverlay(currentOverlay) {
@@ -39,11 +38,19 @@ var loadPageJS = function() {
           overlay = $(".info-drop-down");
           animatePos.top = parseInt(overlay.css("top")) === 0 ?
             overlay.outerHeight() * -1 : 0;
-        }
+        } else overlay = currentOverlay;
+      }
+
+      // Blur underlying screen and add invisible div to prevent clicking
+      if (animatePos.left === 0 || animatePos.top === 0) {
+        $(".will-blur").addClass("blur");
+        $(".prevent-click").addClass("visible");
+      } else {
+        $(".will-blur").removeClass("blur");
+        $(".prevent-click").removeClass("visible");
       }
 
       overlay.animate(animatePos, {duration: 500});
-      lastOverlay = $(this);
     }
 
     console.log("loaded js for pages with mobile header");

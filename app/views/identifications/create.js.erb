@@ -3,7 +3,7 @@ $(".next-arrow").toggleClass("visible");
 
 // If the correct id was made increase score by 10
 if (<%= @identification.correct_identification %>) {
-  $(".score").html(parseInt($(".score").html()) + 10)
+  $(".score").text(parseInt($(".score").text()) + 10)
 }
 
 $("#back_of_card").html("<%= escape_javascript(render('pages/back_of_card')) %>");

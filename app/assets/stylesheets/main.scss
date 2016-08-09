@@ -18,6 +18,10 @@ body {
   justify-content: center;
 }
 
+.visible {
+  visibility: visible !important;
+}
+
 
 /* Images */
 .center-img-resposive {
@@ -72,8 +76,9 @@ body {
 }
 
 .emammal-text-input {
+  border-style: solid;
   border-width: thin;
-  border-radius: 25px;
+  border-radius: 2em;
   border-color: lighten($BioIndigo, 40%);
 }
 
@@ -119,7 +124,6 @@ body {
   }
 }
 
-
 /* Classes to handle blur and click-prevention when menus/dropdowns are open*/
 .will-blur {
   filter: blur(0);
@@ -139,10 +143,6 @@ body {
   width: 100vw;
   height: 100vh;
   visibility: hidden;
-}
-
-.visible {
-  visibility: visible !important;
 }
 
 /* Header & page with header */
@@ -294,7 +294,6 @@ body {
   .menu-nav-container {
     width: auto;
     height: 67.5%;
-    color: $PyromanFlame;
 
     .menu-nav {
       margin-top: 6.7%;
@@ -303,6 +302,15 @@ body {
       height: 70%;
       align-items: flex-start;
       justify-content: space-between;
+
+      a {
+        text-decoration: none;
+        color: $PyromanFlame;
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
     }
   }
 }

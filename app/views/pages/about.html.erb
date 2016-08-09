@@ -1,2 +1,8 @@
-<h1>Pages#about</h1>
-<p>Find me in app/views/pages/about.html.erb</p>
+<% provide(:header_text, "ABOUT")%>
+<%= render 'layouts/header' %>
+
+<%= render 'shared/prevent_click'%>
+<%= render 'shared/menu'%>
+
+<!-- <% provide(:info_text, "About")%>
+<%= render 'shared/info_drop_down' %> -->

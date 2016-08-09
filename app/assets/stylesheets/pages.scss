@@ -61,6 +61,7 @@ $sideLength: 112px;
   width: 11.5%;
   max-width: 88px;
   height: auto;
+  cursor: pointer;
 
   path {
     transition-property: opacity;
@@ -104,6 +105,7 @@ $sideLength: 112px;
 
 
 /* Identify page */
+
 .card-container {
   width: 100%;
   align-items: center;
@@ -207,9 +209,11 @@ $sideLength: 112px;
 @include media("<=tablet") {
   .card-container {
     height: 75vh;
+    max-height: 650px;
 
     .card {
-      width: auto;
+      width: 42.3vh;
+      max-width: 86.6%;
       flex-direction: column;
       align-items: center;
 
@@ -223,6 +227,7 @@ $sideLength: 112px;
 
         .current-img {
           max-height: 100%;
+          width: 100%;
         }
       }
 
@@ -352,8 +357,26 @@ $sideLength: 112px;
 
 @include media("<=tablet") {
 
-  .sm-img {
-    width: 33vmin;
-    height: 33vmin;
+  .photo-search-container {
+    height: 18.7vh;
+  }
+
+  .photos-container {
+    height: 66.3vh;
+    flex-wrap: wrap;
+    margin-top: -0.5vw;
+    overflow-y: scroll;
+
+    .img-box {
+      width: 32vw;
+      height: 32vw;
+      margin: 0.5vw;
+      overflow: hidden;
+
+      .sm-img {
+        width: 150%;
+        transform: translateX(-16.5%) translateY(-5%);
+      }
+    }
   }
 }

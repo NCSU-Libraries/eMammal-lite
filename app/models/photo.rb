@@ -2,6 +2,14 @@ class Photo < ActiveRecord::Base
   belongs_to :animal
   has_many :identifications
 
+  def self.search(search_query)
+    if !search_query.blank?
+        joins(:animal).where("name = ?", "#{search_query}")
+    else
+      first(15)
+    end
+  end
+
   # Return the stats for a photo
   def stats
     total_ids = self.identifications

@@ -1,0 +1,5 @@
+<% @photos.first(30).each do |photo| %>
+  <div class="img-box">
+    <%= image_tag("https://s3.amazonaws.com/emammalphoto/#{photo.source}_o.jpg", alt: "eMammal Lite", class: "sm-img") %>
+  </div>
+<% end %>
