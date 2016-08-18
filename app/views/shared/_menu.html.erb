@@ -23,10 +23,18 @@
   </div>
   <div class="menu-nav-container">
     <div class="menu-nav flex-column-center">
-      <h1 class="lg-text"><%= link_to "ABOUT", about_path %></h1>
+      <% {"ABOUT" => about_path, "IDENTIFY" => identify_path,
+        "PHOTO ARCHIVE" => photos_path, "STATS" => "#"}.each do |page, path| %>
+        <% if yield(:header_text) == page %>
+          <h1 class="lg-text bold-text"><%=page%></h1>
+        <% else %>
+          <h1 class="lg-text"><%= link_to page, path %></h1>
+        <% end %>
+      <% end %>
+      <!-- <h1 class="lg-text"><%= link_to "ABOUT", about_path %></h1>
       <h1 class="lg-text"><%= link_to "IDENTIFY", identify_path %></h1>
       <h1 class="lg-text"><%= link_to "PHOTO ARCHIVE", photos_path%></h1>
-      <h1 class="lg-text"><%= link_to "STATS", "#"%></h1>
+      <h1 class="lg-text"><%= link_to "STATS", "#"%></h1> -->
     </div>
   </div>
 </div>

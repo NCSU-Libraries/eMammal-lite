@@ -32,5 +32,6 @@ end
   private
     def selection_params
       params.require(:identification)
-        .permit(:photo_id, :user_identification, :correct_identification, :user_id)
+        .permit(:photo_id, :user_identification,
+          :correct_identification, :user_id)
     end

@@ -1,5 +1,5 @@
 eMammal light
 ---
 
-### Start mySQL server
+### Start mySQL server Mac
 sudo mysql.server start

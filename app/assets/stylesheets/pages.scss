@@ -114,6 +114,8 @@ $sideLength: 112px;
 
 .card {
   display: flex;
+  flex-shrink: 0;
+  position: relative;
   height: 100%;
   margin-left: 6.6%;
   color: white;
@@ -121,7 +123,7 @@ $sideLength: 112px;
   transform: rotateY(0deg);
   transform-style: preserve-3d;
 
-  transition-property: all;
+  transition-property: transform;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.1);
 
@@ -209,11 +211,12 @@ $sideLength: 112px;
 @include media("<=tablet") {
   .card-container {
     height: 75vh;
-    max-height: 650px;
+    // max-height: 650px;
 
     .card {
       width: 42.3vh;
       max-width: 86.6%;
+      min-width: 235px;
       flex-direction: column;
       align-items: center;
 
