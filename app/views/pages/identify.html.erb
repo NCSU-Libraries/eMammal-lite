@@ -8,7 +8,7 @@
         <div id="photo" class="id-card-img">
           <%= render 'photo'%>
         </div>
-        <div class="id-card-choice-container">
+        <div class="id-card-choice-container will-blur-photo">
           <div class="id-card-header flex-column-center">
             <h1 class="main-header sm-header light-text bold-text">What animal is this?</h1>
             <h2 class="sub-header light-text xs-text">choose from the options below</h2>
@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <div id="back_of_card" class="back flex-column-center">
+      <div id="back_of_card" class="back">
         <%= render 'back_of_card' %>
       </div>
     </div>
@@ -33,7 +33,7 @@
       </svg>
     <% end %>
   </div>
-  <div class="score-container flex-column-center">
+  <div class="score-container flex-column-center will-blur-photo">
     <h1 class="lg-text">SCORE: <span class="score">0</span></h1>
   </div>
 </div>

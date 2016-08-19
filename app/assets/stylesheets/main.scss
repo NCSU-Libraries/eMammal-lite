@@ -22,10 +22,13 @@ body {
   visibility: visible !important;
 }
 
+.hidden {
+  visibility: hidden !important;
+}
 
 /* Images */
 .center-img-resposive {
-  width: 100%;
+  max-width: 100%;
   max-height: 100%;
 }
 
@@ -124,20 +127,23 @@ body {
   }
 }
 
-/* Classes to handle blur and click-prevention when menus/dropdowns are open*/
-.will-blur {
+/*
+  Classes to handle blur and click-prevention when menus/dropdowns are open or
+  when photo is zoomed
+*/
+.will-blur, .will-blur-photo {
   filter: blur(0);
 
   transition-property: filter;
   transition-duration: .5s;
 
   &.blur {
-    filter: blur(2px)
+    filter: blur(3px);
   }
 }
 
 .prevent-click {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;

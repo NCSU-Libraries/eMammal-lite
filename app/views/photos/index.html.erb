@@ -1,7 +1,7 @@
 <% provide(:header_text, "PHOTO ARCHIVE")%>
 <% provide(:icon, "icons/Photo-icon@3x.png")%>
 <%= render 'layouts/header' %>
-<div class="page-with-header will-blur">
+<div class="photo-archive-page page-with-header will-blur">
   <div class="photo-search-container flex-column-center">
     <%= form_tag(photos_path, method: "get", html: { id: "photo-search", class:""}, remote: true) do %>
       <%= text_field_tag :search, params[:search], class: "emammal-text-input" %>

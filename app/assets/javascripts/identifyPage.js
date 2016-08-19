@@ -16,6 +16,7 @@ function loadPageJS() {
     // without an identification id
     $(".skip-text").on("click", function() {
       $("#new_identification").submit();
+      $(".skip-container").toggleClass("hidden");
       nextCardTransition("skipped");
     });
 
@@ -54,7 +55,7 @@ function loadPageJS() {
       );
 
       oldCard.animate(
-        {"left": -cardWidth},
+        {"left": -cardWidth - cardOffset},
         {
           "duration": 500,
           "complete": function() {
@@ -62,6 +63,7 @@ function loadPageJS() {
             // positioning from the new card
             oldCard.remove();
             newCard.css("left", "");
+            $(".skip-container").toggleClass("hidden");
           }
         }
       );

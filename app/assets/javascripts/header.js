@@ -23,7 +23,11 @@ var loadPageJS = function() {
 
       var overlay;
       var animatePos = {};
-      if ($(this).hasClass("prevent-click")) {
+      if (
+        $(this).hasClass("prevent-click") &&
+        $(".menu").left !== 0 &&
+        $(".info-drop-down") !== 0
+      ) {
         var lastOverlay = $(".menu").css("left") === "0px" ?
           $(".menu-btn") : $(".header-page-icon");
           checkWhichOverlay(lastOverlay);

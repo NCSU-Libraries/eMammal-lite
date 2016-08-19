@@ -1,16 +1,16 @@
 <% if @identification.correct_identification %>
   <div class="right-wrong-icon">
     <%= image_tag("identify/Identify_check-mark-icon@3x.png", alt: "Correct!", class: "center-img-resposive") %>
+    <h1 class="right-wrong-header lg-header">Correct!</h1>
   </div>
-  <h1 class="right-wrong-header lg-header">Correct!</h1>
   <h2 class="right-wrong-text xl-text oblique-text">
-    You identified the animal.
+    You correctly identified the animal.
   </h2>
 <% else %>
   <div class="right-wrong-icon">
     <%= image_tag("identify/Identify_cross-mark-icon.png", alt: "Oops!", class: "center-img-resposive") %>
+    <h1 class="right-wrong-header lg-header">Oops!</h1>
   </div>
-  <h1 class="right-wrong-header lg-header">Oops!</h1>
   <h2 class="right-wrong-text xl-text oblique-text">
     That's not the right answer.
   </h2>

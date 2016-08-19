@@ -7,23 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require "csv"
 
-# photo_id = {
-#   "Coyote" => "d19515s40i5",
-#   "Puma" => "d19460s14i3",
-#   "White-tailed Deer" => "d19492s3i31",
-#   "American Black Bear" => "d17682s66i23",
-#   "Bobcat" => "d16982s30i3",
-#   "Grey Fox" => "d19658s62i5",
-#   "Northern Raccoon" => "d19612s23i1",
-# }
-
-# photo_id.each.with_index do |(animal, id), index|
-#   Photo.create!(
-#     animal_id: index + 1,
-#     source: id
-#   )
-# end
-
 CSV.foreach("db/seeds/photoInfo.csv", {:headers => true}) do |row|
   Photo.create!(
     animal_id: row[0],

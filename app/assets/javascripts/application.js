@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require zoom.js
+//= require transitions.js
 //= require turbolinks
 //= require_tree .

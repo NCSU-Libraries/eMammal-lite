@@ -123,14 +123,9 @@ $sideLength: 112px;
   transform: rotateY(0deg);
   transform-style: preserve-3d;
 
-  transition-property: transform;
+  transition-property: transform, box-shadow;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.1);
-
-  &.flipped {
-    transform: rotateY(180deg);
-    box-shadow: -3px 3px 5px rgba($BioIndigo, 0.3);
-  }
 
   .front, .back {
     display: flex;
@@ -150,23 +145,25 @@ $sideLength: 112px;
     top: 0;
     left: 0;
     pointer-events: none;
-    transform: rotateY(180deg);
 
     .right-wrong-icon {
-      margin-top: 13%;
+      position: absolute;
+      top: 13%;
       width: 41.8%;
       height: 23.5%;
+      text-align: center;
       margin-left: auto;
       margin-right: auto;
-    }
 
-    .right-wrong-header {
-      margin-top: 5%;
-      text-align: center;
+      .right-wrong-header {
+        margin-top: 5%;
+        text-align: center;
+      }
     }
 
     .right-wrong-text {
-      margin-top: 33.1%;
+      position: absolute;
+      bottom: 10.8%;
       text-align: center;
 
     }
@@ -220,8 +217,18 @@ $sideLength: 112px;
       flex-direction: column;
       align-items: center;
 
+      &.flipped {
+        box-shadow: -3px 3px 5px rgba($BioIndigo, 0.3);
+        transform: rotateY(180deg);
+      }
+
       .front, .back {
         flex-direction: column;
+      }
+
+      .back {
+        transform: rotateY(180deg);
+        align-items: center;
       }
 
       .id-card-img {
@@ -280,6 +287,7 @@ $sideLength: 112px;
     width: 100%;
     color: $BioIndigo;
     justify-content: center;
+    pointer-events: none;
   }
 }
 
@@ -292,12 +300,22 @@ $sideLength: 112px;
       height: auto;
       width: 63.5%;
 
+      &.flipped {
+        box-shadow: 3px -3px 5px rgba($BioIndigo, 0.3);
+        transform: rotateX(180deg);
+      }
+
       .front, .back {
         flex-direction: row;
       }
 
+      .back {
+        transform: rotateX(180deg);
+      }
+
       .id-card-img {
         width: 60%;
+        padding: 8px;
 
         .current-img {
           max-width: 100%;
