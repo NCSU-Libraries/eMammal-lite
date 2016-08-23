@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
 
-  get 'about' => 'pages#about'
+  get 'learn_more' => 'pages#learn_more'
   get 'identify' => 'pages#identify'
   get 'next_card' => 'identifications#next_card'
 

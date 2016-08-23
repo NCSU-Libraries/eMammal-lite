@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
   end
 
-  def about
+  def learn_more
   end
 
   # View for identifiying animals

@@ -9,9 +9,9 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
-  describe "GET #about" do
+  describe "GET #learn_more" do
     it "returns http success" do
-      get :about
+      get :learn_more
       expect(response).to have_http_status(:success)
     end
   end

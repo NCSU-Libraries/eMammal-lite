@@ -1,0 +1,34 @@
+<% provide(:header_text, "LEARN MORE")%>
+<% provide(:icon, "icons/Learn_More-icon@3x.png")%>
+<%= render 'layouts/header' %>
+
+<div class="learn-more flex-column-center">
+  <div class="learn-more-container">
+    <div class="learn-more-title">
+        <h1 class="xl-header bold-text">The eMammal Project</h1>
+    </div>
+    <div class="learn-more-title">
+        <h2 class="lg-header">How it Works</h2>
+    </div>
+    <div class="learn-more-body">
+      <p class="body-text">
+        eMammal is a tool used by researchers to manage their camera trap data, and each project is responsible for providing and managing their own camera traps. Some of these projects have cameras traps to loan out to volunteers within their study area.
+      </p>
+      <h2 class="lg-header">What is a Camera Trap?</h2>
+      <p class="body-text">
+        A camera trap is a remotely activated camera that is equipped with a motion sensor or an infrared sensor, or uses a light beam as a trigger. Camera trapping is a method for capturing wild animals on film when researchers are not present, and has been used in ecological research for decades.
+      </p>
+      <h2 class="lg-header">Get Involved</h2>
+      <p class="body-text">
+        eMammal is composed of different research projects and some of these projects recruit volunteers to place cameras while other projects use hired staff.
+      </p>
+    </div>
+  </div>
+  <!-- <%= link_to "Begin", identify_path, role: "button", class: "emammal-btn light-btn bold-text xl-text begin-btn" %> -->
+</div>
+
+<%= render 'shared/prevent_click'%>
+<%= render 'shared/menu'%>
+
+<!-- <% provide(:info_text, "about")%>
+<%= render 'shared/info_drop_down' %> -->

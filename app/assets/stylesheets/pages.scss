@@ -76,7 +76,7 @@ $sideLength: 112px;
 }
 
 
-/* About page */
+/* Landing About page */
 
 .about {
   height: 100vh;
@@ -94,6 +94,31 @@ $sideLength: 112px;
   }
 
   .about-body {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+.begin-btn {
+  width: 155px;
+}
+
+
+/* Learn More page */
+
+.learn-more {
+  width: 100vw;
+  color: $BioIndigo;
+}
+
+.learn-more-container {
+  width: 76%;
+
+  .learn-more-title {
+    margin-top: 0;
+  }
+
+  .learn-more-body {
     font-size: 14px;
     line-height: 1.5;
   }
