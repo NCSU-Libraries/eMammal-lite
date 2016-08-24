@@ -20,40 +20,45 @@ function loadPageJS() {
       nextCardTransition("skipped");
     });
 
+    // This function animates the transition between cards. Type refers to
+    // either skipping a card or pressing the next arrow after identifiying
     function nextCardTransition(type) {
-      // Clone the old card and add a 'new' class to the clone and an 'old'
-      // class to the cloned
+      // Get the width and position of the original card (old card)
       var oldCard = $(".card");
       var cardWidth = oldCard.width();
       var cardOffset = oldCard.position().left;
 
-      var newCard = $(".card").clone(true);
-
-
+      // Clone the old card and add a 'new' class to the clone. Set the
+      // initial relative position of the new card (right of the screen)
+      // and insert into the DOM before the next arrow
+      var newCard = oldCard.clone(true);
       newCard.addClass("new")
         .css({
           "left": "100vw"
         })
         .insertBefore(".next-arrow");
 
+      // Get the position of the old card now that new card is added
       var newCardOffset = -oldCard.position().left;
 
-      oldCard.removeClass("new")
-        .addClass("old")
+     // Add 'old' class to original card and set its initial position
+      oldCard.addClass("old")
         .css({
           "left": cardOffset + newCardOffset
         });
 
-      // Animate old card out and new card in and flip if needed
+      // Flip if animating after an identification
       if (type === "identified") {
         $(".card").toggleClass("flipped");
       }
 
+      // Animate new card to old card position
       newCard.animate(
         {"left": -cardOffset - newCardOffset},
         {"duration": 500}
       );
 
+      // Animate old card off the left of the screen and remove
       oldCard.animate(
         {"left": -cardWidth - cardOffset},
         {

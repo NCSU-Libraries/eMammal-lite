@@ -7,23 +7,33 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require "csv"
 
-CSV.foreach("db/seeds/photoInfo.csv", {:headers => true}) do |row|
+animals = []
+CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
   Photo.create!(
-    animal_id: row[0],
-    source: row[1]
+    animal_id: row[4],
+    source: row[0]
   )
+
+  if !animals.include?(row[2]) then
+    Animal.create!(
+      name: row[1],
+      sci_name: row[2],
+      animal_group: row[5]
+    )
+  end
+  animals << row[2]
 end
 
-animals_text = File.read("db/seeds/animals.csv")
-csv = CSV.parse(animals_text)
-
-csv[0].each do |animal|
-  Animal.create!(
-    name: animal,
-    sci_name: animal.to_s + " rex",
-    animal_group: rand(1..6)
-  )
-end
+# animals_text = File.read("db/seeds/animals.csv")
+# csv = CSV.parse(animals_text)
+#
+# csv[0].each do |animal|
+#   Animal.create!(
+#     name: animal,
+#     sci_name: animal.to_s + " rex",
+#     animal_group: rand(1..6)
+#   )
+# end
 
 # Photo.create!(
 #   animal: "Coyote",

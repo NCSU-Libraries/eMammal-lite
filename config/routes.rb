@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   root 'pages#home'
 
   get 'learn_more' => 'pages#learn_more'
