@@ -17,6 +17,10 @@ class IdentificationsController < ApplicationController
     end
   end
 
+  def index
+    
+  end
+
   # Generate a new image and animal names and produce new card
   def next_card
     # Use photos_helper to grab a random photo and associated information

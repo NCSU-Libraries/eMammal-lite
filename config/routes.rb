@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'next_card' => 'identifications#next_card'
 
   resources :photos
-  resources :identifications, only: [:create]
+  resources :identifications, only: [:index, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
