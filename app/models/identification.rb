@@ -4,6 +4,7 @@ class Identification < ApplicationRecord
   belongs_to :photo
   # has_one :animal, through: :photo
   belongs_to :animal
+  belongs_to :project
 
   private
     # Set boolean for correct identification and THEN return nil

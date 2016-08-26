@@ -7,40 +7,36 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require "csv"
 
+# Create arrays to hold animals or projects on each run
 animals = []
+projects = []
 CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
+  # Create a photo entry for each row
   Photo.create!(
-    animal_id: row[4],
-    source: row[0]
+    source: row[0],
+    animal_id: row[1],
+    project_id: row[2]
   )
 
-  if !animals.include?(row[2]) then
+  # Only create an animal entry if the animal is not in the animals array
+  # i.e., we only need unique animals
+  if !animals.include?(row[3]) then
     Animal.create!(
-      name: row[1],
-      sci_name: row[2],
+      name: row[3],
+      sci_name: row[4],
       animal_group: row[5]
     )
   end
-  animals << row[2]
+  # Add animal to animals array to test if future animals are duplicates
+  animals << row[3]
+
+  # Only create a project entry if the project is not in the projects array
+  # i.e., we only need unique projects
+  if !projects.include?(row[6]) then
+    Project.create!(
+      name: row[6]
+    )
+  end
+  # Add project to projects array to test if future projects are duplicates
+  projects << row[6]
 end
-
-# animals_text = File.read("db/seeds/animals.csv")
-# csv = CSV.parse(animals_text)
-#
-# csv[0].each do |animal|
-#   Animal.create!(
-#     name: animal,
-#     sci_name: animal.to_s + " rex",
-#     animal_group: rand(1..6)
-#   )
-# end
-
-# Photo.create!(
-#   animal: "Coyote",
-#   source: "https://s3.amazonaws.com/emammalphoto/d19515s40i5_o.jpg"
-# )
-#
-# Photo.create!(
-#   animal: "Coyote",
-#   source: "https://s3.amazonaws.com/emammalphoto/d19460s14i3_o.jpg"
-# )

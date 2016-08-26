@@ -7,4 +7,5 @@ if (<%= @identification.correct_identification %>) {
   $(".score").text(parseInt($(".score").text()) + 10)
 }
 
+// Render the back of the card with the correct display (i.e., right or wrong)
 $("#back_of_card").html("<%= escape_javascript(render('pages/back_of_card')) %>");

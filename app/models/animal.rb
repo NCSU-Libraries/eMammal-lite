@@ -1,6 +1,7 @@
 class Animal < ActiveRecord::Base
   has_many :photos
-  has_many :identifications, foreign_key: :identification
+  has_many :projects, through: :photos
+  has_many :identifications, foreign_key: :user_identification
 
   # Returns two animals that are similar to the current animal
   def two_similar_animals

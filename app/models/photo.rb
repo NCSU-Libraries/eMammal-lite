@@ -1,5 +1,6 @@
 class Photo < ActiveRecord::Base
   belongs_to :animal
+  belongs_to :project
   has_many :identifications
 
   def self.search(search_query)

@@ -20,3 +20,6 @@
 # Ignore files with secret information.
 /config/secrets.yml
 /config/database.yml
+
+# Ignore et. al.
+/.tern-project

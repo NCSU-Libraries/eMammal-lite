@@ -49,7 +49,7 @@ function loadPageJS() {
 
       // Flip if animating after an identification
       if (type === "identified") {
-        $(".card").toggleClass("flipped");
+        newCard.toggleClass("flipped");
       }
 
       // Animate new card to old card position
