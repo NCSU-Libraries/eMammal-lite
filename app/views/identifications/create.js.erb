@@ -1,10 +1,18 @@
 $(".card").toggleClass("flipped");
-$(".next-arrow").toggleClass("visible");
 $(".skip-container").toggleClass("hidden");
 
-// If the correct id was made increase score by 10
+// If the correct id was made increase score by 10 and set flip animation
 if (<%= @identification.correct_identification %>) {
+
   $(".score").text(parseInt($(".score").text()) + 10)
+
+  window.setTimeout(function() {
+    $(".card").toggleClass("flipped");
+    $(".next-arrow").toggleClass("visible");
+    $("#photo_content").html("")
+  }, 1500)
+} else {
+  $(".next-arrow").toggleClass("visible");
 }
 
 // Render the back of the card with the correct display (i.e., right or wrong)

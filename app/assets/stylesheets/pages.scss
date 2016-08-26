@@ -432,6 +432,7 @@ $sideLength: 112px;
 
 .stats-page {
   color: $BioIndigo;
+  background-color: rgba($BioIndigo, 0.1)
 }
 
 @include media("<=tablet") {

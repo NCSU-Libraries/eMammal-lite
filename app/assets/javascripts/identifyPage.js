@@ -6,20 +6,6 @@ function loadPageJS() {
   // Initiate the functions for the identify page
   function identifyPage() {
 
-    // Transition to next card when user presses next-arrow
-    $(".next-arrow").on("click", function() {
-      $(".next-arrow").toggleClass("visible");
-      nextCardTransition("identified");
-    });
-
-    // When a user presses the skip button submit the identification form
-    // without an identification id
-    $(".skip-text").on("click", function() {
-      $("#new_identification").submit();
-      $(".skip-container").toggleClass("hidden");
-      nextCardTransition("skipped");
-    });
-
     // This function animates the transition between cards. Type refers to
     // either skipping a card or pressing the next arrow after identifiying
     function nextCardTransition(type) {
@@ -48,7 +34,7 @@ function loadPageJS() {
         });
 
       // Flip if animating after an identification
-      if (type === "identified") {
+      if (type === "identified" && $("#photo_content").html() !== "") {
         newCard.toggleClass("flipped");
       }
 
@@ -67,13 +53,31 @@ function loadPageJS() {
             // At end of animation remove the old card and remove "left"
             // positioning from the new card
             oldCard.remove();
-            newCard.css("left", "");
+            newCard.removeClass("new")
+              .css("left", "");
             $(".skip-container").toggleClass("hidden");
           }
         }
       );
-
     }
+
+    // Clear the back of the card if content was on there
+    $(".back").html("");
+
+    // Transition to next card when user presses next-arrow
+    $(".next-arrow").on("click", function() {
+      $(".next-arrow").toggleClass("visible");
+      nextCardTransition("identified");
+    });
+
+    // When a user presses the skip button submit the identification form
+    // without an identification id
+    $(".skip-text").on("click", function() {
+      $("#new_identification").submit();
+      $(".skip-container").toggleClass("hidden");
+      nextCardTransition("skipped");
+    });
+
     console.log("loaded js for id page");
   }
 }
