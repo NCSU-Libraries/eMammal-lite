@@ -6,28 +6,32 @@ class IdentificationsController < ApplicationController
     @identification.save
 
     # If user skips id generate new photo and animal and proceed to next card
-    if @identification.user_identification.nil?
-      generate_random_photo_and_info
-      render :template => 'identifications/next_card'
-    end
 
     respond_to do |format|
-      format.html { redirect_to identify_path }
+      format.html { redirect_to new_identification_path }
       format.js
     end
   end
 
   def index
-    
+
   end
 
-  # Generate a new image and animal names and produce new card
-  def next_card
-    # Use photos_helper to grab a random photo and associated information
-    generate_random_photo_and_info
+  def new
+    @identification = Identification.new
+    @photo = Photo.order("RAND()").first
+    animal = @photo.animal
+
+    # Get the 'wrong' animals from the two_similar_animals function
+    wrong_animals = animal.two_similar_animals
+
+    # Create array of ids and shortened names for choice buttons and shuffle
+    @animals = [{ id: animal.id, name: animal.shortened_name }]
+    wrong_animals.each { |el| @animals.push({id: el.id, name: el.shortened_name }) }
+    @animals = @animals.shuffle
 
     respond_to do |format|
-      format.html { redirect_to identify_path }
+      format.html { render new_identification_path }
       format.js
     end
   end

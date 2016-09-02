@@ -11,6 +11,7 @@ require "csv"
 animals = []
 projects = []
 CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
+
   # Create a photo entry for each row
   Photo.create!(
     source: row[0],
@@ -22,6 +23,7 @@ CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
   # i.e., we only need unique animals
   if !animals.include?(row[3]) then
     Animal.create!(
+      animal_id: row[1],
       name: row[3],
       sci_name: row[4],
       animal_group: row[5]
@@ -34,9 +36,12 @@ CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
   # i.e., we only need unique projects
   if !projects.include?(row[6]) then
     Project.create!(
+      project_id: row[2],
       name: row[6]
     )
   end
   # Add project to projects array to test if future projects are duplicates
   projects << row[6]
 end
+
+User.create!(name: "JWG", email: "jwg@test.com")

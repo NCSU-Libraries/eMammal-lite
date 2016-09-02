@@ -23,7 +23,7 @@
   </div>
   <div class="menu-nav-container">
     <div class="menu-nav flex-column-center">
-      <% {"IDENTIFY" => identify_path, "LEARN MORE" => learn_more_path,
+      <% {"IDENTIFY" => new_identification_path, "LEARN MORE" => learn_more_path,
         "PHOTO ARCHIVE" => photos_path, "STATS" => identifications_path}.each do |page, path| %>
         <% if yield(:header_text) == page %>
           <h1 class="lg-text bold-text"><%=page%></h1>

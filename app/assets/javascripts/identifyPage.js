@@ -33,8 +33,9 @@ function loadPageJS() {
           "left": cardOffset + newCardOffset
         });
 
-      // Flip if animating after an identification
-      if (type === "identified" && $("#photo_content").html() !== "") {
+      //Flip if animating after an incorrect identification
+      if (oldCard.hasClass("flipped")) {
+        newCard.addClass("no-transition");
         newCard.toggleClass("flipped");
       }
 
@@ -53,7 +54,7 @@ function loadPageJS() {
             // At end of animation remove the old card and remove "left"
             // positioning from the new card
             oldCard.remove();
-            newCard.removeClass("new")
+            newCard.removeClass("new no-transition")
               .css("left", "");
             $(".skip-container").toggleClass("hidden");
           }

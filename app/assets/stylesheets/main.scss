@@ -1,6 +1,6 @@
 /* Universal */
 body {
-  font-family: UniversLight;
+  font-family: UniversLight, sans-serif;
   background-color: white;
   overflow-x: hidden;
   margin: 0;
@@ -26,6 +26,15 @@ body {
   visibility: hidden !important;
 }
 
+.no-transition {
+  transition: none !important;
+}
+
+/* Links */
+a {
+  color: $BioIndigo;
+}
+
 /* Images */
 .center-img-resposive {
   max-width: 100%;
@@ -35,6 +44,7 @@ body {
 
 /* Text */
 .xl-header {
+  font-family: UniversRoman;
   font-size: 42px;
 }
 
@@ -78,11 +88,18 @@ body {
   margin: 0;
 }
 
+/* Text input styles */
 .emammal-text-input {
   border-style: solid;
   border-width: thin;
   border-radius: 2em;
   border-color: lighten($BioIndigo, 40%);
+  padding-left: 2px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px lighten($BioIndigo, 40%);
+  }
 }
 
 /* Button styles */
@@ -240,6 +257,7 @@ body {
 
 
 /* Menu */
+
 .menu {
   position: absolute;
   top: 0;

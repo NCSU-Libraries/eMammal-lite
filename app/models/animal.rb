@@ -9,4 +9,30 @@ class Animal < ActiveRecord::Base
       .where.not(id: self.id)
       .order("RAND()").limit(2)
   end
+
+  # Takes care of long names if needed to be shortened
+  def shortened_name
+    # Some names have underscores, so remove them if necessary
+    if self.name.include?("_")
+      self.name.tr!("_", " ")
+    end
+
+    # # To shorten names, replace names with direction adverbs with abbreviation
+    self.name.sub!("Northern", "N.")
+    self.name.sub!("Eastern", "E.")
+    self.name.sub!("Soutern", "S.")
+    self.name.sub!("Western", "W.")
+
+    # Shorten place adverbs
+    self.name.sub!("American", "Am.")
+    self.name.sub!("African", "Af.")
+
+    # Remove 'Unkown' and other weird adverbs from any names
+    self.name.sub!("Unknown", "")
+    self.name.sub!("Crab-eating", "")
+
+    self.name
+  end
+
+
 end

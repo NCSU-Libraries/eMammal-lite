@@ -3,8 +3,7 @@ class Identification < ApplicationRecord
 
   belongs_to :photo
   # has_one :animal, through: :photo
-  belongs_to :animal
-  belongs_to :project
+  has_one :animal, primary_key: :user_identification, foreign_key: :animal_id
 
   private
     # Set boolean for correct identification and THEN return nil

@@ -109,6 +109,10 @@ $sideLength: 112px;
 .learn-more {
   width: 100vw;
   color: $BioIndigo;
+
+  a {
+    word-wrap: break-word;
+  }
 }
 
 .learn-more-container {
@@ -171,15 +175,18 @@ $sideLength: 112px;
     left: 0;
     pointer-events: none;
 
-    .right-wrong-icon {
+    .right-wrong-icon-container {
       position: absolute;
-      top: 13%;
-      width: 41.8%;
       height: 23.5%;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
+      width: 100%;
+      top: 13%;
 
+      .right-wrong-icon {
+        width: 41.8%;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
       .right-wrong-header {
         margin-top: 5%;
         text-align: center;
@@ -189,26 +196,28 @@ $sideLength: 112px;
     .right-wrong-text {
       position: absolute;
       bottom: 10.8%;
+      width: 100%;
       text-align: center;
-
     }
   }
 }
 
 .skip-container {
-  position: relative;
-  float: right;
+  position: absolute;
+  top: 100%;
+  right: 0;
   bottom: 5px;
   color: #4156A1;
 
   .skip-text {
-    width: auto;
+    text-align: right;
     margin-top: 10px;
     opacity: 0.64;
     cursor: pointer;
   }
   .skip-text:hover {
     opacity: 1;
+    text-decoration: none;
   }
 }
 
@@ -254,6 +263,7 @@ $sideLength: 112px;
       .back {
         transform: rotateY(180deg);
         align-items: center;
+        align-content: center;
       }
 
       .id-card-img {
@@ -283,6 +293,38 @@ $sideLength: 112px;
           .sub-header {
             margin-top: 0;
             margin-bottom: 24px;
+          }
+        }
+
+        .id-card-answer {
+          text-align: center;
+
+          .main-header {
+            margin-top: 12px;
+            margin-bottom: 0;
+          }
+
+          .sub-header {
+            margin-top: 6px;
+            margin-bottom: 24px;
+          }
+
+          .project-info {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+
+            margin-left: 20px;
+            margin-right: 20px;
+
+            .project-header {
+              text-align: left;
+            }
+
+            .project-name {
+              margin-top: 6px;
+              text-align: left;
+            }
           }
         }
 

@@ -10,16 +10,18 @@
         </div>
         <div id="photo_content" class="id-card-choice-container will-blur-photo">
           <%= render 'photo_content'%>
-          <div class="skip-container">
-            <h3 class="xs-text skip-text">skip ></h3>
-          </div>
+        </div>
+        <div class="skip-container will-blur-photo">
+          <%= link_to new_identification_path, class:"xs-text skip-text", remote: true do %>
+          skip >
+          <% end %>
         </div>
       </div>
       <div id="back_of_card" class="back">
         <%= render 'back_of_card' %>
       </div>
     </div>
-    <%= link_to next_card_path, class:"next-arrow", remote: true do %>
+    <%= link_to new_identification_path, class:"next-arrow", remote: true do %>
       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       	 viewbox="5 -430 300 840" xml:space="preserve">
       <path id="path-1" opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="

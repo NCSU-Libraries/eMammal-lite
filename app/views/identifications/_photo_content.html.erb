@@ -1,0 +1,31 @@
+<% if @identification.id.nil? %>
+
+  <div class="id-card-header flex-column-center">
+    <h1 class="main-header sm-header light-text bold-text">What animal is this?</h1>
+    <h2 class="sub-header light-text xs-text">choose from the options below</h2>
+  </div>
+  <div class="id-card-choices flex-column-center">
+    <%= render 'identifications/identify_form' %>
+  </div>
+
+<% elsif @identification.correct_identification %>
+
+  <div class="id-card-answer flex-column-center">
+    <h1 class="main-header sm-header light-text bold-text">
+      <%= @identification.animal.name %>
+    </h1>
+    <h2 class="sub-header lg-text light-text oblique-text">
+      <%= @identification.animal.sci_name %>
+    </h2>
+    <div class="project-info">
+      <h2 class="project-header body-text light-text bold-text">
+        Project
+      </h2>
+      <h2 class="project-name body-text light-text">
+        <%= @identification.photo.project.name %>
+      </h2>
+    </div>
+
+  </div>
+
+<% end %>

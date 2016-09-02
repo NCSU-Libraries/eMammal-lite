@@ -5,10 +5,9 @@ Rails.application.routes.draw do
 
   get 'learn_more' => 'pages#learn_more'
   get 'identify' => 'pages#identify'
-  get 'next_card' => 'identifications#next_card'
 
   resources :photos
-  resources :identifications, only: [:index, :create]
+  resources :identifications, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
