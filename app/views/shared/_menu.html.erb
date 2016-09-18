@@ -1,3 +1,4 @@
+<%= render "shared/icons" %>
 <div class="menu">
   <div class="menu-header">
     <div class="small-logo">
@@ -22,15 +23,26 @@
     </div>
   </div>
   <div class="menu-nav-container">
-    <div class="menu-nav flex-column-center">
-      <% {"IDENTIFY" => new_identification_path, "LEARN MORE" => learn_more_path,
-        "PHOTO ARCHIVE" => photos_path, "STATS" => identifications_path}.each do |page, path| %>
-        <% if yield(:header_text) == page %>
-          <h1 class="lg-text bold-text"><%=page%></h1>
-        <% else %>
-          <h1 class="lg-text"><%= link_to page, path %></h1>
-        <% end %>
+    <ul class="menu-nav flex-column-center">
+      <% {
+        "IDENTIFY" => ["#identify", new_identification_path],
+        "LEARN MORE" => ["#learn_more", learn_more_path],
+        "PHOTO ARCHIVE" => ["#photo_archive", photos_path],
+        "STATS" => ["#stats", identifications_path],
+        "HOW TO" => ["#question", how_to_path]
+      }.each do |page, page_info| %>
+        <li class="menu-list-item">
+          <svg class="menu-icon">
+            <use xlink:href=<%= page_info[0] %>></use>
+          </svg>
+          <!-- <%= image_tag("icons/" + page_info[0] + "_icon100px.svg", class: "center-img-resposive menu-icon") %> -->
+          <% if yield(:header_text) == page %>
+            <h1 class="lg-text bold-text menu-text"><%=page%></h1>
+          <% else %>
+            <h1 class="lg-text menu-text"><%= link_to page, page_info[1] %></h1>
+          <% end %>
+        </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </div>

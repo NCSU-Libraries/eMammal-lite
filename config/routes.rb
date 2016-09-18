@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'learn_more' => 'pages#learn_more'
   get 'identify' => 'pages#identify'
+  get 'how_to' => 'pages#how_to'
 
   resources :photos
   resources :identifications, only: [:index, :new, :create]

@@ -1,0 +1,6 @@
+<%= form_tag(photos_path, method: "get", id: "photo-search", class:"flex-row-center", remote: true) do %>
+  <%= text_field_tag :search, params[:search], class: "emammal-text-input photo-search-input", value: "Keyword" %>
+  <%= button_tag(type: "submit", class: "flex-column-center photo-search-btn") do %>
+    <i class="material-icons">search</i>
+  <% end %>
+<% end %>

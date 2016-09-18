@@ -3,10 +3,7 @@
 <%= render 'layouts/header' %>
 <div class="photo-archive-page page-with-header will-blur">
   <div class="photo-search-container flex-column-center">
-    <%= form_tag(photos_path, method: "get", html: { id: "photo-search", class:""}, remote: true) do %>
-      <%= text_field_tag :search, params[:search], class: "emammal-text-input" %>
-      <%= submit_tag "Search", :name => nil, class: "emammal-btn light-btn" %>
-    <% end %>
+    <%= render 'photos_search_form'%>
   </div>
   <div class="flex-row-center photos-container">
     <%= render 'photos/photos_viewer'%>
@@ -16,7 +13,7 @@
 <%= render 'shared/prevent_click'%>
 <%= render 'shared/menu'%>
 
-<% provide(:info_text, "Photos of all the animals")%>
+<% provide(:info_text, "All the photos we’ve got live here. Not doing too well at identifications? No problem! All the animals are here, so poke around, study up, or just explore our goldmine of camera trap images.")%>
 <%= render 'shared/info_drop_down' %>
 
 <!-- <%= link_to 'New Photo', new_photo_path %>

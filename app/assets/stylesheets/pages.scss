@@ -441,18 +441,36 @@ $sideLength: 112px;
 }
 
 
-/* Photo Arcive */
+/* Photo Archive */
 
 @include media("<=tablet") {
 
   .photo-search-container {
     height: 18.7vh;
+
+    .photo-search-input {
+      padding-left: 10px;
+      padding-right: 30px;
+    }
+
+    .photo-search-btn {
+      margin-left: -30px;
+      padding-left: 0;
+      color: $BioIndigo;
+      background-color: transparent;
+      border-style: none;
+
+      &:hover {
+        color: rgba($BioIndigo, 0.4);
+      }
+    }
   }
 
   .photos-container {
     height: 66.3vh;
     flex-wrap: wrap;
     margin-top: -0.5vw;
+    margin-left: 0.5vw;
     overflow-y: scroll;
 
     .img-box {
@@ -460,10 +478,12 @@ $sideLength: 112px;
       height: 32vw;
       margin: 0.5vw;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       .sm-img {
-        width: 150%;
-        transform: translateX(-16.5%) translateY(-5%);
+        height: 110%;
       }
     }
   }
