@@ -5,11 +5,18 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.search(params[:search])
+    @photo = @photos.first
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @photo = Photo.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show }
+      format.js
+    end
   end
 
   # GET /photos/new

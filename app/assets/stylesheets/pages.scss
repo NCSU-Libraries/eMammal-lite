@@ -487,6 +487,18 @@ $sideLength: 112px;
       }
     }
   }
+
+  .card-container-absolute {
+    position: absolute;
+    top: 15vh;
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+  }
+
+  .card-absolute {
+    margin: 0;
+  }
 }
 
 

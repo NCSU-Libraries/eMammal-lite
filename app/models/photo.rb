@@ -25,9 +25,9 @@ class Photo < ActiveRecord::Base
   def stats
     total_ids = self.identifications
     {
-      :correct => total_ids.where("correct_identification = ?", true).count,
-      :incorrect => total_ids.where("correct_identification = ?", false).count,
-      :skipped => total_ids.where("correct_identification = ?", nil).count,
+      :correct => total_ids.where("correct_identification = true").count,
+      :incorrect => total_ids.where("user_identification IS NOT NULL AND correct_identification = false").count,
+      :skipped => total_ids.where("user_identification IS NULL").count,
       :total => total_ids.count
     }
   end

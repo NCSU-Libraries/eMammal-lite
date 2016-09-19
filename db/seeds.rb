@@ -45,3 +45,11 @@ CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
 end
 
 User.create!(name: "JWG", email: "jwg@test.com")
+
+(0..200).each do
+  Identification.create!(
+    photo_id: 1,
+    user_identification: [1, 12, nil].sample,
+    user_id: rand(100)
+  )
+end
