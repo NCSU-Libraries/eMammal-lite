@@ -166,6 +166,7 @@
     // document.body.appendChild(this._overlay)
 
       $(".will-blur-photo").addClass("blur");
+      $(".will-blur-archive-photo").addClass("blur");
       $(".prevent-click").addClass("visible");
 
     this._calculateZoom()
@@ -242,7 +243,11 @@
     // this._$body
     //   .removeClass('zoom-overlay-open')
     //   .addClass('zoom-overlay-transitioning')
-    $(".will-blur-photo").removeClass("blur");
+    console.log((".card-container-absolute.visible").length > 0);
+    if (!$(".card-container-absolute.visible").length > 0) {
+      $(".will-blur-photo").removeClass("blur");
+    }
+    $(".will-blur-archive-photo").removeClass("blur");
     $(".prevent-click").removeClass("visible");
     // we use setStyle here so that the correct vender prefix for transform is used
     $(this._targetImage)

@@ -17,9 +17,13 @@ var loadPageJS = function() {
     // Function to show/hide overlays (menu and information about current page)
     function toggleOverlays() {
       // Don't continue if animation is currently running
-      if ($(".menu").is(":animated") || $(".info-drop-down").is(":animated")) {
+      if ($(".menu").is(":animated") ||
+      $(".info-drop-down").is(":animated") || $(".card-absolute").is(":animated")) {
         return;
       }
+
+      // Check if card is visible on Photo Archive page
+      var archCardOpen = $(".card-container-absolute.visible").length > 0;
 
       var overlay;
       var animatePos = {};
@@ -49,12 +53,14 @@ var loadPageJS = function() {
       if (animatePos.left === 0 || animatePos.top === 0) {
         $(".will-blur").addClass("blur");
         $(".prevent-click").addClass("visible");
-      } else {
+      } else if (!archCardOpen) {
         $(".will-blur").removeClass("blur");
         $(".prevent-click").removeClass("visible");
       }
 
-      overlay.animate(animatePos, {duration: 500});
+      if (!archCardOpen) {
+        overlay.animate(animatePos, {duration: 500});
+      }
     }
 
     console.log("loaded js for pages with mobile header");

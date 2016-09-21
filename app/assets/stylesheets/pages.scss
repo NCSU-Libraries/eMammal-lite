@@ -469,6 +469,7 @@ $sideLength: 112px;
   .photos-container {
     height: 66.3vh;
     flex-wrap: wrap;
+    justify-content: flex-start;
     margin-top: -0.5vw;
     margin-left: 0.5vw;
     overflow-y: scroll;

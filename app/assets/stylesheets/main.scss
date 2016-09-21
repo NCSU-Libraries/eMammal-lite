@@ -148,7 +148,7 @@ a {
   Classes to handle blur and click-prevention when menus/dropdowns are open or
   when photo is zoomed
 */
-.will-blur, .will-blur-photo {
+.will-blur, .will-blur-photo, .will-blur-archive-photo {
   filter: blur(0);
 
   transition-property: filter;

@@ -28,8 +28,8 @@ class Animal < ActiveRecord::Base
     self.name.sub!("African", "Af.")
 
     # Remove 'Unkown' and other weird adverbs from any names
-    self.name.sub!("Unknown", "")
-    self.name.sub!("Crab-eating", "")
+    # self.name.sub!("Unknown", "")
+    # self.name.sub!("Crab-eating", "")
 
     self.name
   end

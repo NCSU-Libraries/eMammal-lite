@@ -9,7 +9,6 @@ class Photo < ActiveRecord::Base
       animal_words = Animal.distinct.pluck(:name).join(" ").split(" ")
       fuzzy_names = FuzzyMatch.new(animal_names.concat(animal_words))
       fuzzy_search = fuzzy_names.find(search_query)
-      puts  fuzzy_search
       joins(:animal).where("name LIKE ?", "%#{fuzzy_search}%")
     else
       first(15)

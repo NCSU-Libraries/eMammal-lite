@@ -17,12 +17,12 @@
       <div id="photo" class="id-card-img">
 
       </div>
-      <div id="photo_content" class="id-card-choice-container will-blur-photo">
+      <div id="photo_content" class="id-card-choice-container will-blur-archive-photo">
 
       </div>
     </div>
     <div id="back_of_card" class="back">
-      
+
     </div>
   </div>
 </div>
@@ -30,30 +30,3 @@
 
 <% provide(:info_text, "Browse the eMammal Lite photo archive. Not doing too well at identifications? No problem! All the animals are here, so poke around, study up, or just explore our goldmine of camera trap images. Click on an image to view more information.")%>
 <%= render 'shared/info_drop_down' %>
-
-<!-- <%= link_to 'New Photo', new_photo_path %>
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Photos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Animal</th>
-      <th>Source</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @photos.each do |photo| %>
-      <tr>
-        <td><%= photo.animal %></td>
-        <td><%= photo.source %></td>
-        <td><%= link_to 'Show', photo %></td>
-        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-        <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> -->
