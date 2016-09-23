@@ -1,3 +1,15 @@
-<% @photo.stats.each do |stat, value| %>
-  <h1><%= "#{stat}: #{value}" %></h1>
-<% end %>
+<div class="card-results-header">
+  <h1 class="sm-header">Results are in</h1>
+  <!-- <h2 class="xs-text">see how you compare</h2> -->
+</div>
+<div class="bar-chart">
+  <svg class="bar-chart-svg"></svg>
+</div>
+<div class="pie-chart">
+  <svg class="pie-chart-svg"></svg>
+</div>
+<div class="results-table">
+  <h3 class="xs-text"><%= @photo.stats[:correct] %>&#37; Correct</h3>
+  <h3 class="xs-text"><%= @photo.stats[:incorrect] %>&#37; Incorrect</h3>
+  <h3 class="xs-text"><%= @photo.stats[:skipped] %>&#37; Skipped</h3>
+</div>

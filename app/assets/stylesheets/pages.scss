@@ -306,7 +306,21 @@ $sideLength: 112px;
 
           .sub-header {
             margin-top: 6px;
-            margin-bottom: 24px;
+            margin-bottom: 0;
+          }
+
+          .map {
+            padding: 8px;
+
+            img {
+              position: relative;
+              top: 0;
+              left: 0;
+            }
+
+            .map-pin {
+              transform: translateY(-100%);
+            }
           }
 
           .project-info {
@@ -495,10 +509,95 @@ $sideLength: 112px;
     display: flex;
     justify-content: center;
     visibility: hidden;
-  }
 
-  .card-absolute {
-    margin: 0;
+    .card-absolute {
+      margin: 0;
+
+      .back {
+        background-color: white;
+
+        .card-results-header {
+          width: 100%;
+          color: $PyromanFlame;
+
+          h1 {
+            margin-bottom: 10px;
+            margin-left: 20px;
+          }
+          h2 {
+            margin-top: 6px;
+            margin-left: 20px;
+          }
+        }
+
+        .svg-shadow {
+          opacity: 0.3;
+        }
+
+        .bar-chart {
+          width: 100%;
+          height: 30%;
+          overflow: visible;
+
+          .bar-chart-svg {
+            width: 100%;
+            height: 100%;
+            margin-left: 20px;
+            margin-right: 20px;
+            overflow: visible;
+          }
+
+          .bar-label {
+            fill: white;
+            text-anchor: end;
+            alignment-baseline: central;
+          }
+
+          .bar-title {
+            fill: $BioIndigo;
+            text-anchor: start;
+            alignment-baseline: baseline;
+            text-transform: capitalize;
+          }
+        }
+
+        .pie-chart {
+          height: 46.7%;
+          width: 67%;
+          overflow: visible;
+
+          .pie-chart-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+          }
+
+          .pie-piece {
+            stroke-width: 2px;
+          }
+
+          .pie-piece-label {
+            fill: white;
+            text-anchor: middle;
+          }
+        }
+
+        .results-table {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          padding-right: 20px;
+          padding-bottom: 20px;
+          color: $BioIndigo;
+          text-align: right;
+
+          h3 {
+            margin-top: 6px;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
   }
 }
 

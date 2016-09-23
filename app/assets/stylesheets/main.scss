@@ -30,6 +30,19 @@ body {
   transition: none !important;
 }
 
+/* Colors for graphics*/
+.color-correct {
+  fill: $BioIndigo;
+}
+
+.color-incorrect {
+  fill: $PyromanFlame;
+}
+
+.color-skipped {
+  fill: lightgrey;
+}
+
 /* Links */
 a {
   color: $BioIndigo;
@@ -46,30 +59,37 @@ a {
 .xl-header {
   font-family: UniversRoman;
   font-size: 42px;
+  font-weight: normal;
 }
 
 .lg-header {
   font-size: 35px;
+  font-weight: normal;
 }
 
 .sm-header {
   font-size: 24px;
+  font-weight: normal;
 }
 
 .xl-text {
   font-size: 20px;
+  font-weight: normal;
 }
 
 .lg-text {
   font-size: 18px;
+  font-weight: normal;
 }
 
 .body-text {
   font-size: 16px;
+  font-weight: normal;
 }
 
 .xs-text {
   font-size: 14px;
+  font-weight: normal;
 }
 
 .light-text {

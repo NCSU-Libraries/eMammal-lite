@@ -59,7 +59,9 @@ var loadPageJS = function() {
       }
 
       if (!archCardOpen) {
-        overlay.animate(animatePos, {duration: 500});
+        overlay.animate(animatePos, {
+          duration: 800, "easing": "easeInOutQuart"
+        });
       }
     }
 

@@ -13,6 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require zoom.js
+//= require d3-shape.min.js
+//= require d3-path.min.js
+//= require d3-collection.min.js
+//= require d3-selection.min.js
 //= require transitions.js
+//= require jquery.easing.1.3.js
 //= require turbolinks
 //= require_tree .

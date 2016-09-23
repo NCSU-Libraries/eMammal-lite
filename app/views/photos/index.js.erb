@@ -1,7 +1,20 @@
 $(".photos-container").html("<%= escape_javascript(render('photos/photos_viewer')) %>")
 
+// Add js actions on new images
 $(".sm-img").on("click", function() {
+  if ($(".card-absolute").is(":animated")) {
+    return;
+  }
+
   $(".card-container-absolute").addClass("visible");
   $(".will-blur").addClass("blur");
   $(".prevent-click").addClass("visible");
+
+  $(".card").animate(
+    {"left": 0},
+    {
+      "duration": 600,
+      "easing": "easeInQuart"
+    }
+  );
 });

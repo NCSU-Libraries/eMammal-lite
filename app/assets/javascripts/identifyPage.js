@@ -42,14 +42,18 @@ function loadPageJS() {
       // Animate new card to old card position
       newCard.animate(
         {"left": -cardOffset - newCardOffset},
-        {"duration": 500}
+        {
+          "duration": 600,
+          "easing": "easeInOutSine"
+        }
       );
 
       // Animate old card off the left of the screen and remove
       oldCard.animate(
         {"left": -cardWidth - cardOffset},
         {
-          "duration": 500,
+          "duration": 600,
+          "easing": "easeInOutSine",
           "complete": function() {
             // At end of animation remove the old card and remove "left"
             // positioning from the new card
