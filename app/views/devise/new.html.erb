@@ -1,0 +1,15 @@
+<% provide(:header_text, "SIGN UP")%>
+<% provide(:icon, "icons/Question_icon@2x.png")%>
+<%= render 'layouts/header' %>
+  <div class="signup-page page-with-header flex-column-center will-blur">
+    <%= image_tag "login/Login_wolf-logo@3x.png", class:"center-img-resposive login-logo" %>
+    <%= form_for(@user, html: { class: "flex-column-center login-form-container" }) do |f| %>
+      <%= f.text_field :name, class:"emammal-text-input lg-text", placeholder:"Name" %>
+      <%= f.email_field :email, class:"emammal-text-input lg-text", placeholder:"Email" %>
+      <%= f.password_field :password, class:"emammal-text-input lg-text", placeholder:"Password" %>
+      <%= f.password_field :password_confirmation, class:"emammal-text-input lg-text", placeholder:"Password Confirmation" %>
+      <%= f.submit "Create account", class:"sign-up-btn emammal-btn light-btn lg-text" %>
+    <% end %>
+  </div>
+<%= render 'shared/prevent_click'%>
+<%= render 'shared/menu'%>

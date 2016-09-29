@@ -1,6 +1,10 @@
 <%= form_for(@identification, html: { class: "flex-column-center choice-form" }, remote: true) do |f| %>
   <%= hidden_field_tag "identification[photo_id]", @photo.id%>
-  <%= hidden_field_tag "identification[user_id]", 1%>
+  <% if user_signed_in? %>
+    <%= hidden_field_tag "identification[user_id]", current_user.id %>
+  <% else %>
+    <%= hidden_field_tag "identification[user_id]", 9999 %>
+  <% end %>
   <% @animals.each do |el| %>
     <%=
       f.button el[:name],

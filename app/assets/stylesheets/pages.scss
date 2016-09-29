@@ -103,6 +103,35 @@ $sideLength: 112px;
   width: 155px;
 }
 
+/* Signup page*/
+.signup-page {
+
+  .login-logo {
+    height: 33%;
+  }
+
+  .login-form-container {
+    height: 33%;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .login-btn-container {
+    height: 51.4%;
+    width: 100%;
+    justify-content: space-between;
+
+    .login-btn {
+      margin-top: 16%;
+      width: 28.8%
+    }
+
+    .login-skip-link {
+      color: $PyromanFlame;
+      margin-bottom: 12.8%;
+    }
+  }
+}
 
 /* Learn More page */
 
@@ -606,7 +635,8 @@ $sideLength: 112px;
 
 .stats-page {
   color: $BioIndigo;
-  background-color: rgba($BioIndigo, 0.1)
+  background-color: lighten($BioIndigo, 50%)
+  // background-color: rgba($BioIndigo, 0.1)
 }
 
 @include media("<=tablet") {
@@ -651,13 +681,19 @@ $sideLength: 112px;
   }
 
   .stats-instructions {
-    margin-top: 29px;
-    max-width: 75%;
-    opacity: 0.77;
-    text-align: center;
+    width: 100vw;
+    height: calc(100% - 234px);
+    background-color: lighten($BioIndigo, 50%);
+
+    .text {
+      margin-top: 29px;
+      max-width: 75%;
+      opacity: 0.77;
+      text-align: center;
+    }
   }
 
   .not-active {
-    background-color: rgba($BioIndigo, 0.1) !important;
+    background-color: lighten($BioIndigo, 50%) !important;
   }
 }

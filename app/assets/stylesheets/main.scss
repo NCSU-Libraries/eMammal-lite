@@ -130,6 +130,7 @@ a {
   border-style: solid;
   border-width: thin;
   border-radius: 2em;
+  text-decoration: none;
 
   &:focus, &:active:focus, &:focus:visited {
     outline: none;
@@ -145,6 +146,7 @@ a {
 
 .light-btn {
   border-color: $BioIndigo;
+  background-color: white;
   color: $BioIndigo;
 
   &:focus, &:active, &:active:focus {

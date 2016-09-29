@@ -10,7 +10,7 @@
       </div>
       <div class="stats-group flex-column-center">
         <div class="stat-score">
-          <h1 class="bold-text big-score">103</h1>
+          <h1 class="bold-text big-score"><%= current_user.stats[:correct] * 10 %></h1>
           <h2 class="sm-header bold-text">Your Score</h2>
         </div>
       </div>
@@ -27,9 +27,11 @@
     </div>
   </div>
   <div class="stats-instructions">
-    <p class="body-text">
-      Select a category to see your stats and compare them with other users
-    </p>
+    <div class="text">
+      <p class="body-text">
+        Select a category to see your stats and compare them with other users
+      </p>
+    </div>
   </div>
 </div>
 

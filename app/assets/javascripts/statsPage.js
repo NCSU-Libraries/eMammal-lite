@@ -15,20 +15,23 @@ function loadPageJS() {
         accordionBtns.removeClass("not-active");
         activeContainer.animate(
           {"height": 78},
-          {"duration": 500}
+          {"duration": 600,
+          "easing": "easeInOutSine"}
         );
       } else {
         activeContainer.addClass("active");
         $(this).removeClass("not-active");
         activeContainer.animate(
           {"height": totalHeight},
-          {"duration": 500}
+          {"duration": 600,
+          "easing": "easeInOutSine"}
         );
         activeContainer.siblings().removeClass("active");
         accordionBtns.not($(this)).addClass("not-active");
         activeContainer.siblings().animate(
           {"height": 78},
-          {"duration": 500}
+          {"duration": 600,
+          "easing": "easeInOutSine"}
         );
       }
     });

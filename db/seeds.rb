@@ -49,7 +49,7 @@ CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
   end
 end
 
-User.create!(name: "JWG", email: "jwg@test.com")
+# User.create!(name: "JWG", email: "jwg@test.com")
 
 (0..500).each do
   Identification.create!(
