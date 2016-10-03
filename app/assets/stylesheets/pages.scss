@@ -257,14 +257,19 @@ $sideLength: 112px;
   cursor: pointer;
   visibility: hidden;
 
-  &:hover {
-    path#path-1 {
-      opacity: 1;
-    }
-  }
-
   svg {
     width: 100%;
+    fill: none;
+    opacity: 0.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    stroke-width: 50;
+    stroke: #4156A1;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 
