@@ -2,7 +2,7 @@
 <% provide(:icon, "icons/Stats-icon@3x.png")%>
 <%= render 'layouts/header' %>
 
-<div class="stats-page page-with-header flex-column-center will-blur">
+<div class="stats-page page-with-header flex-column-center will-blur" data-url="<%= current_user.stats.to_json %>">
   <div class="accordion">
     <div class="accordion-item flex-column-center">
       <div class="stats-group-header flex-column-center">
@@ -10,8 +10,19 @@
       </div>
       <div class="stats-group flex-column-center">
         <div class="stat-score">
-          <h1 class="bold-text big-score"><%= current_user.stats[:correct] * 10 %></h1>
-          <h2 class="sm-header bold-text">Your Score</h2>
+          <h1 class="bold-text big-score">
+            <%= current_user.stats[:correct]%>
+          </h1>
+          <h2 class="bold-text stat-header">Your Score</h2>
+        </div>
+        <div class="stat-score-bar">
+          <svg class="score-bar">
+            <rect class="full-bar bar stat-color-0"></rect>
+            <rect class="percentage-bar bar stat-color-1"></rect>
+          </svg>
+          <p class="lg-text stat-text">
+            You have correctly identified <span class="bold-text"><%= current_user.stats[:correct]%></span> animals in <span class="bold-text"><%= current_user.stats[:total]%></span> attempts.
+          </p>
         </div>
       </div>
     </div>
@@ -19,14 +30,34 @@
       <div class="stats-group-header flex-column-center">
         <h1 class="sm-header bold-text">ACCURACY</h1>
       </div>
+      <div class="stats-group flex-column-center">
+        <div class="stat-accuracy">
+          <svg class="accuracy-donut">
+          </svg>
+          <h1 class="bold-text stat-header">Your Accuracy</h1>
+        </div>
+        <p class="lg-text stat-text">
+          You have correctly identified <span class="bold-text accuracy-number"></span> of the photos you have attempted.
+        </p>
+      </div>
     </div>
     <div class="accordion-item flex-column-center">
       <div class="stats-group-header flex-column-center">
         <h1 class="sm-header bold-text">TOP IDENTIFIED</h1>
       </div>
+      <div class="stats-group flex-column-center">
+        <div class="stat-top-identified">
+          <svg class="top-bar">
+          </svg>
+          <h1 class="bold-text stat-header">Your Accuracy</h1>
+        </div>
+        <p class="lg-text stat-text">
+          The top three animals identified by you are <span class="bold-text accuracy-number"><%= "#{current_user.stats[:animals].keys[0]}, #{current_user.stats[:animals].keys[1]}"%></span>, and <span class="bold-text accuracy-number"><%= "#{current_user.stats[:animals].keys[2]}" %></span>.
+        </p>
+      </div>
     </div>
   </div>
-  <div class="stats-instructions">
+  <div class="stats-instructions flex-column-center">
     <div class="text">
       <p class="body-text">
         Select a category to see your stats and compare them with other users

@@ -243,10 +243,13 @@ $sideLength: 112px;
     margin-top: 10px;
     opacity: 0.64;
     cursor: pointer;
-  }
-  .skip-text:hover {
-    opacity: 1;
     text-decoration: none;
+
+    &:hover, &:focus {
+      opacity: 1;
+      text-decoration: none;
+      outline: none;
+    }
   }
 }
 
@@ -675,11 +678,65 @@ $sideLength: 112px;
       }
 
       .stats-group {
+        width: 100%;
         align-items: center;
         text-align: center;
+        overflow-y: scroll;
+
+        .stat-text {
+          max-width: 300px;
+        }
+
+        .stat-header {
+          font-size: 28px;
+          margin-top: 0;
+        }
+
+        .stat-color-0 {
+          fill: lighten($PyromanFlame, 50%);
+        }
+
+        .stat-color-1 {
+          fill: $PyromanFlame;
+        }
 
         .big-score {
           font-size: 80px;
+          margin-bottom: 0;
+        }
+
+        .stat-score-bar {
+          .score-bar {
+            height: 8px;
+
+            .bar {
+              x: 0;
+              y: 0;
+              height: 100%
+            }
+
+            .full-bar {
+              width: 100%;
+            }
+          }
+        }
+
+        .accuracy-donut {
+          width: auto;
+          height: 35.7%;
+          margin-top: 53px;
+
+          .donut-text {
+            fill: $BioIndigo;
+            dominant-baseline: middle;
+            text-anchor: middle;
+          }
+        }
+
+        .top-bar {
+          max-width: 300px;
+          height: 44%;
+
         }
       }
     }
