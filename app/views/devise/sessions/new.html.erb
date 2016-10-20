@@ -1,9 +1,8 @@
 <% provide(:header_text, "LOG IN")%>
-<% provide(:icon, "icons/Question_icon@2x.png")%>
 <%= render 'layouts/header' %>
   <div class="signup-page page-with-header flex-column-center will-blur">
     <%= image_tag "login/Login_wolf-logo@3x.png", class:"center-img-resposive login-logo" %>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "flex-column-center login-form-container"}) do |f| %>
       <%= f.email_field :email, autofocus: true, class:"emammal-text-input lg-text", placeholder:"Email" %>
       <%= f.password_field :password, autocomplete: "off", class:"emammal-text-input lg-text", placeholder:"Password" %>
       <% if devise_mapping.rememberable? %>
@@ -17,6 +16,7 @@
         <%= f.submit "Log in", class:"emammal-btn light-btn lg-text"  %>
       </div>
     <% end %>
+    <%= link_to('Sign up', new_user_registration_path) %>
   </div>
 <%= render 'shared/prevent_click'%>
 <%= render 'shared/menu'%>

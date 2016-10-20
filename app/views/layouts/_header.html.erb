@@ -8,6 +8,8 @@
     <h1 class="header-text xl-text"><%= yield(:header_text) %></h1>
   </div>
   <div class="header-page-icon">
+    <% if !yield(:icon).empty? %>
     <%= image_tag(yield(:icon), alt: "identify icon", class: "center-img-resposive") %>
+    <% end %>
   </div>
 </header>

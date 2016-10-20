@@ -1,29 +1,14 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<% provide(:header_text, "SIGN UP")%>
+<%= render 'layouts/header' %>
+  <div class="signup-page page-with-header flex-column-center will-blur">
+    <%= image_tag "login/Login_wolf-logo@3x.png", class:"center-img-resposive login-logo" %>
+    <%= form_for(@user, html: { class: "flex-column-center login-form-container" }) do |f| %>
+      <%= f.text_field :name, class:"emammal-text-input lg-text", placeholder:"Name", autofocus: true %>
+      <%= f.email_field :email, class:"emammal-text-input lg-text", placeholder:"Email" %>
+      <%= f.password_field :password, class:"emammal-text-input lg-text", placeholder:"Password", autocomplete: "off" %>
+      <%= f.password_field :password_confirmation, class:"emammal-text-input lg-text", placeholder:"Password Confirmation", autocomplete: "off" %>
+      <%= f.submit "Create account", class:"sign-up-btn emammal-btn light-btn lg-text" %>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+<%= render 'shared/prevent_click'%>
+<%= render 'shared/menu'%>
