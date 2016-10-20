@@ -734,8 +734,19 @@ $sideLength: 112px;
         }
 
         .top-bar {
-          max-width: 300px;
-          height: 44%;
+          max-width: 250px;
+          height: 50%;
+          margin-top: 53px;
+
+          .bar {
+            stroke: white;
+            stroke-width: 2px;
+          }
+
+          .bar-text {
+            dominant-baseline: text-before-edge;
+            text-anchor: middle;
+          }
 
         }
       }
@@ -745,6 +756,7 @@ $sideLength: 112px;
   .stats-instructions {
     width: 100vw;
     height: calc(100% - 234px);
+    overflow: hidden;
     background-color: lighten($BioIndigo, 50%);
 
     .text {

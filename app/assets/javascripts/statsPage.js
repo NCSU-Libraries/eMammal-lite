@@ -56,6 +56,10 @@ function loadPageJS() {
       var topPadding = 20;
       var animalCounts = d3.values(stats.animals);
 
+      function getMaxOfArray(numArray) {
+        return Math.max.apply(null, numArray);
+      }
+
       var bar = d3.select(".top-bar").selectAll("g")
           .data(animalCounts)
           .enter().append("g");
@@ -63,12 +67,28 @@ function loadPageJS() {
       bar.append("rect")
       	.attr("x", function(d, i) { return i * width / 3; })
       	.attr("y",  function(d) {
-          return height + topPadding - (d / Math.max(...animalCounts) * height);
+          return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
         })
       	.attr("width", width / 3)
-      	.attr("height", height)
-        .attr("class", "stat-color-0");
+      	.attr("height", function(d) {
+          return (d / getMaxOfArray(animalCounts) * height - topPadding);
+        })
+        .attr("class", "stat-color-0 bar");
 
+      bar.append("text")
+        .text(function(d) { return d; })
+      	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
+      	.attr("y",  function(d) {
+          return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
+        })
+        .attr("class", "lg-header bold-text stat-color-1 bar-text");
+
+      d3.select(".top-bar").append("rect")
+        .attr("x", "0")
+        .attr("y", "99%")
+        .attr("width", "100%")
+        .attr("height", "2px")
+        .attr("class", "stat-color-1");
     }
     makeTopIdentifiedBarGraph();
 
