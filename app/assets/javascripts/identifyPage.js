@@ -1,7 +1,7 @@
 // JavaScript specific to the identify page
 
-function loadPageJS() {
-  if ($(".id-page ").length > 0) { identifyPage(); }
+var loadIdentifyPageJS = function() {
+  if ($(".id-page").length > 0) { identifyPage(); }
 
   // Initiate the functions for the identify page
   function identifyPage() {
@@ -85,6 +85,6 @@ function loadPageJS() {
 
     console.log("loaded js for id page");
   }
-}
+};
 
-$(document).on("turbolinks:load", loadPageJS);
+$(document).on("turbolinks:load", loadIdentifyPageJS);

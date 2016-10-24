@@ -1,4 +1,4 @@
-function loadPageJS() {
+var loadPhotoArchivePageJS = function() {
   if ($(".photo-archive-page").length > 0) { photoArchivePage(); }
 
   function photoArchivePage() {
@@ -180,6 +180,6 @@ function loadPageJS() {
 
     console.log("loaded js for photo archive page");
   }
-}
+};
 
-$(document).on("turbolinks:load", loadPageJS);
+$(document).on("turbolinks:load", loadPhotoArchivePageJS);

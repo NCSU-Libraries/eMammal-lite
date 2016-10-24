@@ -1,4 +1,4 @@
-function loadPageJS() {
+var loadStatsPageJS = function() {
   if ($(".stats-page ").length > 0) { statsPage(); }
 
   function statsPage() {
@@ -126,9 +126,8 @@ function loadPageJS() {
         );
       }
     });
-    console.log(d3.values(stats.animals));
     console.log("loaded js for stats page");
   }
-}
+};
 
-$(document).on("turbolinks:load", loadPageJS);
+$(document).on("turbolinks:load", loadStatsPageJS);

@@ -1,6 +1,6 @@
 // JavaScript specific to pages with a header
 
-var loadPageJS = function() {
+var loadHeaderJS = function() {
 
   // Check if header is present, if it is load js for pages with a header
   if ($(".header").length > 0) { pagesWithHeaderMobile(); }
@@ -86,4 +86,4 @@ var loadPageJS = function() {
   });
 };
 
-$(document).on("turbolinks:load", loadPageJS);
+$(document).on("turbolinks:load", loadHeaderJS);

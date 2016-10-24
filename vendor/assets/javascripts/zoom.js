@@ -243,7 +243,7 @@
     // this._$body
     //   .removeClass('zoom-overlay-open')
     //   .addClass('zoom-overlay-transitioning')
-    console.log((".card-container-absolute.visible").length > 0);
+    // console.log((".card-container-absolute.visible").length > 0);
     if (!$(".card-container-absolute.visible").length > 0) {
       $(".will-blur-photo").removeClass("blur");
     }
