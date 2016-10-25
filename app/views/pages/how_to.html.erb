@@ -1,6 +1,36 @@
 <% provide(:header_text, "HOW TO")%>
-<% provide(:icon, "icons/Question_icon@2x.png")%>
+<%= render 'pages/how_to_svgs' %>
 <%= render 'layouts/header' %>
+
+<div class="how-to-page flex-column-center will-blur">
+  <svg class="how-to-animations">
+    <g class="current-animation">
+      <use class="cartoon-photo" xlink:href="#cartoon-photo"></use>
+      <use xlink:href="#cartoon-card"></use>
+      <use class="cartoon-btn" xlink:href="#cartoon-btn"></use>
+    </g>
+  </svg>
+  <div class="how-to-text flex-column-center">
+    <h1 class="how-to-title lg-header">Identify Animals</h1>
+    <p class="how-to-explanation body-text">
+      eMammal Lite focuses on identifiying animals in camera trap photos from around the world.
+    </p>
+  </div>
+  <div class="how-to-icons flex-row-center">
+    <svg class="how-to-icon active">
+      <use class="identify-icon" xlink:href="#identify"></use>
+    </svg>
+    <svg class="how-to-icon">
+      <use class="stats-icon" xlink:href="#stats"></use>
+    </svg>
+    <svg class="how-to-icon">
+      <use class="photo-archive-icon" xlink:href="#photo_archive"></use>
+    </svg>
+  </div>
+  <div class="skip-how-to">
+    <%= link_to('Skip', new_identification_path)  %>
+  </div>
+</div>
 
 <%= render 'shared/prevent_click'%>
 <%= render 'shared/menu'%>

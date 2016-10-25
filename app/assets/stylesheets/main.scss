@@ -289,6 +289,10 @@ a {
   max-width: 300px;
   background-color: white;
 
+  a {
+    text-decoration: none;
+  }
+  
   .menu-header {
     width: auto;
     height: 15%;
@@ -370,7 +374,6 @@ a {
       }
 
       a {
-        text-decoration: none;
         color: $PyromanFlame;
 
         &:hover {

@@ -771,3 +771,54 @@ $sideLength: 112px;
     background-color: lighten($BioIndigo, 50%) !important;
   }
 }
+
+@include media("<=tablet") {
+  .how-to {
+    height: 85vh;
+  }
+
+  .how-to-animations {
+    width: 100%;
+    height: 50vh;
+
+    .cartoon-photo:hover {
+      transform: scale(2);
+    }
+  }
+
+  .how-to-text {
+    width: 76%;
+
+    .how-to-title {
+      color: $BioIndigo;
+    }
+
+    .how-to-explanation {
+      color: $BioIndigo;
+      margin: 0;
+    }
+  }
+
+  .how-to-icons {
+    fill: lighten($PyromanFlame, 30%);
+
+    .active {
+      fill : $PyromanFlame
+    }
+
+    .how-to-icon {
+      width: 8vw;
+      max-width: 23px;
+      height: 8vw;
+      margin: 11.5px;
+    }
+  }
+
+  .skip-how-to a {
+    text-decoration: none;
+
+    &:hover {
+      font-weight: bold;
+    }
+  }
+}
