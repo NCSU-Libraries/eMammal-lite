@@ -814,11 +814,14 @@ $sideLength: 112px;
     }
   }
 
-  .skip-how-to a {
-    text-decoration: none;
+  .skip-how-to {
+    margin-top: 29px;
+    margin-bottom: 29px;
+    width: 100%;
+    text-align: center;
 
-    &:hover {
-      font-weight: bold;
-    }
+    // &:hover {
+    //   font-weight: bold;
+    // }
   }
 }
