@@ -250,6 +250,7 @@ a {
 
   .page-with-header {
     height: 85vh;
+    min-height: 482px;
   }
 }
 
@@ -292,7 +293,7 @@ a {
   a {
     text-decoration: none;
   }
-  
+
   .menu-header {
     width: auto;
     height: 15%;
@@ -408,5 +409,10 @@ a {
     margin-bottom: 82px;
     margin-left: 20%;
     margin-right: 20%;
+  }
+
+  .close-drop-down {
+    justify-content: center;
+    width: 86px;
   }
 }

@@ -279,12 +279,14 @@ $sideLength: 112px;
 @include media("<=tablet") {
   .card-container {
     height: 75vh;
+    min-height: 426px;
     // max-height: 650px;
 
     .card {
       width: 42.3vh;
       max-width: 86.6%;
       min-width: 235px;
+      min-height: 426px;
       flex-direction: column;
       align-items: center;
 

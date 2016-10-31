@@ -10,6 +10,7 @@ var loadHeaderJS = function() {
     // Show page information/instructions on icon click
     if ($(".info-drop-down").length > 0) {
       $(".header-page-icon").on("click", toggleOverlays);
+      $(".close-drop-down").on("click", toggleOverlays);
     }
     $(".menu-btn").on("click", toggleOverlays);
     $(".prevent-click").on("click", toggleOverlays);
@@ -42,7 +43,8 @@ var loadHeaderJS = function() {
           overlay = $(".menu");
           animatePos.left = parseInt(overlay.css("left")) === 0 ?
             overlay.outerWidth() * -1 : 0;
-        } else if (currentOverlay.hasClass("header-page-icon")) {
+        } else if (currentOverlay.hasClass("header-page-icon") ||
+                    currentOverlay.hasClass("close-drop-down")) {
           overlay = $(".info-drop-down");
           animatePos.top = parseInt(overlay.css("top")) === 0 ?
             overlay.outerHeight() * -1 : 0;
