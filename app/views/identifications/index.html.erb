@@ -21,7 +21,10 @@
             <rect class="percentage-bar bar stat-color-1"></rect>
           </svg>
           <p class="lg-text stat-text">
-            You have correctly identified <span class="bold-text"><%= current_or_guest_user.stats[:correct]%></span> animals in <span class="bold-text"><%= current_or_guest_user.stats[:attempts]%></span> attempts.
+            You have correctly tagged <span class="bold-text"><%= current_or_guest_user.stats[:correct]%></span> animals in <span class="bold-text"><%= current_or_guest_user.stats[:attempts]%></span> attempts.
+          </p>
+          <p class="lg-text stat-text">
+            You have <span class="bold-text"><%= Photo.all.count.to_i - current_or_guest_user.stats[:correct].to_i %></span> animal photos left to tag.
           </p>
         </div>
       </div>
@@ -37,13 +40,13 @@
           <h1 class="bold-text stat-header">Your Accuracy</h1>
         </div>
         <p class="lg-text stat-text">
-          You have correctly identified <span class="bold-text accuracy-number"></span> of the photos you have attempted.
+          You have correctly tagged the animal in <span class="bold-text accuracy-number"></span> of the photos you have attempted.
         </p>
       </div>
     </div>
     <div class="accordion-item flex-column-center">
       <div class="stats-group-header flex-column-center">
-        <h1 class="sm-header bold-text">TOP IDENTIFIED</h1>
+        <h1 class="sm-header bold-text">TOP TAGS</h1>
       </div>
       <div class="stats-group flex-column-center">
         <div class="stat-top-identified">

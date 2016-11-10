@@ -1,4 +1,5 @@
-<% provide(:header_text, "IDENTIFY")%>
+<% provide(:header_text, "TAG ANIMALS")%>
+<% provide(:user_score, current_or_guest_user.stats[:correct].to_s)%>
 <% provide(:icon, "icons/Learn_More-icon@3x.png")%>
 <%= render "shared/icons" %>
 <%= render 'layouts/header' %>
@@ -32,7 +33,7 @@
     <% end %>
   </div>
   <div class="score-container flex-column-center will-blur-photo">
-    <h1 class="lg-text">SCORE: <span class="score">0 </span> / <%= Photo.all.count %></h1>
+    <h1 class="lg-text">SCORE: <span class="score"><%= yield(:user_score) %></span> <span class="xs-text"> &frasl; <%= Photo.all.count %></span></h1>
   </div>
 </div>
 

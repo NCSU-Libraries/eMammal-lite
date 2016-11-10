@@ -3,11 +3,10 @@ class IdentificationsController < ApplicationController
 
   def new
     @identification = Identification.new
-    @photo = Photo.find_by_id(session[:last_photo]) ||
-      Photo.order("RAND()").first
+    @photo = get_random_not_identified_photo
 
     # Get the 'wrong' animals from the two_similar_animals function
-    getSimilarAnimals
+    get_similar_animals
 
     session[:last_photo] = @photo.id
     respond_to do |format|
@@ -20,7 +19,9 @@ class IdentificationsController < ApplicationController
   def create
     @identification = Identification.new(selection_params)
     @identification.save
-    # If user skips id generate new photo and animal and proceed to next card
+
+    # Remove the last photo from the session since it has been identified
+    remove_last_photo
 
     respond_to do |format|
       format.html { redirect_to new_identification_path }
@@ -39,15 +40,14 @@ end
           :correct_identification, :user_id)
     end
 
-    def check_for_skip
-        session.delete(:last_photo) if request.format.symbol == :js
+    def get_random_not_identified_photo
+      has_identified = current_or_guest_user.identifications
+        .where("correct_identification = true").pluck("photo_id")
+      Photo.where.not(id: has_identified).find_by_id(session[:last_photo]) ||
+        Photo.order("RAND()").first
     end
 
-    def remove_last_photo
-      session.delete(:last_photo)
-    end
-
-    def getSimilarAnimals
+    def get_similar_animals
       animal = @photo.animal
       wrong_animals = animal.two_similar_animals
 
@@ -55,4 +55,12 @@ end
       @animals = [{ id: animal.id, name: animal.shortened_name }]
       wrong_animals.each { |el| @animals.push({id: el.id, name: el.shortened_name }) }
       @animals = @animals.shuffle
+    end
+
+    def check_for_skip
+        session.delete(:last_photo) if request.format.symbol == :js
+    end
+
+    def remove_last_photo
+      session.delete(:last_photo)
     end
