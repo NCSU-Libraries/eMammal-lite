@@ -1,10 +1,10 @@
 // JavaScript specific to the identify page
 
-var loadIdentifyPageJS = function() {
-  if ($(".id-page").length > 0) { identifyPage(); }
+var loadtagPageJS = function() {
+  if ($(".id-page").length > 0) { tagPage(); }
 
   // Initiate the functions for the identify page
-  function identifyPage() {
+  function tagPage() {
 
     // This function animates the transition between cards. Type refers to
     // either skipping a card or pressing the next arrow after identifiying
@@ -87,4 +87,4 @@ var loadIdentifyPageJS = function() {
   }
 };
 
-$(document).on("turbolinks:load", loadIdentifyPageJS);
+$(document).on("turbolinks:load", loadtagPageJS);

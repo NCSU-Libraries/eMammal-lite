@@ -175,6 +175,10 @@ var loadPhotoArchivePageJS = function() {
             return textSizes[i] + " pie-piece-label"; })
         	.attr("x", function(d) { return arc.centroid(d)[0]; })
         	.attr("y", function(d) { return arc.centroid(d)[1]; });
+
+        d3.selectAll(".pie-table")
+          .data(filteredData)
+          .text(function(d) { console.log("pie table:", d); return Math.floor(d.value / data.total * 100); });
       }
     }
 

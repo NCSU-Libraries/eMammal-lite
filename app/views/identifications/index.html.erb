@@ -2,7 +2,7 @@
 <% provide(:icon, "icons/Learn_More-icon@3x.png")%>
 <%= render 'layouts/header' %>
 
-<div class="stats-page page-with-header flex-column-center will-blur" data-url="<%= current_user.stats.to_json %>">
+<div class="stats-page page-with-header flex-column-center will-blur" data-url="<%= current_or_guest_user.stats.to_json %>">
   <div class="accordion">
     <div class="accordion-item flex-column-center">
       <div class="stats-group-header flex-column-center">
@@ -11,7 +11,7 @@
       <div class="stats-group flex-column-center">
         <div class="stat-score">
           <h1 class="bold-text big-score">
-            <%= current_user.stats[:correct]%>
+            <%= current_or_guest_user.stats[:correct]%>
           </h1>
           <h2 class="bold-text stat-header">Your Score</h2>
         </div>
@@ -21,7 +21,7 @@
             <rect class="percentage-bar bar stat-color-1"></rect>
           </svg>
           <p class="lg-text stat-text">
-            You have correctly identified <span class="bold-text"><%= current_user.stats[:correct]%></span> animals in <span class="bold-text"><%= current_user.stats[:total]%></span> attempts.
+            You have correctly identified <span class="bold-text"><%= current_or_guest_user.stats[:correct]%></span> animals in <span class="bold-text"><%= current_or_guest_user.stats[:attempts]%></span> attempts.
           </p>
         </div>
       </div>
@@ -52,7 +52,7 @@
           <h1 class="bold-text stat-header">Your Top Animals</h1>
         </div>
         <p class="lg-text stat-text">
-          The top three animals identified by you are <span class="bold-text accuracy-number"><%= "#{current_user.stats[:animals].keys[0]}, #{current_user.stats[:animals].keys[1]}"%></span>, and <span class="bold-text accuracy-number"><%= "#{current_user.stats[:animals].keys[2]}" %></span>.
+          The top three animals identified by you are <span class="bold-text accuracy-number"><%= "#{current_or_guest_user.stats[:animals].keys[0]}, #{current_or_guest_user.stats[:animals].keys[1]}"%></span>, and <span class="bold-text accuracy-number"><%= "#{current_or_guest_user.stats[:animals].keys[2]}" %></span>.
         </p>
       </div>
     </div>

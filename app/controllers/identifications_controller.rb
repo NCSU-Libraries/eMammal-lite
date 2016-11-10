@@ -2,21 +2,17 @@ class IdentificationsController < ApplicationController
   before_action :check_for_skip, only: [:new]
 
   def new
-    if user_signed_in?
-      @identification = Identification.new
-      @photo = Photo.find_by_id(session[:last_photo]) ||
-        Photo.order("RAND()").first
+    @identification = Identification.new
+    @photo = Photo.find_by_id(session[:last_photo]) ||
+      Photo.order("RAND()").first
 
-      # Get the 'wrong' animals from the two_similar_animals function
-      getSimilarAnimals
+    # Get the 'wrong' animals from the two_similar_animals function
+    getSimilarAnimals
 
-      session[:last_photo] = @photo.id
-      respond_to do |format|
-        format.html { render new_identification_path }
-        format.js
-      end
-    else
-      redirect_to new_user_session_path
+    session[:last_photo] = @photo.id
+    respond_to do |format|
+      format.html { render new_identification_path }
+      format.js
     end
   end
 
@@ -33,9 +29,6 @@ class IdentificationsController < ApplicationController
   end
 
   def index
-    if !user_signed_in?
-      redirect_to new_user_session_path
-    end
   end
 end
 
@@ -48,7 +41,6 @@ end
 
     def check_for_skip
         session.delete(:last_photo) if request.format.symbol == :js
-        puts request.referrer
     end
 
     def remove_last_photo

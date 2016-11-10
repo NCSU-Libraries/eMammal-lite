@@ -7,10 +7,10 @@ if (<%= !@identification.user_identification.nil? %>) {
   // Render the back of the card with the correct display (i.e., right or wrong)
   $("#back_of_card").html("<%= escape_javascript(render('identifications/back_of_card')) %>");
 
-  // If the correct id was made increase score by 10 and set flip animation
+  // If the correct id was made increase score by 1 and set flip animation
   if (<%= @identification.correct_identification %>) {
 
-    $(".score").text(parseInt($(".score").text()) + 10)
+    $(".score").text(parseInt($(".score").text()) + 1)
 
     window.setTimeout(function() {
       $(".card").toggleClass("flipped");

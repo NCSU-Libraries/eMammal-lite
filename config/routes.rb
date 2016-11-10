@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
   root 'pages#home'
 
   get 'learn_more' => 'pages#learn_more'
   get 'identify' => 'pages#identify'
   get 'how_to' => 'pages#how_to'
 
-  resources :users
+  # resources :users
   resources :photos
   resources :identifications, only: [:index, :new, :create]
   # The priority is based upon order of creation: first created -> highest priority.

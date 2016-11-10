@@ -103,35 +103,65 @@ $sideLength: 112px;
   width: 155px;
 }
 
-/* Signup page*/
-.signup-page {
+/* Log in and sign in shared*/
 
-  .login-logo {
-    height: 33%;
+.login-logo {
+  max-height: 33%;
+  max-width: 155px;
+}
+
+.login-text-input {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.signup-or-guest {
+  a {
+    text-decoration: none;
   }
+
+  span {
+    color: lighten($BioIndigo, 30%)
+  }
+}
+
+
+/* Log in page*/
+
+.login-page {
+  justify-content: flex-start;
 
   .login-form-container {
-    height: 33%;
     width: 100%;
-    justify-content: space-between;
-  }
+    margin-top: 16px;
+    margin-bottom: 24px;
 
-  .login-btn-container {
-    height: 51.4%;
-    width: 100%;
-    justify-content: space-between;
-
-    .login-btn {
-      margin-top: 16%;
-      width: 28.8%
+    .remember-me-check {
+      margin-top: 8px;
+      margin-bottom: 24px;
+      color: $BioIndigo
     }
 
-    .login-skip-link {
-      color: $PyromanFlame;
-      margin-bottom: 12.8%;
+  }
+}
+
+
+/* Sign up page*/
+
+.signup-page {
+  justify-content: flex-start;
+
+  .signup-form-container {
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 24px;
+
+    .signup-btn {
+      margin-top: 24px;
     }
   }
 }
+
 
 /* Learn More page */
 
@@ -162,7 +192,7 @@ $sideLength: 112px;
 }
 
 
-/* Identify page */
+/* identify page */
 
 .card-container {
   width: 100%;
@@ -502,11 +532,12 @@ $sideLength: 112px;
     height: 18.7vh;
 
     .photo-search-input {
-      padding-left: 10px;
       padding-right: 30px;
+      margin-top: 8px;
     }
 
     .photo-search-btn {
+      margin-top: 9.5px;
       margin-left: -30px;
       padding-left: 0;
       color: $BioIndigo;
@@ -514,8 +545,14 @@ $sideLength: 112px;
       border-style: none;
 
       &:hover {
-        color: rgba($BioIndigo, 0.4);
+        color: lighten($BioIndigo, 30%);
       }
+    }
+
+    .photo-search-help-text {
+      margin-top: 8px;
+      color: $BioIndigo;
+      max-width: 80%;
     }
   }
 

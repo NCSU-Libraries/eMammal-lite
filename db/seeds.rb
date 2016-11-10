@@ -55,7 +55,7 @@ end
   Identification.create!(
     photo_id: rand(1..100),
     user_identification: ((1..156).to_a << nil).sample,
-    user_id: rand(100)
+    user_id: rand(900...1000)
   )
 end
 
@@ -63,6 +63,6 @@ end
   Identification.create!(
     photo_id: 1,
     user_identification: [1, 12, nil].sample,
-    user_id: rand(100)
+    user_id: rand(900...1000)
   )
 end

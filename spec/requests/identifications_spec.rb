@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Identifications", type: :request do
-  describe "with user identifying a photo" do
+  describe "with user taging a photo" do
 
     before(:all) do
       @photo = FactoryGirl.create(:photo)

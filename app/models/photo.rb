@@ -15,10 +15,11 @@ class Photo < ActiveRecord::Base
     end
   end
 
-  def photoExists?
-    uri = URI("https://s3.amazonaws.com/emammalphoto/#{self.source}_o.jpg")
-    Net::HTTP.get_response(uri).response.code.to_i < 300
-  end
+  # What if photo is not on server?
+  # def photoExists?
+  #   uri = URI("https://s3.amazonaws.com/emammalphoto/#{self.source}_o.jpg")
+  #   Net::HTTP.get_response(uri).response.code.to_i < 300
+  # end
 
   # Return the stats for a photo
   def stats

@@ -7,7 +7,7 @@ var loadStatsPageJS = function() {
     // Score stats
     function makeScoreBarGraph() {
       $(".percentage-bar")
-        .attr("width", stats.correct / stats.total * 100 + "%");
+        .attr("width", stats.correct / stats.attempts * 100 + "%");
     }
     makeScoreBarGraph();
 
@@ -31,7 +31,7 @@ var loadStatsPageJS = function() {
 
       // Add data to groups that will hold the donut pieces and text
       var donutPiece = donutChart.selectAll("g")
-          .data(piePieceArcs([(stats.total - stats.correct), stats.correct]))
+          .data(piePieceArcs([(stats.attempts - stats.correct), stats.correct]))
           .enter().append("g")
           .attr("class", "donut-piece");
 
@@ -41,10 +41,10 @@ var loadStatsPageJS = function() {
         .attr("d", arc);
 
       donutChart.append("text")
-        .text(Math.ceil(stats.correct / stats.total * 100) + "%")
+        .text(Math.ceil(stats.correct / stats.attempts * 100) + "%")
         .attr("class", "xl-header bold-text donut-text");
 
-      d3.select(".accuracy-number").text(Math.ceil(stats.correct / stats.total * 100) + "%");
+      d3.select(".accuracy-number").text(Math.ceil(stats.correct / stats.attempts * 100) + "%");
 
     }
     makeAccuracyDonut();

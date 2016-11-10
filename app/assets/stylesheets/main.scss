@@ -114,7 +114,9 @@ a {
   border-width: thin;
   border-radius: 2em;
   border-color: lighten($BioIndigo, 40%);
-  padding-left: 2px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
   &:focus {
     outline: none;
@@ -124,7 +126,8 @@ a {
 
 /* Button styles */
 .emammal-btn {
-  padding: 2%;
+  padding: 5px 6px;
+  width: 155px;
   text-align: center;
 
   border-style: solid;
@@ -165,6 +168,42 @@ a {
     color: $BioIndigo;
   }
 }
+
+
+/*Flash messages*/
+.alert {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  text-align: left;
+}
+
+.alert-error {
+    background-color: lighten($PyromanFlame, 50%);
+    border-color: $PyromanFlame;
+    color: $PyromanFlame;
+ }
+
+.alert-alert {
+    background-color: lighten($PyromanFlame, 50%);
+    border-color: $PyromanFlame;
+    color: $PyromanFlame;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+ }
+
 
 /*
   Classes to handle blur and click-prevention when menus/dropdowns are open or
