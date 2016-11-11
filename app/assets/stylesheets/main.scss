@@ -23,6 +23,8 @@ body {
 }
 
 .hidden {
+  transition: 1s;
+  opacity: 0;
   visibility: hidden !important;
 }
 
@@ -167,6 +169,26 @@ a {
     background-color: white;
     color: $BioIndigo;
   }
+}
+
+
+/* Next arrow flash animation*/
+@keyframes nextArrowFlash {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}
+
+.flash {
+  animation-duration: 1s;
+  animation-name: nextArrowFlash;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
 }
 
 
