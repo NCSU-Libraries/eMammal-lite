@@ -76,7 +76,7 @@ var loadPhotoArchivePageJS = function() {
       if (filteredData.length > 0) {
         var textSizes = ["lg-header", "sm-header", "lg-text"];
 
-        var filter = d3.selectAll("svg").append("defs")
+        var filter = d3.selectAll(".has-filter").append("defs")
           .append("filter")
             .attr("id", "blur")
           .append("feGaussianBlur")
@@ -84,6 +84,7 @@ var loadPhotoArchivePageJS = function() {
 
         makeBarChart();
         makePieChart();
+        makeMap();
       }
 
       function makeBarChart() {
@@ -180,6 +181,23 @@ var loadPhotoArchivePageJS = function() {
           .data(filteredData)
           .text(function(d) { console.log("pie table:", d); return Math.floor(d.value / data.total * 100); });
       }
+    }
+
+    function makeMap() {
+      var mapData = $(".map").data("url");
+      var mapSVG = d3.select(".map").select("svg");
+      var proj = d3.geoMercator()
+        .center([0, 40])
+        .scale(parseFloat(mapSVG.style("height"))/4)
+        .translate([parseFloat(mapSVG.style("width")) / 2,
+          parseFloat(mapSVG.style("height")) / 2]);
+      var path = d3.geoPath(proj);
+
+      mapSVG.selectAll("path")
+        .data(topojson.feature(mapData, mapData.objects.world).features)
+        .enter().append("path")
+        .attr("d", path);
+
     }
 
     console.log("loaded js for photo archive page");

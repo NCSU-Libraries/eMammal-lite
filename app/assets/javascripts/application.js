@@ -17,6 +17,9 @@
 //= require d3-path.min.js
 //= require d3-collection.min.js
 //= require d3-selection.min.js
+//= require d3-array.min.js
+//= require d3-geo.min.js
+//= require topojson-client.min.js
 //= require transitions.js
 //= require jquery.easing.1.3.js
 //= require turbolinks

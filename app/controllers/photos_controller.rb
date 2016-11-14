@@ -12,6 +12,7 @@ class PhotosController < ApplicationController
   # GET /photos/1.json
   def show
     @photo = Photo.find(params[:id])
+    @map = File.read('app/assets/javascripts/world.geojson')
 
     respond_to do |format|
       format.html { render :show }

@@ -205,7 +205,7 @@ $sideLength: 112px;
   flex-shrink: 0;
   position: relative;
   height: 100%;
-  margin-left: 6.6%;
+  // margin-left: 6.6%;
   color: white;
   box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
   transform: rotateY(0deg);
@@ -284,14 +284,17 @@ $sideLength: 112px;
 }
 
 .next-arrow {
-  width: 2.6%;
-  max-width: 20px;
-  margin-left: 4%;
   cursor: pointer;
   visibility: hidden;
 
+  position: absolute;
+  right: 0;
+  width: 11%;
+  height: 75vh;
+  justify-content: center;
+
   svg {
-    width: 100%;
+    width: 25%;
     fill: none;
     opacity: 0.6;
     stroke-linecap: round;
@@ -366,6 +369,8 @@ $sideLength: 112px;
         }
 
         .id-card-answer {
+          width: 100%;
+          height: 100%;
           text-align: center;
 
           .main-header {
@@ -377,24 +382,36 @@ $sideLength: 112px;
             margin-top: 6px;
             margin-bottom: 0;
           }
+          //
+          // .map {
+          //   padding: 8px;
+          //
+          //   img {
+          //     position: relative;
+          //     top: 0;
+          //     left: 0;
+          //   }
+          //
+          //   .map-pin {
+          //     transform: translateY(-100%);
+          //   }
+          // }
 
           .map {
-            padding: 8px;
+            width: 100%;
+            height: 60%;
 
-            img {
-              position: relative;
-              top: 0;
-              left: 0;
-            }
-
-            .map-pin {
-              transform: translateY(-100%);
+            svg {
+              width: 100%;
+              height: 100%;
+              fill: #fff;
+              opacity: 0.9;
             }
           }
 
           .project-info {
             position: absolute;
-            bottom: 20px;
+            bottom: 0;
             left: 0;
 
             margin-left: 20px;
@@ -406,6 +423,7 @@ $sideLength: 112px;
 
             .project-name {
               margin-top: 6px;
+              margin-bottom: 10px;
               text-align: left;
             }
           }
@@ -425,6 +443,7 @@ $sideLength: 112px;
             .choice-btn {
               width: 72%;
               height: 28%;
+              min-height: 48px;
             }
           }
         }
