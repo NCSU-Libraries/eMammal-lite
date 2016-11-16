@@ -1,15 +1,28 @@
-<div class="card-results-header" data-url="<%= @photo.stats.to_json %>">
-  <h1 class="sm-header">Results are in</h1>
-  <!-- <h2 class="xs-text">see how you compare</h2> -->
-</div>
-<div class="bar-chart">
-  <svg class="bar-chart-svg has-filter"></svg>
-</div>
-<div class="pie-chart">
-  <svg class="pie-chart-svg has-filter"></svg>
-</div>
-<div class="results-table">
-  <h3 class="xs-text"><span class="pie-table"></span> &#37; Correct</h3>
-  <h3 class="xs-text"><span class="pie-table"></span> &#37; Incorrect</h3>
-  <h3 class="xs-text"><span class="pie-table"></span> &#37; Skipped</h3>
-</div>
+<% if @photo.stats[:total] == 0 %>
+  <div class="card-results-header no-stats" data-url="<%= @photo.stats.to_json %>">
+    <h1 class="sm-header">Photo stats</h1>
+    <h2 class="body-text">No one has come across this photo yet.</h2>
+    <h2 class="body-text">Go to <span class="bold-text">TAG ANIMALS</span> to find this photo and to tag the <span class="bold-text"><%= @photo.animal.name %></span></h2>
+  </div>
+  <div class="no-stats-filler flex-column-center">
+    <svg>
+      <use xlink:href="#no-stats-filler"></use>
+    </svg>
+  </div>
+<% else %>
+  <div class="card-results-header" data-url="<%= @photo.stats.to_json %>">
+    <h1 class="sm-header">Photo stats</h1>
+    <h2 class="xs-text">This photo has been viewed by <%= @photo.stats[:total].to_s + " " + "person".pluralize(@photo.stats[:total])%></h2>
+  </div>
+  <div class="bar-chart">
+    <svg class="bar-chart-svg has-filter"></svg>
+  </div>
+  <div class="pie-chart">
+    <svg class="pie-chart-svg has-filter"></svg>
+  </div>
+  <div class="results-table">
+    <h3 class="xs-text pie-table">0</h3>
+    <h3 class="xs-text pie-table">0</h3>
+    <h3 class="xs-text pie-table">0</h3>
+  </div>
+<% end %>

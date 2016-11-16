@@ -201,6 +201,7 @@ $sideLength: 112px;
 }
 
 .card {
+  will-change: transform;
   display: flex;
   flex-shrink: 0;
   position: relative;
@@ -374,28 +375,14 @@ $sideLength: 112px;
           text-align: center;
 
           .main-header {
-            margin-top: 12px;
+            margin-top: 8px;
             margin-bottom: 0;
           }
 
           .sub-header {
-            margin-top: 6px;
+            margin-top: 4px;
             margin-bottom: 0;
           }
-          //
-          // .map {
-          //   padding: 8px;
-          //
-          //   img {
-          //     position: relative;
-          //     top: 0;
-          //     left: 0;
-          //   }
-          //
-          //   .map-pin {
-          //     transform: translateY(-100%);
-          //   }
-          // }
 
           .map {
             width: 100%;
@@ -404,8 +391,23 @@ $sideLength: 112px;
             svg {
               width: 100%;
               height: 100%;
-              fill: #fff;
-              opacity: 0.9;
+
+              .map-path {
+                fill: #fff;
+                opacity: 0.5;
+              }
+
+              .map-pin {
+                visibility: hidden;
+
+                .pin-outer {
+                  fill: $PyromanFlame;
+                }
+
+                .pin-inner {
+                  fill: #fff;
+                }
+              }
             }
           }
 
@@ -418,12 +420,13 @@ $sideLength: 112px;
             margin-right: 20px;
 
             .project-header {
+              margin-bottom: 4px;
               text-align: left;
             }
 
             .project-name {
-              margin-top: 6px;
-              margin-bottom: 10px;
+              margin-top: 0px;
+              margin-bottom: 8px;
               text-align: left;
             }
           }
@@ -582,6 +585,8 @@ $sideLength: 112px;
     margin-top: -0.5vw;
     margin-left: 0.5vw;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+
 
     .img-box {
       width: 32vw;
@@ -613,15 +618,30 @@ $sideLength: 112px;
 
         .card-results-header {
           width: 100%;
-          color: $PyromanFlame;
 
           h1 {
-            margin-bottom: 10px;
-            margin-left: 20px;
+            margin: 8px;
+            color: $PyromanFlame;
           }
           h2 {
             margin-top: 6px;
-            margin-left: 20px;
+            margin-left: 8px;
+            margin-right: 8px;
+            color: $BioIndigo;
+          }
+        }
+
+        .card-results-header.no-stats {
+          height: 40%;
+        }
+
+        .no-stats-filler {
+          width: 100%;
+          height: 50%;
+
+          svg {
+            width: 88%;
+            height: 100%;
           }
         }
 
@@ -631,35 +651,49 @@ $sideLength: 112px;
 
         .bar-chart {
           width: 100%;
-          height: 30%;
+          height: 25%;
           overflow: visible;
+
+          .bar-chart-header {
+            margin-left: 8px;
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: $PyromanFlame;
+          }
 
           .bar-chart-svg {
             width: 100%;
             height: 100%;
-            margin-left: 20px;
-            margin-right: 20px;
+            margin-left: 8px;
+            margin-right: 8px;
             overflow: visible;
           }
 
           .bar-label {
-            fill: white;
-            text-anchor: end;
-            alignment-baseline: central;
+            fill: $BioIndigo;
+            text-anchor: start;
+            // alignment-baseline: central;
+            text-transform: capitalize;
           }
 
           .bar-title {
             fill: $BioIndigo;
             text-anchor: start;
-            alignment-baseline: baseline;
             text-transform: capitalize;
           }
         }
 
         .pie-chart {
-          height: 46.7%;
+          height: 45%;
           width: 67%;
           overflow: visible;
+
+          .pie-chart-header {
+            margin-left: 8px;
+            margin-right: 8px;
+            margin-top: 0;
+            color: $PyromanFlame;
+          }
 
           .pie-chart-svg {
             width: 100%;
@@ -681,8 +715,8 @@ $sideLength: 112px;
           position: absolute;
           bottom: 0;
           right: 0;
-          padding-right: 20px;
-          padding-bottom: 20px;
+          padding-right: 8px;
+          padding-bottom: 8px;
           color: $BioIndigo;
           text-align: right;
 
@@ -940,7 +974,7 @@ $sideLength: 112px;
           }
         }
 
-        .cartoon-card.start {
+        .cartoon- .start {
           transition: 1s ease-in-out;
           transform: translateX(0);
         }

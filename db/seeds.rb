@@ -13,7 +13,7 @@ projects = []
 CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
 
   if (/(unknown|no animal)/i).match(row[3]).nil? &&
-     (/(Aparsons|Brendan's|Tavis')/i).match(row[6]).nil? then
+     (/(Aparsons|Brendan's|Tavis|Obispo)/i).match(row[6]).nil? then
     # Create a photo entry for each row
     Photo.create!(
       source: row[0],
@@ -41,7 +41,9 @@ CSV.foreach("db/seeds/FinalData.csv", {:headers => true}) do |row|
       Project.create!(
         id: row[2],
         project_id: row[2],
-        name: row[6]
+        name: row[6],
+        lon: row[7],
+        lat: row[8]
       )
     end
     # Add project to projects array to test if future projects are duplicates

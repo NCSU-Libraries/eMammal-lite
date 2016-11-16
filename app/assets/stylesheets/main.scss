@@ -19,6 +19,7 @@ body {
 }
 
 .visible {
+  transition: 1s;
   visibility: visible !important;
 }
 
@@ -42,7 +43,7 @@ body {
 }
 
 .color-skipped {
-  fill: lightgrey;
+  fill: #909090;
 }
 
 /* Links */

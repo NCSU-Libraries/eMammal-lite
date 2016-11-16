@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927202722) do
+ActiveRecord::Schema.define(version: 20161115223127) do
 
   create_table "animals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -47,9 +47,11 @@ ActiveRecord::Schema.define(version: 20160927202722) do
 
   create_table "projects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "project_id"
+    t.float    "lat",        limit: 24
+    t.float    "lon",        limit: 24
     t.index ["name"], name: "index_projects_on_name", using: :btree
     t.index ["project_id"], name: "index_projects_on_project_id", using: :btree
   end

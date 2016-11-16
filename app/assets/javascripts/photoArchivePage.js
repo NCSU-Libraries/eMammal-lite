@@ -5,7 +5,8 @@ var loadPhotoArchivePageJS = function() {
     var card = $(".card");
 
     function addAnimationTriggers() {
-      $(".sm-img").on("click", moveCardIn);
+      // Bind the sm-img click to the document to handle partial update
+      $(document).on("click", ".sm-img", moveCardIn);
       $(".card-container-absolute").on("click", moveCardOut);
       $(".prevent-click").on("click", moveCardOut);
 
@@ -19,6 +20,9 @@ var loadPhotoArchivePageJS = function() {
     addAnimationTriggers();
 
     function moveCardIn() {
+      console.log("making bar chart");
+      // makeGraphs();
+      console.log(this);
       if ($(".card-absolute").is(":animated")) {
         return;
       }
@@ -37,6 +41,7 @@ var loadPhotoArchivePageJS = function() {
           "duration": 600,
           "easing": "easeInQuart",
           "complete": function() {
+            drawProjectLocationPin();
             makeGraphs();
           }
         }
@@ -59,18 +64,77 @@ var loadPhotoArchivePageJS = function() {
             "complete": function() {
               $(".card-container-absolute").removeClass("visible");
               card.removeClass("flipped");
+
+              // Hide map pin on exit
+              d3.select(".map-pin").classed("visible", false);
             }
           }
         );
       }
     }
 
+    // Draw the map on the initial page load
+    function makeMap() {
+      var mapData = gon.map;
+      var mapSVG = d3.select(".map").select("svg");
+      var proj = d3.geoMercator()
+        .center([0, 40])
+        .scale(parseFloat(mapSVG.style("height"))/3.9)
+        .translate([parseFloat(mapSVG.style("width")) / 2,
+          parseFloat(mapSVG.style("height")) / 2]);
+      var path = d3.geoPath(proj);
+
+      mapSVG.selectAll("path")
+        .data(topojson.feature(mapData, mapData.objects.world).features)
+        .enter().append("path")
+        .attr("class", "map-path")
+        .attr("d", path);
+
+      var pin = mapSVG.append("g").attr("class", "map-pin");
+
+      pin.append("path")
+        .attr("class", "pin-outer")
+        .attr("d", "M29.87,0A30.09,30.09,0,0,0,0,30.29C0,51.67,29.87,83,29.87,83S59.73,52.54,59.73,30.29A30.08,30.08,0,0,0,29.87,0Zm0,47.42A17.69,17.69,0,1,1,47.56,29.73,17.69,17.69,0,0,1,29.87,47.42Z");
+
+      pin.append("circle")
+        .attr("class", "pin-inner")
+        .attr("cx", "29.87px")
+        .attr("cy", "29.73px")
+        .attr("r", "11.75px");
+    }
+    makeMap();
+
+    function drawProjectLocationPin() {
+      var mapSVG = d3.select(".map").select("svg");
+      var proj = d3.geoMercator()
+        .center([0, 40])
+        .scale(parseFloat(mapSVG.style("height"))/3.9)
+        .translate([parseFloat(mapSVG.style("width")) / 2,
+          parseFloat(mapSVG.style("height")) / 2]);
+
+      // Project the project location coordinates for the map pin
+      var coords = $(".map-data").data("url");
+      var pointXY = proj(coords);
+
+      // Create group for the pin graphical pieces and set scale factor
+      var pin = d3.select(".map-pin");
+      var pinScale = 0.2;
+
+      var pinWidth = pin.node().getBBox().width * pinScale;
+      var pinHeight = pin.node().getBBox().height * pinScale;
+      pin.attr("transform", "translate(" +
+        (pointXY[0] - pinWidth / 2) + "," +
+        (pointXY[1] - pinHeight) +
+        ") scale(" + pinScale + ")");
+      pin.classed("visible", true);
+    }
+
     // Make the data graphics that will show on the back of the card
     function makeGraphs() {
       var data = $(".card-results-header").data("url");
-      // Filter the data to remove 0 values and the total and sort high to low
+      // Filter the data to remove any weird values and the total and sort high to low
       var filteredData = d3.entries(data)
-        .filter(function(d) { return d.key != "total" && d.value > 0; })
+        .filter(function(d) { return d.key != "total" && d.value >= 0; })
         .sort(function (a,b) { return b.value - a.value; });
 
       if (filteredData.length > 0) {
@@ -84,13 +148,18 @@ var loadPhotoArchivePageJS = function() {
 
         makeBarChart();
         makePieChart();
-        makeMap();
       }
 
       function makeBarChart() {
         var width = $(".bar-chart").width();
         var height = $(".bar-chart").height();
-        var topPadding = 20;
+        var barHeight = 8;
+        var topPadding = 8;
+        var horPadding = 8;
+        var text = {
+          "correct": "Correct tags: ",
+          "incorrect":"Incorrect tags: ",
+          "skipped": "Skips: "};
 
         var bar = d3.select(".bar-chart-svg").selectAll("g")
             .data(filteredData)
@@ -99,38 +168,36 @@ var loadPhotoArchivePageJS = function() {
           bar.append("rect")
             .attr("class", "svg-shadow")
           	.attr("x", 3)
-          	.attr("y", function(d, i) { return i * height / 3 + topPadding + 3; })
+          	.attr("y", function(d, i) { return i * barHeight * 4 + topPadding + barHeight * 3 + 3; })
           	.attr("width", function(d) {
-              return d.value / filteredData[0].value * (width - 40);
+              return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
             })
-          	.attr("height", height / 3 - 20)
+          	.attr("height", 8)
             .attr("filter", "url(#blur)");
 
           bar.append("rect")
           	.attr("x", 0)
-          	.attr("y", function(d, i) { return i * height / 3 + topPadding; })
+          	.attr("y", function(d, i) { return i * barHeight * 4 + topPadding + barHeight * 3; })
           	.attr("width", function(d) {
-              return d.value / filteredData[0].value * (width - 40);
+              return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
             })
-          	.attr("height", height / 3 - 20)
+          	.attr("height", 8)
             .attr("class", function(d) { return "color-" + d.key; });
 
-          bar.append("text")
-          	.text(function(d) { return d.key; })
-          	.attr("class", "xs-text bar-title")
-          	.attr("x", 0)
-          	.attr("y", function(d, i) {
-              return i * height / 3 + topPadding - 2;
-            });
+          // bar.append("text")
+          // 	.text(function(d) { return d.key; })
+          // 	.attr("class", "xs-text bar-title")
+          // 	.attr("x", 0)
+          // 	.attr("y", function(d, i) {
+          //     return i * barHeight * 4 + topPadding - 2;
+          //   });
 
           bar.append("text")
-          	.text(function(d) { return d.value; })
-          	.attr("class", "sm-header bar-label")
-          	.attr("x", function(d) {
-              return d.value / filteredData[0].value * (width - 45);
-            })
+          	.text(function(d) { return text[d.key] + d.value; })
+          	.attr("class", "xs-text bar-label")
+          	.attr("x", 0)
           	.attr("y", function(d, i) {
-              return i * height / 3 + (height / 3 - 20) / 2 + topPadding;
+              return i * barHeight * 4 + topPadding + barHeight * 3 - 3;
             });
       }
 
@@ -171,7 +238,9 @@ var loadPhotoArchivePageJS = function() {
 
         // Add text to centroid of each pie piece
         piePiece.append("text")
-        	.text(function(d) { return Math.floor(d.data.value / data.total * 100) + "%"; })
+        	.text(function(d) { return d.data.value > 0 ?
+              Math.floor(d.data.value / data.total * 100) + "%" : "";
+          })
         	.attr("class", function(d, i) {
             return textSizes[i] + " pie-piece-label"; })
         	.attr("x", function(d) { return arc.centroid(d)[0]; })
@@ -179,25 +248,8 @@ var loadPhotoArchivePageJS = function() {
 
         d3.selectAll(".pie-table")
           .data(filteredData)
-          .text(function(d) { console.log("pie table:", d); return Math.floor(d.value / data.total * 100); });
+          .text(function(d) { console.log("pie table:", d); return Math.floor(d.value / data.total * 100) + "% " + d.key; });
       }
-    }
-
-    function makeMap() {
-      var mapData = $(".map").data("url");
-      var mapSVG = d3.select(".map").select("svg");
-      var proj = d3.geoMercator()
-        .center([0, 40])
-        .scale(parseFloat(mapSVG.style("height"))/4)
-        .translate([parseFloat(mapSVG.style("width")) / 2,
-          parseFloat(mapSVG.style("height")) / 2]);
-      var path = d3.geoPath(proj);
-
-      mapSVG.selectAll("path")
-        .data(topojson.feature(mapData, mapData.objects.world).features)
-        .enter().append("path")
-        .attr("d", path);
-
     }
 
     console.log("loaded js for photo archive page");

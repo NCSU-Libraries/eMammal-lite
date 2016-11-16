@@ -1,5 +1,6 @@
 <% provide(:header_text, "PHOTO ARCHIVE")%>
 <% provide(:icon, "icons/Learn_More-icon@3x.png")%>
+<%= render 'photos/no_stats_filler_svg' %>
 <%= render 'layouts/header' %>
 <div class="photo-archive-page page-with-header will-blur">
   <div class="photo-search-container flex-column-center">
@@ -17,11 +18,24 @@
 <div class="card-container card-container-absolute">
   <div class="card card-absolute">
     <div class="front">
-      <div id="photo" class="id-card-img">
+      <div id="photo" class="id-card-img flex-column-center">
         <!-- archive_photo partial -->
       </div>
       <div id="photo_content" class="id-card-choice-container will-blur-archive-photo">
         <!-- archive_photo_content partial -->
+        <div class="id-card-answer flex-column-center">
+          <div id="animal_info">
+
+          </div>
+          <div class="map" data-url="<%= @map %>">
+            <svg>
+
+            </svg>
+          </div>
+          <div id="project_info" class="project-info">
+              <!-- archive_project_info partial -->
+          </div>
+        </div>
       </div>
     </div>
     <div id="back_of_card" class="back">

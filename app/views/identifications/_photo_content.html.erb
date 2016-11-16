@@ -17,7 +17,7 @@
     <h2 class="sub-header lg-text light-text oblique-text">
       <%= @identification.animal.sci_name %>
     </h2>
-    <div class="map">
+    <div class="map" data-url="<%= [@identification.photo.project.lon, @identification.photo.project.lat] %>">
       <svg>
 
       </svg>
@@ -33,5 +33,51 @@
       </h2>
     </div>
   </div>
+  <script type="text/javascript">
+    // Draw the map on the initial page load
+    function makeMap() {
+      var mapData = gon.map;
+      var mapSVG = d3.select(".map").select("svg");
+      var proj = d3.geoMercator()
+        .center([0, 40])
+        .scale(parseFloat(mapSVG.style("height"))/3.9)
+        .translate([parseFloat(mapSVG.style("width")) / 2,
+          parseFloat(mapSVG.style("height")) / 2]);
+      var path = d3.geoPath(proj);
 
+      mapSVG.selectAll("path")
+        .data(topojson.feature(mapData, mapData.objects.world).features)
+        .enter().append("path")
+        .attr("class", "map-path")
+        .attr("d", path);
+
+      // Project the project location coordinates for the map pin
+      var coords = $(".map").data("url");
+      var pointXY = proj(coords)
+
+      // Create group for the pin graphical pieces and set scale factor
+      var pin = mapSVG.append("g")
+        .attr("class", "map-pin")
+        .classed("visible", true)
+      var pinScale = 0.2
+
+      pin.append("path")
+        .attr("class", "pin-outer")
+        .attr("d", "M29.87,0A30.09,30.09,0,0,0,0,30.29C0,51.67,29.87,83,29.87,83S59.73,52.54,59.73,30.29A30.08,30.08,0,0,0,29.87,0Zm0,47.42A17.69,17.69,0,1,1,47.56,29.73,17.69,17.69,0,0,1,29.87,47.42Z")
+
+      pin.append("circle")
+        .attr("class", "pin-inner")
+        .attr("cx", "29.87px")
+        .attr("cy", "29.73px")
+        .attr("r", "11.75px")
+
+      var pinWidth = pin.node().getBBox().width * pinScale
+      var pinHeight = pin.node().getBBox().height * pinScale
+      pin.attr("transform", "translate(" +
+        (pointXY[0] - pinWidth / 2) + "," +
+        (pointXY[1] - pinHeight) +
+        ") scale(" + pinScale + ")")
+    }
+    makeMap();
+  </script>
 <% end %>

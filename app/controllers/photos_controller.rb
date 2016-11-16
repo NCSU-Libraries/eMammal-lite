@@ -5,17 +5,15 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.search(params[:search])
-    @photo = @photos.first
+    gon.map = JSON.parse(File.read('app/assets/javascripts/world.geojson'))
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
     @photo = Photo.find(params[:id])
-    @map = File.read('app/assets/javascripts/world.geojson')
-
     respond_to do |format|
-      format.html { render :show }
+      format.html { redirect_to photos_url }
       format.js
     end
   end
