@@ -2,7 +2,7 @@
   <div class="card-results-header no-stats" data-url="<%= @photo.stats.to_json %>">
     <h1 class="sm-header">Photo stats</h1>
     <h2 class="body-text">No one has come across this photo yet.</h2>
-    <h2 class="body-text">Go to <span class="bold-text">TAG ANIMALS</span> to find this photo and to tag the <span class="bold-text"><%= @photo.animal.name %></span></h2>
+    <h2 class="body-text">Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> to find this photo and to tag the <span class="bold-text"><%= @photo.animal.name %></span></h2>
   </div>
   <div class="no-stats-filler flex-column-center">
     <svg>

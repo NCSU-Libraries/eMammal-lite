@@ -5,7 +5,7 @@ module GuestUserHelper
       if session[:guest_user_id] && session[:guest_user_id] != current_user.id
         # logging_in
         # reload guest_user to prevent caching problems before destruction
-        guest_user(with_retry = false).reload.try(:destroy)
+        # guest_user(with_retry = false).reload.try(:destroy)
         session[:guest_user_id] = nil
       end
       current_user
@@ -32,7 +32,7 @@ module GuestUserHelper
     end
 
     def create_guest_user
-      guest = User.create(:name => "guest", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com")
+      guest = User.create(:name => "Guest Wolf", :email => "guest_#{Time.now.to_i}#{rand(100)}@example.com")
       guest.save!(:validate => false)
       session[:guest_user_id] = guest.id
       guest

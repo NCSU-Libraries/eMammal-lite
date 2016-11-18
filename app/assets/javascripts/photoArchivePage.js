@@ -20,9 +20,6 @@ var loadPhotoArchivePageJS = function() {
     addAnimationTriggers();
 
     function moveCardIn() {
-      console.log("making bar chart");
-      // makeGraphs();
-      console.log(this);
       if ($(".card-absolute").is(":animated")) {
         return;
       }
@@ -248,7 +245,9 @@ var loadPhotoArchivePageJS = function() {
 
         d3.selectAll(".pie-table")
           .data(filteredData)
-          .text(function(d) { console.log("pie table:", d); return Math.floor(d.value / data.total * 100) + "% " + d.key; });
+          .text(function(d) {
+            return Math.floor(d.value / data.total * 100) + "% " + d.key;
+          });
       }
     }
 

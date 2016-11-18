@@ -5,7 +5,6 @@ class IdentificationsController < ApplicationController
     @identification = Identification.new
     @photo = get_random_not_identified_photo
     gon.map = JSON.parse(File.read('app/assets/javascripts/world.geojson'))
-    @coords = [@photo.project.lat, @photo.project.lon]
 
     # Get the 'wrong' animals from the two_similar_animals function
     get_similar_animals
@@ -32,6 +31,8 @@ class IdentificationsController < ApplicationController
   end
 
   def index
+    get_top_five_and_user_score
+    get_global_top_tags
   end
 end
 
@@ -65,4 +66,28 @@ end
 
     def remove_last_photo
       session.delete(:last_photo)
+    end
+
+    def get_top_five_and_user_score
+      sorted_scores = User.joins(:identifications)
+        .where("correct_identification = true")
+        .group("id").count.sort_by{|k,v| -v}.to_h
+
+      @top_five = sorted_scores.take(5).to_h
+
+      if !@top_five.keys.include?(User.first.id)
+        @user_rank = sorted_scores.keys.find_index(current_or_guest_user.id) + 1
+      end
+
+      return @top_five, @user_rank
+    end
+
+    def get_global_top_tags
+      topAnimals = Identification
+        .where("correct_identification = true")
+        .group("user_identification")
+        .count.sort_by{|k,v| -v}[0..2]
+
+      @global_top_tags = topAnimals.map{|key,val| [Animal.find(key).name, val]}.to_h
+
     end

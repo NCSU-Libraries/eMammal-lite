@@ -633,6 +633,10 @@ $sideLength: 112px;
 
         .card-results-header.no-stats {
           height: 40%;
+
+          a {
+            text-decoration: none;
+          }
         }
 
         .no-stats-filler {
@@ -735,8 +739,12 @@ $sideLength: 112px;
 
 .stats-page {
   color: $BioIndigo;
-  background-color: lighten($BioIndigo, 50%)
+  background-color: lighten($BioIndigo, 50%);
   // background-color: rgba($BioIndigo, 0.1)
+
+  a {
+    text-decoration: none;
+  }
 }
 
 @include media("<=tablet") {
@@ -792,6 +800,13 @@ $sideLength: 112px;
           fill: $PyromanFlame;
         }
 
+        .stats-global-header {
+          margin-bottom: 0;
+          margin-left: 16px;
+          color: lighten($BioIndigo, 25%);
+          background-color: white;
+        }
+
         .big-score {
           font-size: 80px;
           margin-bottom: 0;
@@ -813,6 +828,66 @@ $sideLength: 112px;
           }
         }
 
+        .stats-score-global {
+          width: 100%;
+          text-align: left;
+
+          .top-five-scores {
+            width: 100%;
+
+            .top-score {
+              height: 16.6%;
+              min-height: 48px;
+              max-height: 100px;
+              background-color: $BioIndigo;
+              color: white;
+              border-left-style: none;
+              border-right-style: none;
+              border-top-style: none;
+              border-bottom-style: solid;
+              border-width: 1px;
+              border-color: rgba(255,255,255,0.5);
+            }
+          }
+
+          .your-score {
+            height: 16.6%;
+            min-height: 48px;
+            max-height: 100px;
+            color: $PyromanFlame;
+          }
+
+          .top-score-text {
+            height: 100%;
+            width: 75%;
+            justify-content: space-between;
+            align-items: center;
+
+            .top-score-rank {
+              width: 10%;
+              opacity: 0.75;
+              margin-left: 16px;
+            }
+
+            .top-score-score {
+              width: 18%;
+              margin-right: 15%;
+              text-align: right;
+            }
+
+            .top-score-name {
+              width: 45%;
+              opacity: 0.75;
+              text-align: left;
+            }
+          }
+
+          .user-icon {
+            width: 25%;
+            height: 100%;
+          }
+        }
+
         .accuracy-donut {
           width: auto;
           height: 35.7%;
@@ -828,18 +903,80 @@ $sideLength: 112px;
         .top-bar {
           max-width: 250px;
           height: 50%;
-          margin-top: 53px;
+          overflow: visible;
 
-          .bar {
-            stroke: white;
-            stroke-width: 2px;
-          }
-
-          .bar-text {
+          .bar-number-text {
             dominant-baseline: text-before-edge;
             text-anchor: middle;
           }
 
+          .bar {
+            stroke-width: 2px;
+          }
+
+          .bar-label-text {
+            text-anchor: middle;
+          }
+        }
+
+        .top-bar-user {
+          margin-top: 53px;
+
+          .bar-number-text {
+            fill: $PyromanFlame;
+          }
+
+          .bar {
+            fill: lighten($PyromanFlame, 50%);
+            stroke: white;
+          }
+
+          .bar-label-text {
+            fill: $BioIndigo;
+          }
+
+          .bar-axis {
+            fill: $PyromanFlame
+          }
+        }
+
+        .top-bar-global {
+          margin-bottom: 53px;
+
+          .bar-number-text {
+            fill: white;
+          }
+
+          .bar {
+            stroke: $BioIndigo;
+            fill: white;
+            opacity: 0.25;
+          }
+
+          .bar-label-text {
+            fill: white;
+          }
+
+          .bar-axis {
+            fill: white;
+          }
+        }
+
+        .stats-top-identified-global {
+          width: 100%;
+          text-align: left;
+
+          .full-blue-background {
+            width: 100%;
+            background-color: $BioIndigo;
+
+            .top-text-global {
+              margin-top: 32px;
+              margin-bottom: 32px;
+              color: white;
+              text-align: center;
+            }
+          }
         }
       }
     }

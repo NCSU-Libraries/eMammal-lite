@@ -18,15 +18,14 @@
       <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
     </div>
     <div class="user-name">
-      <% if user_signed_in? %>
         <h1 class="body-text bold-text no-margin-text">
-          <%= current_user.email %>
+          <%= current_or_guest_user.name %>
         </h1>
+        <% if user_signed_in? %>
         <h1 class="body-text oblique-text no-margin-text">
           <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
         </h1>
       <% else %>
-        <h1 class="body-text bold-text no-margin-text">Guest Wolf</h1>
         <h1 class="body-text oblique-text no-margin-text">
           <%= link_to('Login', new_user_session_path)  %>
         </h1>
