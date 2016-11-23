@@ -1,21 +1,48 @@
+<header class="header landing-header will-blur will-blur-photo flex-row-center">
+  <div class="desktop-header">
+    <div class="logo-left">
+      <%= image_tag("landing/desktop_heading_logo_white", alt: "eMammal Lite logo", class: "center-img-resposive") %>
+      <h1 class="lg-text logo-text">eMammal Lite</h1>
+      <div class="logo-border-right"></div>
+    </div>
+    <div class="main-links">
+      <%= link_to "IDENTIFY", new_user_session_path, class: "xl-text link" %>
+      <%= link_to "STATS", new_user_session_path, class: "xl-text link" %>
+      <%= link_to "PHOTO ARCHIVE", new_user_session_path, class: "xl-text link" %>
+    </div>
+  </div>
+</header>
+
 <div class="landing flex-column-center">
   <div class="dog-ear flex-column-center">
     <h1 class="light-text dog-ear-text">LITE</h1>
   </div>
   <div class="emammal-logo">
-    <%= image_tag("landing/Large_eMammal_Logo.png", alt: "eMammal Lite", class: "center-img-resposive") %>
+    <%= image_tag("landing/Large_eMammal_Logo.png", alt: "eMammal Lite", class: "center-img-resposive logo-mobile") %>
+    <%= image_tag("landing/eMammal_logo_white.png", alt: "eMammal Lite", class: "center-img-resposive logo-desktop") %>
     <h1 class="lg-text logo-text">See Wildlife, Do Science</h1>
   </div>
   <div class="lib-logo">
     <%= image_tag("landing/libraries-logo-red.png", alt: "eMammal Lite", class: "center-img-resposive") %>
   </div>
   <div class="down-arrow flash">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <svg id="Layer_1" x="0px" y="0px"
     	 viewbox="-2819 -2332.2 655.7 358.2" enable-background="new -2819 -2332.2 655.7 358.2" xml:space="preserve">
     <g id="group-33" transform="translate(-2963 -3163)">
       <path id="path-1"  opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
     		M169,855.8l302.8,155.7l302.8-155.7"/>
       <path id="path-1-2" opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+    		M169,1008.3L471.8,1164l302.8-155.7"/>
+    </g>
+    </svg>
+  </div>
+  <div class="up-arrow flash">
+    <svg x="0px" y="0px"
+    	 viewbox="-2819 -2332.2 655.7 358.2" enable-background="new -2819 -2332.2 655.7 358.2" xml:space="preserve">
+    <g transform="translate(-2963 -3163)">
+      <path opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+    		M169,855.8l302.8,155.7l302.8-155.7"/>
+      <path opacity="0.64" fill="none" stroke="#4156A1" stroke-width="50" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
     		M169,1008.3L471.8,1164l302.8-155.7"/>
     </g>
     </svg>
@@ -47,5 +74,11 @@
     $('html,body').animate({
         scrollTop: $("#landing-about").offset().top},
         'slow');
+  });
+
+  $(".up-arrow").click(function() {
+    $('.about').addClass("bring-to-top")
+    $('.desktop-header').addClass("with-about")
+    $(".dog-ear").addClass("hidden")
   });
 </script>

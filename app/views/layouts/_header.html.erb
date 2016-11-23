@@ -1,15 +1,31 @@
-<header class="header will-blur will-blur-photo">
-  <div class="header-menu-btn">
-    <div class="menu-btn flex-column-center">
-      <%= image_tag("mobile-menu-btn.svg", alt: "open menu", class: "center-img-resposive") %>
+<header class="header will-blur will-blur-photo flex-row-center">
+  <div class="mobile-header flex-row-center">
+    <div class="header-menu-btn">
+      <div class="menu-btn flex-column-center">
+        <%= image_tag("mobile-menu-btn.svg", alt: "open menu", class: "center-img-resposive") %>
+      </div>
+    </div>
+    <div class="header-page-title">
+      <h1 class="header-text xl-text"><%= yield(:header_text) %></h1>
+    </div>
+    <div class="header-page-icon">
+      <% if !yield(:icon).empty? %>
+      <%= image_tag(yield(:icon), alt: "identify icon", class: "center-img-resposive") %>
+      <% end %>
     </div>
   </div>
-  <div class="header-page-title">
-    <h1 class="header-text xl-text"><%= yield(:header_text) %></h1>
+
+  <div class="desktop-header flex-row-center">
+    <div class="logo-left">
+      <%= image_tag("desktop_heading_logo_blue", alt: "eMammal Lite logo", class: "center-img-resposive") %>
+      <h1 class="lg-text logo-text">eMammal Lite</h1>
+      <div class="logo-border-right"></div>
+    </div>
+    <div class="main-links">
+      <%= link_to "IDENTIFY", new_identification_path, class: "xl-text link" %>
+      <%= link_to "STATS", identifications_path, class: "xl-text link" %>
+      <%= link_to "PHOTO ARCHIVE", photos_path, class: "xl-text link" %>
+    </div>
   </div>
-  <div class="header-page-icon">
-    <% if !yield(:icon).empty? %>
-    <%= image_tag(yield(:icon), alt: "identify icon", class: "center-img-resposive") %>
-    <% end %>
-  </div>
+
 </header>

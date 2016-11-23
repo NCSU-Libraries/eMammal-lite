@@ -4,73 +4,181 @@
 
 /* Landing page */
 
+@include media("<=tablet") {
+  .landing-header {
+    display: none;
+  }
+}
+
+@include media(">tablet") {
+  .landing-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    .desktop-header {
+      background-color: transparent;
+      box-shadow: none !important;
+
+      .logo-text, .link {
+        color: white !important;
+      }
+
+      .logo-border-right {
+        border-right-color: white !important;
+      }
+    }
+
+    .desktop-header.with-about {
+      transition-duration: 2s;
+      background-color: rgba(255,255,255,.6);
+
+      .logo-text, .link {
+        transition-duration: 2s;
+        color: $BioIndigo !important;
+      }
+
+      .logo-border-right {
+        transition-duration: 2s;
+        border-right-color: $BioIndigo !important;
+      }
+    }
+  }
+}
+
 .landing {
+  position: relative;
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
-  position: relative;
   justify-content: space-around;
 
+  .dog-ear {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    justify-content: flex-end;
+
+    .dog-ear-text {
+      color: white;
+    }
+  }
+
+  .down-arrow, .up-arrow {
+    left: calc((100% - 11.5%) / 2);
+    width: 11.5%;
+    max-width: 88px;
+    height: auto;
+    cursor: pointer;
+
+    path {
+      transition-property: opacity;
+      transition-duration: 0.5s;
+    }
+
+    &:hover {
+      path {
+        opacity: 1;
+      }
+    }
+  }
+
+  @include media("<=tablet") {
+
+    $sideLength: 112px;
+    .dog-ear {
+      background-color: $PyromanFlame;
+      width: $sideLength;
+      height: $sideLength;
+      transform: translate($sideLength / 2, $sideLength / -2) rotate(45deg);
+
+      .dog-ear-text {
+        font-size: 16px;
+        letter-spacing: 6px;
+        margin-bottom: 6px;
+      }
+    }
+
+    .emammal-logo {
+      width: 71.5vmin;
+      margin-top: 9.8%;
+
+      .logo-desktop {
+        display: none;
+      }
+
+      .logo-text {
+        color: $PyromanFlame;
+        text-align: center;
+        margin-top: 8.6%;
+      }
+    }
+
+    .lib-logo {
+      width: 25vmin;
+    }
+
+    .down-arrow {
+      margin-bottom: 2.5%;
+    }
+
+    .up-arrow {
+      display: none;
+    }
+  }
 
   @include media(">tablet") {
-    background-image: url("https://s3.amazonaws.com/emammalphoto/d19515s40i5_o.jpg");
+    overflow-y: hidden;
+    background-image: url("https://s3.amazonaws.com/emammalphoto/d17145s11i5_o.jpg");
     background-size: cover;
     background-position: center;
-  }
-}
 
-$sideLength: 112px;
+    $sideLength: 200px;
+    .dog-ear {
+      background-color: $BioIndigo;
+      width: $sideLength;
+      height: $sideLength;
+      transform: translate($sideLength / 2, $sideLength / -2) rotate(45deg);
 
-.dog-ear {
-  background-color: $PyromanFlame;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: $sideLength;
-  height: $sideLength;
-  transform: translate($sideLength / 2, $sideLength / -2) rotate(45deg);
+      .dog-ear-text {
+        font-size: 32px;
+        letter-spacing: 6px;
+        margin-bottom: 18px;
+      }
+    }
 
-  justify-content: flex-end;
+    .emammal-logo {
+      width: 24.4%;
+      margin-top: 9.8%;
 
-  .dog-ear-text {
-    color: white;
-    font-size: 16px;
-    letter-spacing: 6px;
-    margin-bottom: 6px;
-  }
-}
+      .logo-mobile {
+        display: none;
+      }
 
-.emammal-logo {
-  width: 71.5vmin;
-  margin-top: 9.8%;
+      .logo-text {
+        color: white;
+        text-align: center;
+        margin-top: 8.6%;
+      }
+    }
 
-  .logo-text {
-    color: $PyromanFlame;
-    text-align: center;
-    margin-top: 8.6%;
-  }
-}
+    .lib-logo {
+      display: none;
+    }
 
-.lib-logo {
-  width: 25vmin;
-}
+    .up-arrow {
+      transform-origin: center;
+      transform: rotateX(180deg);
 
-.down-arrow {
-  margin-bottom: 2.5%;
-  left: calc((100% - 11.5%) / 2);
-  width: 11.5%;
-  max-width: 88px;
-  height: auto;
-  cursor: pointer;
+      path {
+        opacity: 1;
+      }
+    }
 
-  path {
-    transition-property: opacity;
-    transition-duration: 0.5s;
-  }
-
-  &:hover {
-    path {
-      opacity: 1;
+    .down-arrow {
+      display: none;
     }
   }
 }
@@ -79,28 +187,88 @@ $sideLength: 112px;
 /* Landing About page */
 
 .about {
-  height: 100vh;
   width: 100vw;
-  color: $BioIndigo;
 }
 
-.about-container {
-  padding-top: 6.6%;
-  width: 76%;
-  margin-bottom: 11.2%;
-
-  .about-title {
-    margin-top: 0;
+@include media("<=tablet") {
+  .about {
+    height: 100vh;
+    color: $BioIndigo;
   }
 
-  .about-body {
-    font-size: 14px;
-    line-height: 1.5;
+  .about-container {
+    padding-top: 6.6%;
+    width: 76%;
+    margin-bottom: 11.2%;
+
+    .about-title {
+      margin-top: 0;
+    }
+
+    .about-body {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+
+  .begin-btn {
+    width: 155px;
   }
 }
 
-.begin-btn {
-  width: 155px;
+@include media(">tablet") {
+  .about {
+    position: absolute;
+    top: 100vh;
+    height: 80.5vh;
+    color: white;
+    background-image: linear-gradient(rgba(209,73,5,0.95),rgba(209,73,5,0.95)), url("background-pattern-01.png");
+    background-repeat: repeat;
+    background-size: contain;
+    background-color: $PyromanFlame
+  }
+
+  .about.bring-to-top {
+    transition-duration: 2s;
+    transform: translateY(calc(-100vh + 120px));
+  }
+
+  .about-container {
+    padding-top: 2%;
+    width: 42.7%;
+    min-width: 728px;
+
+    .about-title {
+      margin-top: 0;
+
+      h1 {
+        font-size: 68px;
+      }
+    }
+
+    .about-body {
+      font-size: 28px;
+      line-height: 1.5;
+
+      p {
+        font-size: 28px;
+      }
+    }
+  }
+
+  .begin-btn {
+    font-size: 28px;
+    margin-top: 4%;
+    width: 155px;
+    border-color: white;
+    background-color: $PyromanFlame;
+    color: white;
+
+    &:hover, &:active, &:focus {
+      color: $PyromanFlame;
+      background-color: white;
+    }
+  }
 }
 
 /* Log in and sign in shared*/
