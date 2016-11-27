@@ -18,13 +18,24 @@
   <div class="desktop-header flex-row-center">
     <div class="logo-left">
       <%= image_tag("desktop_heading_logo_blue", alt: "eMammal Lite logo", class: "center-img-resposive") %>
-      <h1 class="lg-text logo-text">eMammal Lite</h1>
+      <h1 class="lg-text logo-text">eMAMMAL LITE</h1>
       <div class="logo-border-right"></div>
     </div>
-    <div class="main-links">
-      <%= link_to "IDENTIFY", new_identification_path, class: "xl-text link" %>
-      <%= link_to "STATS", identifications_path, class: "xl-text link" %>
-      <%= link_to "PHOTO ARCHIVE", photos_path, class: "xl-text link" %>
+    <div class="main-links-user-icon-holder">
+      <% {
+        "TAG ANIMALS" => new_identification_path,
+        "STATS" => identifications_path,
+        "PHOTO ARCHIVE" => photos_path
+      }.each do |page, page_info| %>
+        <% if yield(:header_text) == page %>
+          <h2 class="lg-text bold-text link"><%= page %></h2>
+        <% else %>
+          <%= link_to page, page_info, class: "lg-text link" %>
+        <% end %>
+      <% end %>
+      <div class="user-icon">
+        <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+      </div>
     </div>
   </div>
 

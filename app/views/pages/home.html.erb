@@ -2,13 +2,16 @@
   <div class="desktop-header">
     <div class="logo-left">
       <%= image_tag("landing/desktop_heading_logo_white", alt: "eMammal Lite logo", class: "center-img-resposive") %>
-      <h1 class="lg-text logo-text">eMammal Lite</h1>
+      <h1 class="lg-text logo-text">eMAMMAL LITE</h1>
       <div class="logo-border-right"></div>
     </div>
-    <div class="main-links">
-      <%= link_to "IDENTIFY", new_user_session_path, class: "xl-text link" %>
-      <%= link_to "STATS", new_user_session_path, class: "xl-text link" %>
-      <%= link_to "PHOTO ARCHIVE", new_user_session_path, class: "xl-text link" %>
+    <div class="main-links-user-icon-holder">
+      <%= link_to "TAG ANIMALS", new_user_session_path, class: "lg-text link" %>
+      <%= link_to "STATS", new_user_session_path, class: "lg-text link" %>
+      <%= link_to "PHOTO ARCHIVE", new_user_session_path, class: "lg-text link" %>
+      <div class="user-icon">
+        <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+      </div>
     </div>
   </div>
 </header>

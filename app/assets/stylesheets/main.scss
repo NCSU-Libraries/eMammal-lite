@@ -271,11 +271,11 @@ a {
   .mobile-header {
     width: 100%;
     height: 15vh;
+    align-items: center;
 
     .header-menu-btn {
       margin-left: 6%;
       width: 11.5vw;
-      margin-top: 5.25vh;
 
       .menu-btn {
         width: 100%;
@@ -287,7 +287,6 @@ a {
     .header-page-title {
       width: 65.2%;
       color: $BioIndigo;
-      margin-top: 6.9vh;
       text-align: center;
 
       .header-text {
@@ -299,7 +298,6 @@ a {
       width: 5vw;
       height: auto;
       margin-right: 12.3%;
-      margin-top: 6.9vh;
       cursor: pointer;
 
       img {
@@ -340,7 +338,6 @@ a {
       .logo-text {
         margin-left: 5px;
         white-space: nowrap;
-        font-size: 28px;
         color: $BioIndigo;
       }
 
@@ -353,16 +350,23 @@ a {
       }
     }
 
-    .main-links {
-      width: 50%;
+    .main-links-user-icon-holder {
+      width: 70%;
+      height: 30%;
       display: flex;
-      margin-right: 12.1%;
+      margin-right: 3.3%;
       justify-content: flex-end;
       align-items: center;
 
       .link {
-        margin-left: 4%;
+        margin-left: 4vw;
         text-decoration: none;
+        color: $BioIndigo;
+      }
+
+      .user-icon {
+        height: 100%;
+        margin-left: 6vw;
       }
     }
 
@@ -382,6 +386,12 @@ a {
 
 /* Menu */
 
+@include media(">tablet") {
+  .menu {
+    display: none;
+  }
+}
+
 .menu {
   position: absolute;
   top: 0;
@@ -399,29 +409,47 @@ a {
   }
 
   .menu-header {
-    width: auto;
+    display: flex;
+    width: 100%;
     height: 15%;
+    align-items: center;
+    justify-content: space-between;
 
     .small-logo {
-      width: 10.3%;
-      height: auto;
-      float: left;
-      margin-top: 6.9vh;
+      display: flex;
+      height: 100%;
       margin-left: 8.8%;
-    }
+      align-items: center;
+      justify-content: flex-start;
 
-    .menu-title {
-      margin-top: 6.9vh;
-      padding-left: 2%;
-      float: left;
-      color: #D14905;
+      .logo {
+        height: 30%;
+        width: 25%
+      }
+
+      .menu-title {
+        width: 75%;
+        margin-left: 8px;
+        color: $PyromanFlame;
+        line-height: 14px;
+
+        small {
+          font-size: small;
+        }
+      }
     }
 
     .menu-menu-btn {
-      width: 11.5vw;
-      margin-top: 5.25vh;
+      display: flex;
+      align-items: center;
+      height: 100%;
       margin-right: 9.6%;
-      float: right;
+
+      .menu-btn {
+        width: 11.5vw;
+        max-width: 58px;
+        cursor: pointer;
+      }
     }
   }
 
@@ -448,12 +476,12 @@ a {
 
   .menu-nav-container {
     width: auto;
-    height: 50%;
+    height: 60%;
 
     .menu-nav {
       margin-top: 6.7%;
       padding-left: 8.8%;
-      width: 100%;
+      width: 91.2%;
       height: 70%;
       align-items: flex-start;
       justify-content: space-between;
@@ -508,16 +536,27 @@ a {
   transform: translateY(0);
 
   .info-drop-down-header {
-    position: absolute;
-    display: flex;
-    justify-content: flex-end;
-    height: 15vh;
-    width: 100%;
+      width: 100%;
+      height: 15vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .header-page-icon {
+        width: 5vw;
+        height: auto;
+        margin-right: 12.3%;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          max-width: 57px;
+          height: auto;
+        }
+      }
   }
 
   .info-drop-down-text {
-    margin-top: 64px;
-    margin-bottom: 82px;
     width: 60%;
     min-width: 235px;
   }
@@ -525,6 +564,7 @@ a {
   .close-drop-down {
     justify-content: center;
     width: 86px;
+    margin-bottom: 20%;
   }
 }
 

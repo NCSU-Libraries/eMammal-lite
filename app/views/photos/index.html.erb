@@ -43,6 +43,9 @@
     </div>
   </div>
 </div>
+<div class="infinite-scroll">
+  <%= will_paginate @photos %>
+</div>
 <%= render 'shared/menu'%>
 
 <% provide(:info_text, "Browse the eMammal Lite photo archive. Not doing too well at identifications? No problem! All the animals are here, so poke around, study up, or just explore our goldmine of camera trap images. Click on an image to view more information.")%>

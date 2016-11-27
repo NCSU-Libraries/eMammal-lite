@@ -14,11 +14,13 @@
     <h1 class="sm-header">Photo stats</h1>
     <h2 class="xs-text">This photo has been viewed by <%= @photo.stats[:total].to_s + " " + "person".pluralize(@photo.stats[:total])%></h2>
   </div>
-  <div class="bar-chart">
-    <svg class="bar-chart-svg has-filter"></svg>
-  </div>
-  <div class="pie-chart">
-    <svg class="pie-chart-svg has-filter"></svg>
+  <div class="charts">
+    <div class="bar-chart">
+      <svg class="bar-chart-svg has-filter"></svg>
+    </div>
+    <div class="pie-chart">
+      <svg class="pie-chart-svg has-filter"></svg>
+    </div>
   </div>
   <div class="results-table">
     <h3 class="xs-text pie-table">0</h3>

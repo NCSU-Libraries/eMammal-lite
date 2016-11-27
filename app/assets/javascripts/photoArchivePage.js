@@ -3,6 +3,10 @@ var loadPhotoArchivePageJS = function() {
 
   function photoArchivePage() {
     var card = $(".card");
+    // Set the width of the card if on a desktop display
+    if (window.matchMedia("(min-width: 769px)").matches) {
+      card.height(card.width() * 0.465);
+    }
 
     function addAnimationTriggers() {
       // Bind the sm-img click to the document to handle partial update
@@ -205,7 +209,7 @@ var loadPhotoArchivePageJS = function() {
         // Create the initial arc parameters
         var arc = d3.arc()
          .innerRadius(0)
-         .outerRadius(width / 2 - 5);
+         .outerRadius(height / 2 - 5);
 
         // Use d3.pie to set up reading of data to calculate inner/outer arc radius
         var piePieceArcs = d3.pie().value(function(d) { return d.value; });
@@ -219,7 +223,7 @@ var loadPhotoArchivePageJS = function() {
           .attr("class", "svg-shadow")
           .attr("cx", 3)
           .attr("cy", 3)
-          .attr("r", width / 2 - 5)
+          .attr("r", height / 2 - 5)
           .attr("filter", "url(#blur)");
 
         // Add data to groups that will hold the pie pieces and text
@@ -250,6 +254,29 @@ var loadPhotoArchivePageJS = function() {
           });
       }
     }
+
+    // Infinite scroll
+    $(".photos-container").on("scroll", function() {
+      morePosts = $(".next_page").attr("href");
+
+      if (morePosts && $(".photos-container").scrollTop() > $(".photos-container")[0].scrollHeight - $(".photos-container").height() - 5) {
+        console.log("load photos");
+        $.getScript(morePosts);
+      }
+    });
+
+    // Set uo function to run on end of resize event
+    var resizeTimeout;
+    $(window).on("resize", function() {
+      clearTimeout(resizeTimeout);
+
+      resizeTimeout = setTimeout(function() {
+        // Set the width of the card if on a desktop display
+        if (window.matchMedia("(min-width: 769px)").matches) {
+          card.height(card.width() * 0.465);
+        } else card.height("");
+      }, 250);
+    });
 
     console.log("loaded js for photo archive page");
   }

@@ -11,7 +11,7 @@ class Photo < ActiveRecord::Base
       fuzzy_search = fuzzy_names.find(search_query)
       joins(:animal).where("name LIKE ?", "%#{fuzzy_search}%")
     else
-      first(15)
+      self
     end
   end
 
