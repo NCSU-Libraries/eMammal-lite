@@ -5,6 +5,10 @@ var loadtagPageJS = function() {
 
   // Initiate the functions for the identify page
   function tagPage() {
+    // Set the width of the card if on a desktop display
+    if (window.matchMedia("(min-width: 769px)").matches) {
+      $(".card").height($(".card").width() * 0.465);
+    }
 
     // This function animates the transition between cards. Type refers to
     // either skipping a card or pressing the next arrow after identifiying
@@ -81,6 +85,19 @@ var loadtagPageJS = function() {
       $("#new_identification").submit();
       $(".skip-container").toggleClass("hidden");
       nextCardTransition("skipped");
+    });
+
+    // Set uo function to run on end of resize event
+    var resizeTimeout;
+    $(window).on("resize", function() {
+      clearTimeout(resizeTimeout);
+
+      resizeTimeout = setTimeout(function() {
+        // Set the width of the card if on a desktop display
+        if (window.matchMedia("(min-width: 769px)").matches) {
+          $(".card").height($(".card").width() * 0.465);
+        } else $(".card").height("");
+      }, 250);
     });
 
     console.log("loaded js for id page");
