@@ -37,7 +37,7 @@
           <h2 class="lg-text stats-global-header">Top Scores</h2>
           <div class="top-five-scores">
             <% @top_five.each_with_index do |(user, userScore), index| %>
-              <div class="top-score flex-row-center">
+              <div class="<%= user == current_or_guest_user.id ? 'your-score' : 'top-score' %> flex-row-center">
                 <div class="top-score-text flex-row-center">
                   <h2 class="top-score-rank lg-text"><%= index + 1 %></h2>
                   <h2 class="top-score-score xl-text bold-text"><%= userScore %></h2>
@@ -57,7 +57,7 @@
                 <h2 class="top-score-name lg-text"><%= current_or_guest_user.name %></h2>
               </div>
               <div class="user-icon">
-                <%= @topFive %>
+
               </div>
             </div>
           <% end %>
@@ -70,19 +70,29 @@
       </div>
       <div class="stats-group flex-column-center">
         <div class="stat-accuracy">
-          <svg class="accuracy-donut">
+          <svg class="accuracy-donut accuracy-donut-user">
           </svg>
           <h1 class="bold-text stat-header">Your Accuracy</h1>
         </div>
         <% if current_or_guest_user.stats[:attempts] > 0 %>
         <p class="lg-text stat-text">
-          You have correctly tagged the animal in <span class="bold-text accuracy-number"></span> of the photos you have attempted to tag.
+          You have correctly tagged the animal in <span class="bold-text accuracy-number-user"></span> of the photos you have attempted to tag.
         </p>
         <% else %>
           <p class="lg-text stat-text">
             You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
           </p>
         <% end %>
+        <div class="stats-accuracy-global"  data-url="<%= @global_accuracy.to_json %>">
+          <h2 class="lg-text stats-global-header">Total Users' Accuracy</h2>
+          <div class="flex-column-center full-blue-background">
+            <p class="lg-text stat-text accuracy-global-text">
+              Combined, all users have correctly tagged the animal in <span class="bold-text accuracy-number-global"></span> of the photos they have attempted to tag.
+            </p>
+            <svg class="accuracy-donut accuracy-donut-global">
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
     <div class="accordion-item flex-column-center">

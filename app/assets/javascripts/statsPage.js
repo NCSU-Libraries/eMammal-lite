@@ -12,10 +12,30 @@ var loadStatsPageJS = function() {
     }
     makeScoreBarGraph();
 
+    // User's top identified animals stats
+    function makeUserAccuracyDonut() {
+      var svgClassName = ".accuracy-donut-user";
+      var spanClassAddition = "-user";
+      var userData = stats;
+
+      makeAccuracyDonut(svgClassName, spanClassAddition, userData);
+    }
+    makeUserAccuracyDonut();
+
+    // Global top identified animals stats
+    function makeGlobalAccuracyDonut() {
+      var svgClassName = ".accuracy-donut-global";
+      var spanClassAddition = "-global";
+      var globalData = $(".stats-accuracy-global").data("url");
+
+      makeAccuracyDonut(svgClassName, spanClassAddition, globalData);
+    }
+    makeGlobalAccuracyDonut();
+
     // Accuracy stats
-    function makeAccuracyDonut() {
-      var width = $(".accuracy-donut").width();
-      var height = $(".accuracy-donut").height();
+    function makeAccuracyDonut(svgClassName, spanClassAddition, accuracyData) {
+      var width = $(svgClassName).width();
+      var height = $(svgClassName).height();
 
       // Create the initial arc parameters
       var arc = d3.arc()
@@ -26,12 +46,17 @@ var loadStatsPageJS = function() {
       var piePieceArcs = d3.pie().value(function(d) { return d; });
 
       // Create group and move to center of div
-      var donutChart = d3.select(".accuracy-donut")
+      var donutChart = d3.select(svgClassName)
         .append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
       // If user has not id'd any photos put in default data
-      var cleanData = stats.attempts === 0 ? [1, 0] : [(stats.attempts - stats.correct), stats.correct];
+      var cleanData = accuracyData.attempts === 0 ?
+        [1, 0] :
+        [
+          (accuracyData.attempts - accuracyData.correct),
+          accuracyData.correct
+        ];
 
       // Add data to groups that will hold the donut pieces and text
       var donutPiece = donutChart.selectAll("g")
@@ -44,16 +69,16 @@ var loadStatsPageJS = function() {
         .attr("class", function(d, i) { return "stat-color-" + i; })
         .attr("d", arc);
 
-      var accuracy = Math.ceil(stats.correct / stats.attempts * 100) || 0;
+      var accuracy = Math.ceil(accuracyData.correct / accuracyData.attempts * 100) || 0;
       donutChart.append("text")
         .text(accuracy + "%")
         .attr("class", "xl-header bold-text donut-text");
 
       if (accuracy > 0) {
-        d3.select(".accuracy-number").text(accuracy + "%");
+        d3.select(".accuracy-number" + spanClassAddition)
+          .text(accuracy + "%");
       }
     }
-    makeAccuracyDonut();
 
     // User's top identified animals stats
     function makeUserTopIdentifiedBarGraph() {

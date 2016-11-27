@@ -1209,6 +1209,12 @@
             min-height: 48px;
             max-height: 100px;
             color: $PyromanFlame;
+            border-left-style: none;
+            border-right-style: none;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            border-width: 1px;
+            border-color: lighten($PyromanFlame, 25%);
           }
 
           .top-score-text {
@@ -1242,15 +1248,44 @@
           }
         }
 
+
         .accuracy-donut {
           width: auto;
           height: 35.7%;
-          margin-top: 53px;
 
           .donut-text {
-            fill: $BioIndigo;
             dominant-baseline: middle;
             text-anchor: middle;
+          }
+        }
+
+         .accuracy-donut-user {
+           margin-top: 53px;
+           .donut-text {
+             fill: $BioIndigo;
+           }
+         }
+
+         .accuracy-donut-global {
+           margin-bottom: 53px;
+           .donut-text {
+             fill: white;
+           }
+         }
+
+        .stats-accuracy-global {
+          width: 100%;
+          text-align: left;
+          color: white;
+
+          .full-blue-background {
+            width: 100%;
+            background-color: $BioIndigo;
+
+            .accuracy-global-text {
+              margin-top: 53px;
+              text-align: center;
+            }
           }
         }
 
@@ -1274,7 +1309,7 @@
         }
 
         .top-bar-user {
-          margin-top: 53px;
+          margin-top: 60px;
 
           .bar-number-text {
             fill: $PyromanFlame;
@@ -1325,8 +1360,8 @@
             background-color: $BioIndigo;
 
             .top-text-global {
-              margin-top: 32px;
-              margin-bottom: 32px;
+              margin-top: 53px;
+              margin-bottom: 39px;
               color: white;
               text-align: center;
             }

@@ -33,6 +33,7 @@ class IdentificationsController < ApplicationController
   def index
     get_top_five_and_user_score
     get_global_top_tags
+    get_global_accuracy
   end
 end
 
@@ -75,11 +76,19 @@ end
 
       @top_five = sorted_scores.take(5).to_h
 
-      if !@top_five.keys.include?(User.first.id)
-        @user_rank = sorted_scores.keys.find_index(current_or_guest_user.id) + 1
+      if !@top_five.keys.include?(current_or_guest_user.id)
+        @user_rank = sorted_scores.keys.find_index(current_or_guest_user.id)
+        @user_rank ||= User.count - 1
+        @user_rank += 1
       end
 
       return @top_five, @user_rank
+    end
+
+    def get_global_accuracy
+      correct = Identification.where("correct_identification = true").count
+      total = Identification.where("user_identification IS NOT NULL").count
+      @global_accuracy = {correct: correct, attempts: total}
     end
 
     def get_global_top_tags

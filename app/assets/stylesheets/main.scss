@@ -401,6 +401,7 @@ a {
   max-width: 300px;
   background-color: white;
 
+  visibility: hidden;
   transition: 0.6s ease-in-out;
   transform: translateX(0);
 
@@ -518,6 +519,7 @@ a {
 }
 
 .menu.pull-right {
+  visibility: visible;
   transform: translateX(100%);
 }
 
@@ -526,14 +528,27 @@ a {
 
 .info-drop-down {
   position: absolute;
-  bottom: 100%;
-  width: 100%;
-  height: auto;
+  padding-bottom: 8%;
   background-color: white;
   color: $BioIndigo;
 
-  transition: 0.6s ease-in-out;
-  transform: translateY(0);
+  @include media("<=tablet") {
+    bottom: 100%;
+    width: 100%;
+    height: auto;
+
+    transition: 0.6s ease-in-out;
+    transform: translateY(0);
+  }
+
+  @include media(">tablet") {
+    top: 110px;
+    right: 100%;
+    height: calc(100vh - 110px);
+
+    transition: 0.6s ease-in-out;
+    transform: translateX(0);
+  }
 
   .info-drop-down-header {
       width: 100%;
@@ -564,10 +579,16 @@ a {
   .close-drop-down {
     justify-content: center;
     width: 86px;
-    margin-bottom: 20%;
+    margin-top: 12px;
   }
 }
 
 .info-drop-down.pull-down {
-  transform: translateY(100%);
+  @include media("<=tablet") {
+    transform: translateY(100%);
+  }
+
+  @include media(">tablet") {
+    transform: translateX(100%);
+  }
 }
