@@ -352,7 +352,7 @@ a {
 
     .main-links-user-icon-holder {
       width: 70%;
-      height: 30%;
+      height: 100%;
       display: flex;
       margin-right: 3.3%;
       justify-content: flex-end;
@@ -364,9 +364,18 @@ a {
         color: $BioIndigo;
       }
 
-      .user-icon {
+      .user-info {
         height: 100%;
         margin-left: 6vw;
+        justify-content: center;
+
+        .user-icon {
+          height: 30%;
+        }
+
+        a {
+          text-decoration: none;
+        }
       }
     }
 

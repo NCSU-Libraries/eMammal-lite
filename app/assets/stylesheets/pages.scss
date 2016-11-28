@@ -1251,8 +1251,13 @@
               stroke-linejoin: round;
 
               transition-duration: 0.6s;
+              transform: rotateX(0);
               transition-timing-function: ease-in-out;
               transform-origin: center;
+            }
+
+            .pull-down-arrow.flip {
+              transform: rotateX(180deg);
             }
           }
         }
@@ -1479,6 +1484,7 @@
         margin-bottom: 53px;
         @include media(">tablet") {
           width: 84%;
+          height: auto;
           margin-bottom: 25px;
         };
 

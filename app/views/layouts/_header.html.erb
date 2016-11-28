@@ -33,8 +33,22 @@
           <%= link_to page, page_info, class: "lg-text link" %>
         <% end %>
       <% end %>
-      <div class="user-icon">
-        <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+      <div class="user-info flex-column-center">
+        <h1 class="body-text bold-text no-margin-text">
+          <%= current_or_guest_user.name %>
+        </h1>
+        <div class="user-icon">
+          <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+        </div>
+        <% if user_signed_in? %>
+        <h1 class="body-text oblique-text no-margin-text">
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </h1>
+      <% else %>
+        <h1 class="body-text oblique-text no-margin-text">
+          <%= link_to('Login', new_user_session_path)  %>
+        </h1>
+      <% end %>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <header class="header landing-header will-blur will-blur-photo flex-row-center">
-  <div class="desktop-header">
+  <div class="desktop-header hidden">
     <div class="logo-left">
       <%= image_tag("desktop_heading_logo_blue.png", alt: "eMammal Lite logo", class: "center-img-resposive") %>
       <h1 class="lg-text logo-text">eMAMMAL LITE</h1>
@@ -9,8 +9,22 @@
       <%= link_to "TAG ANIMALS", new_user_session_path, class: "lg-text link" %>
       <%= link_to "STATS", new_user_session_path, class: "lg-text link" %>
       <%= link_to "PHOTO ARCHIVE", new_user_session_path, class: "lg-text link" %>
-      <div class="user-icon">
-        <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+      <div class="user-info flex-column-center">
+        <h1 class="body-text bold-text no-margin-text">
+          <%= current_or_guest_user.name %>
+        </h1>
+        <div class="user-icon">
+          <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+        </div>
+        <% if user_signed_in? %>
+        <h1 class="body-text oblique-text no-margin-text">
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </h1>
+      <% else %>
+        <h1 class="body-text oblique-text no-margin-text">
+          <%= link_to('Login', new_user_session_path)  %>
+        </h1>
+      <% end %>
       </div>
     </div>
   </div>
@@ -81,7 +95,7 @@
 
   $(".up-arrow").click(function() {
     $('.about').addClass("bring-to-top")
-    $('.desktop-header').addClass("with-about")
+    $('.desktop-header').addClass("with-about").removeClass("hidden")
     $(".dog-ear").addClass("hidden")
   });
 </script>

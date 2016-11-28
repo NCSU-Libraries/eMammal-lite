@@ -228,8 +228,8 @@ var loadStatsPageJS = function() {
 
     // Set up the ui and animation of the stats pull downs on desktop
     $(".desktop-pull-down").on("click", function(d) {
-      console.log(d.currentTarget.parentElement);
       $(d.currentTarget.parentElement).toggleClass("pull-down");
+      $(d.currentTarget.children[0]).children().toggleClass("flip");
     });
 
     console.log("loaded js for stats page");
