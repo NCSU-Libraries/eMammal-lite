@@ -9,33 +9,37 @@
         <h1 class="sm-header bold-text">SCORE</h1>
       </div>
       <div class="stats-group flex-column-center">
-        <div class="stat-score">
-          <h1 class="bold-text big-score">
-            <%= current_or_guest_user.stats[:correct]%>
-          </h1>
-          <h2 class="bold-text stat-header">Your Score</h2>
-        </div>
-        <div class="stat-score-bar">
-          <svg class="score-bar">
-            <rect class="full-bar bar stat-color-0"></rect>
-            <rect class="percentage-bar bar stat-color-1"></rect>
-          </svg>
-          <% if current_or_guest_user.stats[:attempts] > 0 %>
-            <p class="lg-text stat-text">
-              You have correctly tagged <span class="bold-text"><%= current_or_guest_user.stats[:correct].to_s %></span> <%= "animal".pluralize(current_or_guest_user.stats[:correct]) %> in <span class="bold-text"><%= current_or_guest_user.stats[:attempts].to_s%></span> <%= "attempt".pluralize(current_or_guest_user.stats[:attempts]) %>.
-            </p>
-            <p class="lg-text stat-text">
-              You have <span class="bold-text"><%= Photo.all.count.to_i - current_or_guest_user.stats[:correct].to_i %></span> animal </span> <%= "photo".pluralize(Photo.all.count.to_i - current_or_guest_user.stats[:correct]) %> left to tag.
-            </p>
-          <% else %>
-            <p class="lg-text stat-text">
-              You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
-            </p>
-          <% end %>
+        <div class="user-stats">
+          <div class="stat-score">
+            <h1 class="bold-text big-score">
+              <%= current_or_guest_user.stats[:correct]%>
+            </h1>
+            <h2 class="bold-text stat-header">Your Score</h2>
+          </div>
+          <div class="stat-score-bar">
+            <svg class="score-bar">
+              <rect class="full-bar bar stat-color-0"></rect>
+              <rect class="percentage-bar bar stat-color-1"></rect>
+            </svg>
+            <% if current_or_guest_user.stats[:attempts] > 0 %>
+              <p class="lg-text stat-text">
+                You have correctly tagged <span class="bold-text"><%= current_or_guest_user.stats[:correct].to_s %></span> <%= "animal".pluralize(current_or_guest_user.stats[:correct]) %> in <span class="bold-text"><%= current_or_guest_user.stats[:attempts].to_s%></span> <%= "attempt".pluralize(current_or_guest_user.stats[:attempts]) %>.
+              </p>
+              <p class="lg-text stat-text">
+                You have <span class="bold-text"><%= Photo.all.count.to_i - current_or_guest_user.stats[:correct].to_i %></span> animal </span> <%= "photo".pluralize(Photo.all.count.to_i - current_or_guest_user.stats[:correct]) %> left to tag.
+              </p>
+            <% else %>
+              <p class="lg-text stat-text">
+                You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
+              </p>
+            <% end %>
+          </div>
         </div>
         <div class="stats-score-global">
-          <h2 class="lg-text stats-global-header">Top Scores</h2>
-          <div class="top-five-scores">
+          <div class="stats-global-header-holder">
+            <h2 class="lg-text stats-global-header">Top Scores</h2>
+          </div>
+          <div class="global-stats top-five-scores">
             <% @top_five.each_with_index do |(user, userScore), index| %>
               <div class="<%= user == current_or_guest_user.id ? 'your-score' : 'top-score' %> flex-row-center">
                 <div class="top-score-text flex-row-center">
@@ -69,23 +73,27 @@
         <h1 class="sm-header bold-text">ACCURACY</h1>
       </div>
       <div class="stats-group flex-column-center">
-        <div class="stat-accuracy">
-          <svg class="accuracy-donut accuracy-donut-user">
-          </svg>
-          <h1 class="bold-text stat-header">Your Accuracy</h1>
-        </div>
-        <% if current_or_guest_user.stats[:attempts] > 0 %>
-        <p class="lg-text stat-text">
-          You have correctly tagged the animal in <span class="bold-text accuracy-number-user"></span> of the photos you have attempted to tag.
-        </p>
-        <% else %>
+        <div class="user-stats">
+          <div class="stat-accuracy">
+            <svg class="accuracy-donut accuracy-donut-user">
+            </svg>
+            <h1 class="bold-text stat-header">Your Accuracy</h1>
+          </div>
+          <% if current_or_guest_user.stats[:attempts] > 0 %>
           <p class="lg-text stat-text">
-            You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
+            You have correctly tagged the animal in <span class="bold-text accuracy-number-user"></span> of the photos you have attempted to tag.
           </p>
-        <% end %>
+          <% else %>
+            <p class="lg-text stat-text">
+              You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
+            </p>
+          <% end %>
+        </div>
         <div class="stats-accuracy-global"  data-url="<%= @global_accuracy.to_json %>">
-          <h2 class="lg-text stats-global-header">Total Users' Accuracy</h2>
-          <div class="flex-column-center full-blue-background">
+          <div class="stats-global-header-holder">
+            <h2 class="lg-text stats-global-header">Total Users' Accuracy</h2>
+          </div>
+          <div class="global-stats flex-column-center full-blue-background">
             <p class="lg-text stat-text accuracy-global-text">
               Combined, all users have correctly tagged the animal in <span class="bold-text accuracy-number-global"></span> of the photos they have attempted to tag.
             </p>
@@ -100,21 +108,25 @@
         <h1 class="sm-header bold-text">TOP TAGS</h1>
       </div>
       <div class="stats-group flex-column-center">
-        <div class="stat-top-identified">
-          <svg class="top-bar top-bar-user">
-          </svg>
-          <h1 class="bold-text stat-header">Your Top Animals</h1>
+        <div class="user-stats">
+          <div class="stat-top-identified">
+            <svg class="top-bar top-bar-user">
+            </svg>
+            <h1 class="bold-text stat-header">Your Top Animals</h1>
+          </div>
+          <% if current_or_guest_user.stats[:attempts] > 0 %>
+          <p class="lg-text stat-text top-text-user"></p>
+          <% else %>
+            <p class="lg-text stat-text">
+              You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
+            </p>
+          <% end %>
         </div>
-        <% if current_or_guest_user.stats[:attempts] > 0 %>
-        <p class="lg-text stat-text top-text-user"></p>
-        <% else %>
-          <p class="lg-text stat-text">
-            You have not tagged any animals yet. Go to <span class="bold-text"><%= link_to "TAG ANIMALS", new_identification_path %></span> and start looking through the photos!
-          </p>
-        <% end %>
         <div class="stats-top-identified-global" data-url="<%= @global_top_tags.to_json %>">
-          <h2 class="lg-text stats-global-header">Top Tags by All Users</h2>
-          <div class="flex-column-center full-blue-background">
+          <div class="stats-global-header-holder">
+            <h2 class="lg-text stats-global-header">Top Tags by All Users</h2>
+          </div>
+          <div class="global-stats flex-column-center full-blue-background">
             <p class="lg-text stat-text top-text-global"></p>
             <svg class="top-bar top-bar-global">
             </svg>

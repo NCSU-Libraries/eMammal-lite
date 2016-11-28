@@ -1,3 +1,4 @@
+// Check if user searching (i.e., no :page in params)
 <% if !params[:page] %>
   $(".photos-container").html("<%= escape_javascript(render('photos/photos_viewer')) %>")
   $(".photos-container").scrollTop(0)

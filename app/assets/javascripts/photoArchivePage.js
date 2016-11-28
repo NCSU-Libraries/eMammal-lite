@@ -255,13 +255,16 @@ var loadPhotoArchivePageJS = function() {
       }
     }
 
-    // Infinite scroll
+    // Infinite scroll to load more images
+    var photoLoadTimeout;
     $(".photos-container").on("scroll", function() {
-      morePosts = $(".next_page").attr("href");
+      clearTimeout(photoLoadTimeout);
+      var morePosts = $(".next_page").attr("href");
 
       if (morePosts && $(".photos-container").scrollTop() > $(".photos-container")[0].scrollHeight - $(".photos-container").height() - 5) {
-        console.log("load photos");
-        $.getScript(morePosts);
+        photoLoadTimeout = setTimeout(function() {
+          $.getScript(morePosts);
+        }, 250);
       }
     });
 

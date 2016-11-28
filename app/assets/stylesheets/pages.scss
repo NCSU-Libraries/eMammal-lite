@@ -1092,302 +1092,355 @@
 /* Stats page */
 
 .stats-page {
+  height: auto;
   color: $BioIndigo;
   background-color: lighten($BioIndigo, 50%);
-  // background-color: rgba($BioIndigo, 0.1)
 
   a {
     text-decoration: none;
   }
 }
 
-@include media("<=tablet") {
-  .accordion {
-    width: 100vw;
+.accordion {
+  width: 100vw;
+  @include media(">tablet") {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 81%;
+    min-width: 731px;
+  }
 
-    .accordion-item {
+  .accordion-item {
+    background-color: white;
+
+    @include media("<=tablet") {
       width: 100%;
       height: 78px;
       position: relative;
+    }
+
+    @include media(">tablet") {
+      width: 28%;
+      min-width: 230px;
+      margin-top: 4.8%;
+      background-color: transparent;
+    }
+
+    .stats-group-header {
+      height: 78px;
+      width: 100%;
+      cursor: pointer;
+      flex-shrink: 0;
+      justify-content: center;
       background-color: white;
+      border-left-style: none;
+      border-right-style: none;
+      border-top-style: solid;
+      border-bottom-style: solid;
+      border-width: thin;
+      border-color: rgba($BioIndigo, 0.4);
+      box-shadow: 0px 3px 6px rgba($BioIndigo, 0.1);
+      text-align: center;
 
-      .stats-group-header {
-        height: 78px;
-        width: 100%;
-        cursor: pointer;
-        flex-shrink: 0;
-        justify-content: center;
-        border-left-style: none;
-        border-right-style: none;
-        border-top-style: solid;
-        border-bottom-style: solid;
-        border-width: thin;
-        border-color: rgba($BioIndigo, 0.4);
-        box-shadow: 0px 3px 6px rgba($BioIndigo, 0.1);
-        text-align: center;
+      h1 {
+        margin: 0;
+      }
+    }
 
-        h1 {
-          margin: 0;
-        }
+    .stats-group {
+      align-items: center;
+      text-align: center;
+      width: 100%;
+
+      @include media("<=tablet") {
+        overflow-y: scroll;
       }
 
-      .stats-group {
-        width: 100%;
-        align-items: center;
-        text-align: center;
-        overflow-y: scroll;
+      @include media(">tablet") {
+        height: 100%;
 
-        .stat-text {
-          max-width: 300px;
-        }
-
-        .stat-header {
-          font-size: 28px;
-          margin-top: 0;
-        }
-
-        .stat-color-0 {
-          fill: lighten($PyromanFlame, 50%);
-        }
-
-        .stat-color-1 {
-          fill: $PyromanFlame;
-        }
-
-        .stats-global-header {
-          margin-bottom: 0;
-          margin-left: 16px;
-          color: lighten($BioIndigo, 25%);
+        .user-stats {
+          margin-left: 5%;
+          margin-right: 5%;
+          height: 54%;
           background-color: white;
         }
 
-        .big-score {
-          font-size: 80px;
+        .global-stats {
+          width: 80%;
+          height: 46%;
+          margin-left: 5%;
+          margin-right: 5%;
+        }
+      }
+
+      .stat-text {
+        max-width: 300px;
+      }
+
+      .stat-header {
+        font-size: 28px;
+        margin-top: 0;
+      }
+
+      .stat-color-0 {
+        fill: lighten($PyromanFlame, 50%);
+      }
+
+      .stat-color-1 {
+        fill: $PyromanFlame;
+      }
+
+      .stats-global-header-holder {
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        
+        .stats-global-header {
           margin-bottom: 0;
-        }
-
-        .stat-score-bar {
-          .score-bar {
-            height: 8px;
-
-            .bar {
-              x: 0;
-              y: 0;
-              height: 100%
-            }
-
-            .full-bar {
-              width: 100%;
-            }
-          }
-        }
-
-        .stats-score-global {
-          width: 100%;
+          margin-left: 16px;
           text-align: left;
+          color: lighten($BioIndigo, 25%);
+        }
+      }
 
-          .top-five-scores {
-            width: 100%;
+      .big-score {
+        font-size: 80px;
+        margin-bottom: 0;
+      }
 
-            .top-score {
-              height: 16.6%;
-              min-height: 48px;
-              max-height: 100px;
-              background-color: $BioIndigo;
-              color: white;
-              border-left-style: none;
-              border-right-style: none;
-              border-top-style: none;
-              border-bottom-style: solid;
-              border-width: 1px;
-              border-color: rgba(255,255,255,0.5);
-            }
+      .stat-score-bar {
+        .score-bar {
+          width: 100%;
+          height: 8px;
+
+          .bar {
+            x: 0;
+            y: 0;
+            height: 100%
           }
 
-          .your-score {
+          .full-bar {
+            width: 100%;
+          }
+        }
+      }
+
+      .stats-score-global {
+        width: 100%;
+        text-align: left;
+
+        .top-five-scores {
+          width: 100%;
+
+          .top-score {
             height: 16.6%;
             min-height: 48px;
             max-height: 100px;
-            color: $PyromanFlame;
+            background-color: $BioIndigo;
+            color: white;
             border-left-style: none;
             border-right-style: none;
-            border-top-style: solid;
+            border-top-style: none;
             border-bottom-style: solid;
             border-width: 1px;
-            border-color: lighten($PyromanFlame, 25%);
-          }
-
-          .top-score-text {
-            height: 100%;
-            width: 75%;
-            justify-content: space-between;
-            align-items: center;
-
-            .top-score-rank {
-              width: 10%;
-              opacity: 0.75;
-              margin-left: 16px;
-            }
-
-            .top-score-score {
-              width: 18%;
-              margin-right: 15%;
-              text-align: right;
-            }
-
-            .top-score-name {
-              width: 45%;
-              opacity: 0.75;
-              text-align: left;
-            }
-          }
-
-          .user-icon {
-            width: 25%;
-            height: 100%;
+            border-color: rgba(255,255,255,0.5);
           }
         }
 
+        .your-score {
+          height: 16.6%;
+          min-height: 48px;
+          max-height: 100px;
+          color: $PyromanFlame;
+          border-left-style: none;
+          border-right-style: none;
+          border-top-style: solid;
+          border-bottom-style: solid;
+          border-width: 1px;
+          border-color: lighten($PyromanFlame, 25%);
+        }
 
-        .accuracy-donut {
-          width: auto;
-          height: 35.7%;
+        .top-score-text {
+          height: 100%;
+          width: 75%;
+          justify-content: space-between;
+          align-items: center;
 
-          .donut-text {
-            dominant-baseline: middle;
-            text-anchor: middle;
+          .top-score-rank {
+            width: 10%;
+            opacity: 0.75;
+            margin-left: 16px;
+          }
+
+          .top-score-score {
+            width: 18%;
+            margin-right: 15%;
+            text-align: right;
+          }
+
+          .top-score-name {
+            width: 45%;
+            opacity: 0.75;
+            text-align: left;
           }
         }
 
-         .accuracy-donut-user {
-           margin-top: 53px;
-           .donut-text {
-             fill: $BioIndigo;
-           }
+        .user-icon {
+          width: 25%;
+          height: 100%;
+        }
+      }
+
+
+      .accuracy-donut {
+        width: 100%;
+        height: 35.7%;
+
+        .donut-text {
+          dominant-baseline: middle;
+          text-anchor: middle;
+        }
+      }
+
+       .accuracy-donut-user {
+         margin-top: 53px;
+         .donut-text {
+           fill: $BioIndigo;
          }
+       }
 
-         .accuracy-donut-global {
-           margin-bottom: 53px;
-           .donut-text {
-             fill: white;
-           }
+       .accuracy-donut-global {
+         margin-bottom: 53px;
+         .donut-text {
+           fill: white;
          }
+       }
 
-        .stats-accuracy-global {
+      .stats-accuracy-global {
+        width: 100%;
+        text-align: left;
+        color: white;
+
+        .full-blue-background {
           width: 100%;
-          text-align: left;
-          color: white;
+          background-color: $BioIndigo;
 
-          .full-blue-background {
-            width: 100%;
-            background-color: $BioIndigo;
-
-            .accuracy-global-text {
-              margin-top: 53px;
-              text-align: center;
-            }
+          .accuracy-global-text {
+            margin-top: 53px;
+            text-align: center;
           }
         }
+      }
 
-        .top-bar {
-          max-width: 250px;
-          height: 50%;
-          overflow: visible;
+      .stat-top-identified {
+        width: 100%;
+      }
 
-          .bar-number-text {
-            dominant-baseline: text-before-edge;
-            text-anchor: middle;
-          }
+      .top-bar {
+        width: 100%;
+        max-width: 250px;
+        height: 50%;
+        overflow: visible;
 
-          .bar {
-            stroke-width: 2px;
-          }
-
-          .bar-label-text {
-            text-anchor: middle;
-          }
+        .bar-number-text {
+          dominant-baseline: text-before-edge;
+          text-anchor: middle;
         }
 
-        .top-bar-user {
-          margin-top: 60px;
-
-          .bar-number-text {
-            fill: $PyromanFlame;
-          }
-
-          .bar {
-            fill: lighten($PyromanFlame, 50%);
-            stroke: white;
-          }
-
-          .bar-label-text {
-            fill: $BioIndigo;
-          }
-
-          .bar-axis {
-            fill: $PyromanFlame
-          }
+        .bar {
+          stroke-width: 2px;
         }
 
-        .top-bar-global {
-          margin-bottom: 53px;
+        .bar-label-text {
+          text-anchor: middle;
+        }
+      }
 
-          .bar-number-text {
-            fill: white;
-          }
+      .top-bar-user {
+        margin-top: 53px;
 
-          .bar {
-            stroke: $BioIndigo;
-            fill: white;
-            opacity: 0.25;
-          }
-
-          .bar-label-text {
-            fill: white;
-          }
-
-          .bar-axis {
-            fill: white;
-          }
+        .bar-number-text {
+          fill: $PyromanFlame;
         }
 
-        .stats-top-identified-global {
+        .bar {
+          fill: lighten($PyromanFlame, 50%);
+          stroke: white;
+        }
+
+        .bar-label-text {
+          fill: $BioIndigo;
+        }
+
+        .bar-axis {
+          fill: $PyromanFlame
+        }
+      }
+
+      .top-bar-global {
+        margin-bottom: 53px;
+
+        .bar-number-text {
+          fill: white;
+        }
+
+        .bar {
+          stroke: $BioIndigo;
+          fill: white;
+          opacity: 0.25;
+        }
+
+        .bar-label-text {
+          fill: white;
+        }
+
+        .bar-axis {
+          fill: white;
+        }
+      }
+
+      .stats-top-identified-global {
+        width: 100%;
+        text-align: left;
+
+        .full-blue-background {
           width: 100%;
-          text-align: left;
+          background-color: $BioIndigo;
 
-          .full-blue-background {
-            width: 100%;
-            background-color: $BioIndigo;
-
-            .top-text-global {
-              margin-top: 53px;
-              margin-bottom: 39px;
-              color: white;
-              text-align: center;
-            }
+          .top-text-global {
+            margin-top: 53px;
+            margin-bottom: 39px;
+            color: white;
+            text-align: center;
           }
         }
       }
     }
   }
+}
 
-  .stats-instructions {
-    width: 100vw;
-    height: calc(100% - 234px);
-    overflow: hidden;
-    background-color: lighten($BioIndigo, 50%);
+.stats-instructions {
+  @include media(">tablet") {
+    display: none;
+  };
 
-    .text {
-      margin-top: 29px;
-      max-width: 75%;
-      opacity: 0.77;
-      text-align: center;
-    }
+  width: 100vw;
+  height: calc(100% - 234px);
+  overflow: hidden;
+  background-color: lighten($BioIndigo, 50%);
+
+  .text {
+    margin-top: 29px;
+    max-width: 75%;
+    opacity: 0.77;
+    text-align: center;
   }
+}
 
-  .not-active {
-    background-color: lighten($BioIndigo, 50%) !important;
-  }
+.not-active {
+  background-color: lighten($BioIndigo, 50%) !important;
 }
 
 
