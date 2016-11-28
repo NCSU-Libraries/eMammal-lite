@@ -156,7 +156,7 @@ var loadStatsPageJS = function() {
         .data(function(d, i) {return tspaner[i].reverse(); })
         .enter().append("tspan")
         .text(function(d) { return d; })
-        .attr("dy", function(d, i) { return -i * 16; })
+        .attr("dy", function(d, i) { return i > 0 ? -16 : 0; })
         .attr("x", function() {
           return parseFloat(d3.select(this.parentNode).attr("x"));
         });
