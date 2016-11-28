@@ -192,8 +192,8 @@ var loadStatsPageJS = function() {
       }
     }
 
-    // Set up the ui and animation of the stats buttons
-    var accordionBtns = $(".stats-group-header");
+    // Set up the ui and animation of the stats buttons on mobile
+    var accordionBtns = $(".stats-group-header-mobile");
 
     accordionBtns.on("click", function() {
       // Select the parent of the clicked button
@@ -225,6 +225,13 @@ var loadStatsPageJS = function() {
         );
       }
     });
+
+    // Set up the ui and animation of the stats pull downs on desktop
+    $(".desktop-pull-down").on("click", function(d) {
+      console.log(d.currentTarget.parentElement);
+      $(d.currentTarget.parentElement).toggleClass("pull-down");
+    });
+
     console.log("loaded js for stats page");
   }
 };

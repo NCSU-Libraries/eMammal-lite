@@ -391,6 +391,7 @@
   box-shadow: 3px 3px 5px rgba($BioIndigo, 0.3);
   transform: rotateY(0deg);
   transform-style: preserve-3d;
+  perspective-origin: center;
 
   transition-property: transform, box-shadow;
   transition-duration: 1s;
@@ -651,6 +652,7 @@
       flex-direction: row;
       // height: auto;
       width: 63.5%;
+      max-width: 950px;
       min-width: 628px;
 
       &.flipped {
@@ -707,7 +709,7 @@
       }
 
       .id-card-choice-container {
-        height: auto;
+        height: 100%;
         width: 40%;
 
         .id-card-header {
@@ -749,6 +751,7 @@
         width: 100%;
         height: 100%;
         text-align: center;
+        justify-content: center;
 
         .main-header {
           margin-top: 8px;
@@ -833,13 +836,14 @@
 
   @include media(">tablet") {
     height: 26.8%;
+    justify-content: center;
 
     .photo-search-input {
-      margin-top: 20%;
+      // margin-top: 20%;
     }
 
     .photo-search-btn {
-      margin-top: calc(20% + 0.5px);
+      margin-top: 2px;
     }
   };
 
@@ -1092,9 +1096,13 @@
 /* Stats page */
 
 .stats-page {
-  height: auto;
   color: $BioIndigo;
   background-color: lighten($BioIndigo, 50%);
+
+
+  @include media(">tablet") {
+    overflow-y: scroll;
+  }
 
   a {
     text-decoration: none;
@@ -1108,7 +1116,15 @@
     flex-direction: row;
     justify-content: space-between;
     width: 81%;
-    min-width: 731px;
+    height: 100%;
+    min-width: 749px;
+
+    .desktop-add-margin {
+      width: 75% !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   .accordion-item {
@@ -1122,7 +1138,8 @@
 
     @include media(">tablet") {
       width: 28%;
-      min-width: 230px;
+      height: 100%;
+      min-width: 244px;
       margin-top: 4.8%;
       background-color: transparent;
     }
@@ -1130,7 +1147,6 @@
     .stats-group-header {
       height: 78px;
       width: 100%;
-      cursor: pointer;
       flex-shrink: 0;
       justify-content: center;
       background-color: white;
@@ -1143,9 +1159,18 @@
       box-shadow: 0px 3px 6px rgba($BioIndigo, 0.1);
       text-align: center;
 
+      @include media(">tablet") {
+        z-index: 100;
+        box-shadow: 0px 3px 9px rgba($BioIndigo, 0.5);
+      }
+
       h1 {
         margin: 0;
       }
+    }
+
+    .stats-group-header-mobile {
+      cursor: pointer;
     }
 
     .stats-group {
@@ -1161,17 +1186,75 @@
         height: 100%;
 
         .user-stats {
-          margin-left: 5%;
-          margin-right: 5%;
-          height: 54%;
+          width: 100%;
+          height: 40%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           background-color: white;
+          box-shadow: 0px 6px 6px rgba($BioIndigo, 0.5);
+          z-index: 100;
         }
 
-        .global-stats {
-          width: 80%;
-          height: 46%;
-          margin-left: 5%;
-          margin-right: 5%;
+        .stats-global-holder {
+          width: 100%;
+          height: 40%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .global-stats {
+            width: 90% !important;
+            height: auto;
+            margin-left: 11%;
+            margin-right: 11%;
+
+            transition-duration: 0.6s;
+            transition-timing-function: ease-in-out;
+            transform: translateY(calc(-100% + 25px));
+          }
+
+          .global-stats.pull-down {
+            transform: translateY(0);
+          }
+        }
+      }
+
+      .desktop-pull-down {
+        @include media("<=tablet") {
+          display: none;
+        }
+
+        @include media(">tablet") {
+          width: 100%;
+          height: 25px;
+          display: flex;
+          justify-content: center;
+          margin-top: 0;
+          margin-bottom: 0;
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+          background-color: $BioIndigo;
+          color: white;
+          cursor: pointer;
+
+          svg {
+            width: 10%;
+            height: 100%;
+
+            .pull-down-arrow {
+              fill: $BioIndigo;
+              stroke: white;
+              opacity: 1;
+              stroke-width: 4px;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+
+              transition-duration: 0.6s;
+              transition-timing-function: ease-in-out;
+              transform-origin: center;
+            }
+          }
         }
       }
 
@@ -1194,9 +1277,16 @@
 
       .stats-global-header-holder {
         width: 100%;
-        height: 100%;
         background-color: white;
-        
+
+        @include media(">tablet") {
+          box-shadow: 0px 6px 6px rgba($BioIndigo, 0.5);
+          z-index: 100;
+          .stats-global-header {
+            margin-top: 0;
+          }
+        }
+
         .stats-global-header {
           margin-bottom: 0;
           margin-left: 16px;
@@ -1213,6 +1303,7 @@
       .stat-score-bar {
         .score-bar {
           width: 100%;
+
           height: 8px;
 
           .bar {
@@ -1254,12 +1345,13 @@
           min-height: 48px;
           max-height: 100px;
           color: $PyromanFlame;
+          background-color: white;
           border-left-style: none;
           border-right-style: none;
           border-top-style: solid;
           border-bottom-style: solid;
           border-width: 1px;
-          border-color: lighten($PyromanFlame, 25%);
+          border-color: lighten($BioIndigo, 25%);
         }
 
         .top-score-text {
@@ -1296,7 +1388,6 @@
 
       .accuracy-donut {
         width: 100%;
-        height: 35.7%;
 
         .donut-text {
           dominant-baseline: middle;
@@ -1326,6 +1417,11 @@
         .full-blue-background {
           width: 100%;
           background-color: $BioIndigo;
+
+          @include media(">tablet") {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+          };
 
           .accuracy-global-text {
             margin-top: 53px;
@@ -1381,6 +1477,10 @@
 
       .top-bar-global {
         margin-bottom: 53px;
+        @include media(">tablet") {
+          width: 84%;
+          margin-bottom: 25px;
+        };
 
         .bar-number-text {
           fill: white;
@@ -1408,6 +1508,11 @@
         .full-blue-background {
           width: 100%;
           background-color: $BioIndigo;
+
+          @include media(">tablet") {
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+          };
 
           .top-text-global {
             margin-top: 53px;

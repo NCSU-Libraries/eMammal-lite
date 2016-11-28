@@ -5,7 +5,7 @@
 <div class="stats-page page-with-header flex-column-center will-blur" data-url="<%= current_or_guest_user.stats.to_json %>">
   <div class="accordion">
     <div class="accordion-item flex-column-center">
-      <div class="stats-group-header flex-column-center">
+      <div class="stats-group-header stats-group-header-mobile flex-column-center">
         <h1 class="sm-header bold-text">SCORE</h1>
       </div>
       <div class="stats-group flex-column-center">
@@ -16,7 +16,7 @@
             </h1>
             <h2 class="bold-text stat-header">Your Score</h2>
           </div>
-          <div class="stat-score-bar">
+          <div class="stat-score-bar desktop-add-margin">
             <svg class="score-bar">
               <rect class="full-bar bar stat-color-0"></rect>
               <rect class="percentage-bar bar stat-color-1"></rect>
@@ -35,10 +35,10 @@
             <% end %>
           </div>
         </div>
-        <div class="stats-score-global">
-          <div class="stats-global-header-holder">
-            <h2 class="lg-text stats-global-header">Top Scores</h2>
-          </div>
+        <div class="stats-global-header-holder">
+          <h2 class="lg-text stats-global-header">Top Scores</h2>
+        </div>
+        <div class="stats-global-holder stats-score-global">
           <div class="global-stats top-five-scores">
             <% @top_five.each_with_index do |(user, userScore), index| %>
               <div class="<%= user == current_or_guest_user.id ? 'your-score' : 'top-score' %> flex-row-center">
@@ -52,35 +52,40 @@
                 </div>
               </div>
             <% end %>
-          </div>
-          <% if @user_rank %>
-            <div class="your-score flex-row-center">
-              <div class="top-score-text flex-row-center">
-                <h2 class="top-score-rank lg-text"><%= @user_rank %></h2>
-                <h2 class="top-score-score xl-text bold-text"><%= current_or_guest_user.stats[:correct] %></h2>
-                <h2 class="top-score-name lg-text"><%= current_or_guest_user.name %></h2>
-              </div>
-              <div class="user-icon">
+            <% if @user_rank %>
+              <div class="your-score flex-row-center">
+                <div class="top-score-text flex-row-center">
+                  <h2 class="top-score-rank lg-text"><%= @user_rank %></h2>
+                  <h2 class="top-score-score xl-text bold-text"><%= current_or_guest_user.stats[:correct] %></h2>
+                  <h2 class="top-score-name lg-text"><%= current_or_guest_user.name %></h2>
+                </div>
+                <div class="user-icon">
 
+                </div>
               </div>
+            <% end %>
+            <div class="desktop-pull-down">
+              <svg>
+                <use class="pull-down-arrow" xlink:href="#pull-down-arrow"></use>
+              </svg>
             </div>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
     <div class="accordion-item flex-column-center">
-      <div class="stats-group-header flex-column-center">
+      <div class="stats-group-header stats-group-header-mobile flex-column-center">
         <h1 class="sm-header bold-text">ACCURACY</h1>
       </div>
       <div class="stats-group flex-column-center">
         <div class="user-stats">
-          <div class="stat-accuracy">
+          <div class="stat-accuracy desktop-add-margin">
             <svg class="accuracy-donut accuracy-donut-user">
             </svg>
             <h1 class="bold-text stat-header">Your Accuracy</h1>
           </div>
           <% if current_or_guest_user.stats[:attempts] > 0 %>
-          <p class="lg-text stat-text">
+          <p class="lg-text stat-text desktop-add-margin">
             You have correctly tagged the animal in <span class="bold-text accuracy-number-user"></span> of the photos you have attempted to tag.
           </p>
           <% else %>
@@ -89,27 +94,32 @@
             </p>
           <% end %>
         </div>
-        <div class="stats-accuracy-global"  data-url="<%= @global_accuracy.to_json %>">
-          <div class="stats-global-header-holder">
-            <h2 class="lg-text stats-global-header">Total Users' Accuracy</h2>
-          </div>
+        <div class="stats-global-header-holder">
+          <h2 class="lg-text stats-global-header">Total Users' Accuracy</h2>
+        </div>
+        <div class="stats-global-holder stats-accuracy-global"  data-url="<%= @global_accuracy.to_json %>">
           <div class="global-stats flex-column-center full-blue-background">
             <p class="lg-text stat-text accuracy-global-text">
               Combined, all users have correctly tagged the animal in <span class="bold-text accuracy-number-global"></span> of the photos they have attempted to tag.
             </p>
             <svg class="accuracy-donut accuracy-donut-global">
             </svg>
+            <div class="desktop-pull-down">
+              <svg>
+                <use class="pull-down-arrow" xlink:href="#pull-down-arrow"></use>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="accordion-item flex-column-center">
-      <div class="stats-group-header flex-column-center">
+      <div class="stats-group-header stats-group-header-mobile flex-column-center">
         <h1 class="sm-header bold-text">TOP TAGS</h1>
       </div>
       <div class="stats-group flex-column-center">
         <div class="user-stats">
-          <div class="stat-top-identified">
+          <div class="stat-top-identified desktop-add-margin">
             <svg class="top-bar top-bar-user">
             </svg>
             <h1 class="bold-text stat-header">Your Top Animals</h1>
@@ -122,14 +132,19 @@
             </p>
           <% end %>
         </div>
-        <div class="stats-top-identified-global" data-url="<%= @global_top_tags.to_json %>">
-          <div class="stats-global-header-holder">
-            <h2 class="lg-text stats-global-header">Top Tags by All Users</h2>
-          </div>
+        <div class="stats-global-header-holder">
+          <h2 class="lg-text stats-global-header">Top Tags by All Users</h2>
+        </div>
+        <div class="stats-global-holder stats-top-identified-global" data-url="<%= @global_top_tags.to_json %>">
           <div class="global-stats flex-column-center full-blue-background">
             <p class="lg-text stat-text top-text-global"></p>
             <svg class="top-bar top-bar-global">
             </svg>
+            <div class="desktop-pull-down">
+              <svg>
+                <use class="pull-down-arrow" xlink:href="#pull-down-arrow"></use>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
