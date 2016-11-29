@@ -67,7 +67,7 @@
                   <% if current_or_guest_user.animal_icon %>
                     <%= image_tag("animal-icons/" + current_or_guest_user.animal_icon + ".png", alt: "user icon", class: "top-score-icon") %>
                   <% else %>
-                    <%= image_tag("menu/user-default-photo@3x.png", alt: "guest icon", class: "center-img-resposive") %>
+                    <%= image_tag("menu/user-default-photo@3x.png", alt: "guest icon", class: "top-score-icon") %>
                   <% end %>
                 </div>
               </div>
