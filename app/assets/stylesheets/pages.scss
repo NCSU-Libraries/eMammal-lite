@@ -1266,6 +1266,7 @@
       width: 100%;
       height: 78px;
       position: relative;
+      -webkit-overflow-scrolling: touch;
     }
 
     @include media(">tablet") {
