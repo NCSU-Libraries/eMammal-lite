@@ -10,7 +10,7 @@
     morePosts = $(".next_page").attr("href");
 
     if (morePosts && $(".photos-container").scrollTop() > $(".photos-container")[0].scrollHeight - $(".photos-container").height() - 5) {
-      console.log("load photos");
+      // console.log("load photos");
       $.getScript(morePosts);
     }
   });

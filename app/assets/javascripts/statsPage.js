@@ -128,14 +128,14 @@ var loadStatsPageJS = function() {
         })
         .attr("class", "bar");
 
-      bar.append("text")
+      var barNumberText = bar.append("text")
         .text(function(d) { return d; })
       	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
       	.attr("y",  function(d) {
           return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
         })
         .attr("class", "lg-header bold-text bar-number-text");
-
+      console.log(bar);
       var barLabelText = bar.append("text")
         .text("")
       	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
@@ -193,9 +193,12 @@ var loadStatsPageJS = function() {
     }
 
     // Set up the ui and animation of the stats buttons on mobile
-    var accordionBtns = $(".stats-group-header-mobile");
+    var accordionBtns = $(".stats-group-header");
 
     accordionBtns.on("click", function() {
+      if (window.matchMedia("(min-width: 769px)").matches) {
+        return;
+      }
       // Select the parent of the clicked button
       var activeContainer = $(this).parent();
       var totalHeight = $(".stats-page").height() - 156;
@@ -232,7 +235,22 @@ var loadStatsPageJS = function() {
       $(d.currentTarget.children[0]).children().toggleClass("flip");
     });
 
-    console.log("loaded js for stats page");
+    // Set uo function to run on end of resize event
+    var resizeTimeout;
+    $(window).on("resize", function() {
+      clearTimeout(resizeTimeout);
+
+      resizeTimeout = setTimeout(function() {
+        // Set the width of the card if on a desktop display
+        if (window.matchMedia("(min-width: 769px)").matches) {
+          console.log("deskyop");
+          $(".accordion-item").css("height", "");
+          $(".stats-group-header").removeClass("not-active");
+        }
+      }, 250);
+    });
+
+    // console.log("loaded js for stats page");
   }
 };
 

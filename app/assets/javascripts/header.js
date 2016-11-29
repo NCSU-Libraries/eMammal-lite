@@ -38,7 +38,7 @@ var loadHeaderJS = function() {
       $(".prevent-click").removeClass("visible");
     });
 
-    console.log("loaded js for pages with mobile header");
+    // console.log("loaded js for pages with mobile header");
   }
 
   // Wait until window is loaded and then attach resize event, this prevents

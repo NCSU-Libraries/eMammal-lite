@@ -268,11 +268,42 @@ var loadPhotoArchivePageJS = function() {
       }
     });
 
-    // Set uo function to run on end of resize event
+
     var resizeTimeout;
     $(window).on("resize", function() {
+
+      function updateMap() {
+        var mapSVG = d3.select(".map").select("svg");
+        var proj = d3.geoMercator()
+          .center([0, 40])
+          .scale(parseFloat(mapSVG.style("height"))/3.9)
+          .translate([parseFloat(mapSVG.style("width")) / 2,
+            parseFloat(mapSVG.style("height")) / 2]);
+        var path = d3.geoPath(proj);
+
+        mapSVG.selectAll(".map-path")
+          .attr("d", path);
+
+        // Project the project location coordinates for the map pin
+        var coords = $(".map-data").data("url");
+        var pointXY = proj(coords);
+
+        // Create group for the pin graphical pieces and set scale factor
+        var pin = d3.select(".map-pin");
+        var pinScale = 0.2;
+
+        var pinWidth = pin.node().getBBox().width * pinScale;
+        var pinHeight = pin.node().getBBox().height * pinScale;
+        pin.attr("transform", "translate(" +
+          (pointXY[0] - pinWidth / 2) + "," +
+          (pointXY[1] - pinHeight) +
+          ") scale(" + pinScale + ")");
+      }
+      updateMap();
+
       clearTimeout(resizeTimeout);
 
+      // Set uo function to run on end of resize event to test new size
       resizeTimeout = setTimeout(function() {
         // Set the width of the card if on a desktop display
         if (window.matchMedia("(min-width: 769px)").matches) {
@@ -281,7 +312,7 @@ var loadPhotoArchivePageJS = function() {
       }, 250);
     });
 
-    console.log("loaded js for photo archive page");
+    // console.log("loaded js for photo archive page");
   }
 };
 

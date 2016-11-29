@@ -98,7 +98,12 @@ var loadHowToPageJS = function() {
           $(".archive-how-to").addClass("hidden");
           $(".logo").removeClass("hidden").addClass("visible");
           $(".how-to-title").text("Now Start Tagging!");
-          $(".how-to-explanation").text("Tap the menu button at the top of the screen and select TAG ANIMALS.");
+          if (window.matchMedia("(min-width: 769px)").matches) {
+            $(".how-to-explanation").text("Select TAG ANIMALS from the menu above to begin.");
+          } else {
+            $(".how-to-explanation").text("Tap the menu button at the top of the screen and select TAG ANIMALS.");
+          }
+
           $(".how-to-next-arrow-holder").addClass("hidden");
         }
       };
@@ -139,7 +144,7 @@ var loadHowToPageJS = function() {
     }
 
 
-    console.log("loaded js for how to page");
+    // console.log("loaded js for how to page");
   }
 };
 

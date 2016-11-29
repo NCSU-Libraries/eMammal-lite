@@ -100,7 +100,7 @@ var loadtagPageJS = function() {
       }, 250);
     });
 
-    console.log("loaded js for id page");
+    // console.log("loaded js for id page");
   }
 };
 
