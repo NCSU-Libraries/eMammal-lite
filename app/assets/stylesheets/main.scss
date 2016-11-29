@@ -207,14 +207,14 @@ a {
 
   @include media("<=tablet") {
     top: 0;
-    left: 5%;
-    width: 90%;
+    left: calc(5vw - 8px);
+    width: Calc(90vw - 16px);
   }
 
   @include media(">tablet") {
     top: 110px;
-    left: 15%;
-    width: 70%;
+    left: calc(15% - 8px);
+    width: calc(70% - 16px);
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
   };
@@ -233,13 +233,13 @@ a {
  }
 
 .alert-success {
-    background-color: transparentize($BioIndigo, 0.1);
+    background-color: transparentize($BioIndigo, 0.25);
     border-color: $PyromanFlame;
     color: $PyromanFlame;
  }
 
 .alert-notice {
-    background-color: transparentize($BioIndigo, 0.1);
+    background-color: transparentize($BioIndigo, 0.25);
     border-color: $PyromanFlame;
     color: $PyromanFlame;
  }
@@ -409,6 +409,10 @@ a {
         margin-left: 6vw;
         justify-content: center;
         color: $BioIndigo;
+
+        .user-name {
+          text-align: center;
+        }
 
         .user-icon {
           height: 40%;
