@@ -1524,6 +1524,15 @@
 
        .accuracy-donut-global {
          margin-bottom: 53px;
+
+         .stat-color-0 {
+           fill: white;
+           opacity: 0.25;
+         }
+
+         .stat-color-1 {
+           fill: white;
+         }
          .donut-text {
            fill: white;
          }
