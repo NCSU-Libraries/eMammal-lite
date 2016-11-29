@@ -14,7 +14,11 @@
           <%= current_or_guest_user.name %>
         </h1>
         <div class="user-icon">
-          <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+          <% if user_signed_in? && current_or_guest_user.animal_icon %>
+            <%= image_tag("animal-icons/" + current_or_guest_user.animal_icon + ".png", alt: "user icon", class: "center-img-resposive") %>
+          <% else %>
+            <%= image_tag("menu/user-default-photo@3x.png", alt: "guest icon", class: "center-img-resposive") %>
+          <% end %>
         </div>
         <% if user_signed_in? %>
         <h1 class="body-text oblique-text no-margin-text">
