@@ -125,11 +125,36 @@
     }
   }
 
+  @keyframes backgroundImageAnimation {
+    0% {
+      background-image: url("https://s3.amazonaws.com/emammalphoto/d17278s4i4_o.jpg");
+    }
+    20% {
+      background-image: url("https://s3.amazonaws.com/emammalphoto/d17690s6i19_o.jpg");
+    }
+    40% {
+      background-image: url("https://s3.amazonaws.com/emammalphoto/4286s4i30_o.jpg");
+    }
+    60% {
+      background-image: url("https://s3.amazonaws.com/emammalphoto/d19658s62i5_o.jpg");
+    }
+    80% {
+      background-image: url("https://s3.amazonaws.com/emammalphoto/d19519s9i7_o.jpg");
+    }
+    100% {
+      background-image: url("https://s3.amazonaws.com/emammalphoto/d17451s24i7_o.jpg");
+    }
+  }
+
   @include media(">tablet") {
     overflow-y: hidden;
-    background-image: url("https://s3.amazonaws.com/emammalphoto/d17145s11i5_o.jpg");
     background-size: cover;
     background-position: center;
+    animation-duration: 60s;
+    animation-name: backgroundImageAnimation;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: ease-in-out;
 
     $sideLength: 200px;
     .dog-ear {
@@ -218,10 +243,10 @@
     top: 100vh;
     height: 80.5vh;
     color: white;
-    background-image: linear-gradient(rgba(209,73,5,0.95),rgba(209,73,5,0.95)), url("background-pattern-01.png");
+    background-image: linear-gradient(rgba(209,73,5,0.95),rgba(209,73,5,0.95)),  image-url("background@0.5x.png");
     background-repeat: repeat;
     background-size: contain;
-    background-color: $PyromanFlame
+    background-color: $PyromanFlame;
   }
 
   .about.bring-to-top {
