@@ -32,7 +32,7 @@
 
     .desktop-header.with-about {
       transition-duration: 2s;
-      background-color: rgba(255,255,255,.6);
+      background-color: rgba(255,255,255,.7);
 
       .logo-text, .link {
         transition-duration: 2s;
@@ -114,10 +114,6 @@
         text-align: center;
         margin-top: 8.6%;
       }
-    }
-
-    .lib-logo {
-      width: 25vmin;
     }
 
     .down-arrow {
@@ -229,7 +225,7 @@
   }
 
   .about.bring-to-top {
-    transition-duration: 2s;
+    transition-duration: 1s;
     transform: translateY(calc(-100vh + 120px));
   }
 
@@ -274,7 +270,7 @@
 /* Log in and sign in shared*/
 
 .login-logo {
-  max-height: 33%;
+  max-height: 15%;
   max-width: 155px;
 }
 
@@ -329,6 +325,11 @@
 
   @include media(">tablet") {
     justify-content: center;
+    overflow-y: visible;
+
+    .mobile-only {
+      display: none
+    }
   }
 
   .signup-form-container {
@@ -336,8 +337,89 @@
     margin-top: 16px;
     margin-bottom: 24px;
 
+    h2 {
+      margin-top: 8px;
+      margin-bottom: 4px;
+      color: $BioIndigo;
+    }
+
+    .mobile-only {
+      margin-top: 0;
+    }
+
+    .animal-icon-select {
+      @include media("<=tablet") {
+        overflow-x: scroll;
+        height: 20vh;
+        padding: 20px;
+        width: 70%;
+        justify-content: flex-start;
+
+        .animal-icon {
+          width: 18vw;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      };
+
+      @include media(">tablet") {
+        width: 50%;
+        max-width: 500px;
+        height: 7vh;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .animal-icon {
+          width: 75px;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+      };
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      -webkit-overflow-scrolling: touch;
+
+      .no-display {
+        display: none;
+      }
+
+      .icon-holder {
+        display: flex;
+        align-items: center;
+        overflow: visible;
+      }
+
+      .animal-icon {
+        cursor: pointer;
+
+        transform-origin: center;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
+        transform: scale(1);
+        filter: grayscale(1);
+
+        &:hover {
+          filter: grayscale(0);
+        }
+      }
+
+      .animal-icon.active {
+        transform: scale(1.2);
+        filter: grayscale(0);
+        z-index: 100;
+      }
+    }
+
     .signup-btn {
-      margin-top: 24px;
+      @include media("<=tablet") {
+        margin-top: 12px;
+      }
+
+      @include media(">tablet") {
+        margin-top: 102px;
+      }
     }
   }
 }
@@ -364,6 +446,18 @@
   .learn-more-body {
     font-size: 14px;
     line-height: 1.5;
+  }
+
+  footer {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .lib-logo {
+      height: 75%;
+    }
   }
 }
 
@@ -1119,6 +1213,10 @@
     height: 100%;
     min-width: 749px;
 
+    @include media("height<961px") {
+      min-height: 980px;
+    };
+
     .desktop-add-margin {
       width: 75% !important;
       display: flex;
@@ -1329,6 +1427,7 @@
 
         .top-five-scores {
           width: 100%;
+          max-height: 600px;
 
           .top-score {
             height: 16.6%;
@@ -1385,8 +1484,24 @@
         }
 
         .user-icon {
-          width: 25%;
-          height: 100%;
+          width: 18%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .top-score-icon {
+            @include media("<tablet") {
+              max-width: 50%;
+            };
+
+            @include media(">phone-lg", "<desktop") {
+              max-width: 30%;
+            };
+
+            @include media(">tablet") {
+              max-width: 75%;
+            };
+          }
         }
       }
 

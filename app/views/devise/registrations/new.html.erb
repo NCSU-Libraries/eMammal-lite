@@ -8,14 +8,25 @@
       <%= f.email_field :email, class:"emammal-text-input login-text-input lg-text", placeholder:"Email" %>
       <%= f.password_field :password, class:"emammal-text-input login-text-input lg-text", placeholder:"Password", autocomplete: "off" %>
       <%= f.password_field :password_confirmation, class:"emammal-text-input login-text-input lg-text", placeholder:"Confirm password", autocomplete: "off" %>
-
+      <h2 class="lg-text">Select your animal icon:</h2>
+      <h2 class="xs-text mobile-only">(scroll left and right)</h2>
+      <div class="animal-icon-select">
+        <% ["bear", "deer", "giraffe", "otter", "rabbit", "raccoon", "walrus", "wolf", "zebra"].each do |animal| %>
+          <%= f.radio_button :animal_icon, animal, class:"no-display" %>
+          <%= f.label :animal_icon, image_tag("animal-icons/" + animal + ".png", class:"animal-icon"), class:"icon-holder", value: animal %>
+        <% end %>
+      </div>
       <div class="signup-btn">
         <%= f.submit "Create account", class:"sign-up-btn emammal-btn light-btn lg-text" %>
       </div>
     <% end %>
-    <div class="signup-or-guest flex-column-center">
-      <%= link_to('Continue as guest', how_to_path) %>
-    </div>
   </div>
 <%= render 'shared/prevent_click'%>
 <%= render 'shared/menu'%>
+
+<script type="text/javascript">
+  $(".animal-icon").on("click", function() {
+    $(".animal-icon").removeClass("active")
+    $(this).addClass("active")
+  })
+</script>

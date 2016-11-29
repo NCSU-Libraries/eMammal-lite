@@ -48,7 +48,11 @@
                   <h2 class="top-score-name lg-text"><%= User.find_by_id(user).name %></h2>
                 </div>
                 <div class="user-icon">
-
+                  <% if User.find_by_id(user).animal_icon %>
+                    <%= image_tag("animal-icons/" + User.find_by_id(user).animal_icon + ".png", alt: "user icon", class: "top-score-icon") %>
+                  <% else %>
+                    <%= image_tag("menu/user-default-photo@3x.png", alt: "guest icon", class: "top-score-icon") %>
+                  <% end %>
                 </div>
               </div>
             <% end %>
@@ -60,7 +64,11 @@
                   <h2 class="top-score-name lg-text"><%= current_or_guest_user.name %></h2>
                 </div>
                 <div class="user-icon">
-
+                  <% if current_or_guest_user.animal_icon %>
+                    <%= image_tag("animal-icons/" + current_or_guest_user.animal_icon + ".png", alt: "user icon", class: "top-score-icon") %>
+                  <% else %>
+                    <%= image_tag("menu/user-default-photo@3x.png", alt: "guest icon", class: "center-img-resposive") %>
+                  <% end %>
                 </div>
               </div>
             <% end %>

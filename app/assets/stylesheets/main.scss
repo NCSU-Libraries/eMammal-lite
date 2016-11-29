@@ -196,36 +196,52 @@ a {
 
 /*Flash messages*/
 .alert {
+  padding: 16px;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   z-index: 100;
   text-align: left;
+
+  a {
+    text-decoration: none;
+  }
+
+  @include media("<=tablet") {
+    top: 0;
+    left: 5%;
+    width: 90%;
+  }
+
+  @include media(">tablet") {
+    top: 110px;
+    left: 15%;
+    width: 70%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  };
 }
 
 .alert-error {
-    background-color: lighten($PyromanFlame, 50%);
-    border-color: $PyromanFlame;
-    color: $PyromanFlame;
+    background-color: transparentize($PyromanFlame, 0.1);
+    border-color: $BioIndigo;
+    color: $BioIndigo;
  }
 
 .alert-alert {
-    background-color: lighten($PyromanFlame, 50%);
+    background-color: transparentize($PyromanFlame, 0.1);
+    border-color: $BioIndigo;
+    color: $BioIndigo;
+ }
+
+.alert-success {
+    background-color: transparentize($BioIndigo, 0.1);
     border-color: $PyromanFlame;
     color: $PyromanFlame;
  }
 
-.alert-success {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
- }
-
 .alert-notice {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-    color: #468847;
+    background-color: transparentize($BioIndigo, 0.1);
+    border-color: $PyromanFlame;
+    color: $PyromanFlame;
  }
 
 
@@ -331,22 +347,42 @@ a {
     .logo-left {
       display: flex;
       height: 30%;
+      width: 30%;
       margin-left: 3.3%;
       justify-content: flex-start;
       align-items: center;
+      color: $BioIndigo;
 
       .logo-text {
         margin-left: 5px;
         white-space: nowrap;
-        color: $BioIndigo;
       }
 
       .logo-border-right {
-        width: 3.3vw;
+        width: 1.15vw;
+        margin-right: 1.15vw;
         height: 100%;
         border-right-style: solid;
         border-right-width: thin;
         border-right-color: $BioIndigo;
+      }
+
+      .ancillary-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        .link {
+          margin-top: 4px;
+          margin-bottom: 4px;
+          text-decoration: none;
+          color: $BioIndigo;
+
+          &:hover {
+            font-weight: bold;
+          }
+        }
       }
     }
 
@@ -362,15 +398,20 @@ a {
         margin-left: 4vw;
         text-decoration: none;
         color: $BioIndigo;
+
+        &:hover {
+          font-weight: bold;
+        }
       }
 
       .user-info {
         height: 100%;
         margin-left: 6vw;
         justify-content: center;
+        color: $BioIndigo;
 
         .user-icon {
-          height: 30%;
+          height: 40%;
         }
 
         a {
@@ -386,9 +427,9 @@ a {
 
   .page-with-header {
     height: calc(100vh - 110px);
-    background-image: linear-gradient(rgba(255,255,255,0.95),rgba(255,255,255,0.95)), url("background-pattern-01.png");
+    background-image: linear-gradient(rgba(255,255,255,0.95),rgba(255,255,255,0.95)), url("background@0.5x.png");
     background-repeat: repeat;
-    background-size: contain;
+    background-size:auto;
   }
 }
 

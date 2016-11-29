@@ -3,7 +3,6 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
-    puts current_user
     if user_signed_in?
       redirect_to new_identification_path
     else
@@ -22,9 +21,8 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   protected
-
     def after_sign_in_path_for(resource)
-      how_to_path
+      new_identification_path
     end
 
     def after_sign_out_path_for(resource)

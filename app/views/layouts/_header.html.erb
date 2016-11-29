@@ -20,6 +20,18 @@
       <%= image_tag("desktop_heading_logo_blue.png", alt: "eMammal Lite logo", class: "center-img-resposive") %>
       <h1 class="lg-text logo-text">eMAMMAL LITE</h1>
       <div class="logo-border-right"></div>
+      <div class="ancillary-links">
+        <% {
+          "HOW TO" => how_to_path,
+          "LEARN MORE" => learn_more_path
+        }.each do |page, page_info| %>
+          <% if yield(:header_text) == page %>
+            <h2 class="xs-text bold-text link"><%= page %></h2>
+          <% else %>
+            <%= link_to page, page_info, class: "xs-text link" %>
+          <% end %>
+        <% end %>
+      </div>
     </div>
     <div class="main-links-user-icon-holder">
       <% {
@@ -38,7 +50,11 @@
           <%= current_or_guest_user.name %>
         </h1>
         <div class="user-icon">
-          <%= image_tag("menu/user-default-photo@3x.png", alt: "open menu", class: "center-img-resposive") %>
+          <% if user_signed_in? && current_or_guest_user.animal_icon %>
+            <%= image_tag("animal-icons/" + current_or_guest_user.animal_icon + ".png", alt: "user icon", class: "center-img-resposive") %>
+          <% else %>
+            <%= image_tag("menu/user-default-photo@3x.png", alt: "guest icon", class: "center-img-resposive") %>
+          <% end %>
         </div>
         <% if user_signed_in? %>
         <h1 class="body-text oblique-text no-margin-text">
