@@ -135,7 +135,7 @@ var loadStatsPageJS = function() {
           return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
         })
         .attr("class", "lg-header bold-text bar-number-text");
-      console.log(bar);
+
       var barLabelText = bar.append("text")
         .text("")
       	.attr("x", function(d, i) { return i * width / 3 + width / 6; })

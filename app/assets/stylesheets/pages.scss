@@ -195,6 +195,7 @@
       transform: rotateX(180deg);
 
       path {
+        stroke: $PyromanFlame;
         opacity: 1;
       }
     }
@@ -542,7 +543,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    pointer-events: none;
+    // pointer-events: none;
   }
 }
 
@@ -623,13 +624,16 @@
         align-content: center;
 
         .right-wrong-icon-container {
-          position: absolute;
-          height: 23.5%;
-          width: 100%;
-          top: 13%;
+          // position: absolute;
+          // height: 23.5%;
+          // width: 100%;
+          width: 41.8%;
+          margin-top: 13%;
+          // top: 13%;
 
           .right-wrong-icon {
-            width: 41.8%;
+            // width: 41.8%;
+            width: 100%;
             text-align: center;
             margin-left: auto;
             margin-right: auto;
@@ -641,10 +645,15 @@
         }
 
         .right-wrong-text {
-          position: absolute;
-          bottom: 10.8%;
-          width: 100%;
+          // position: absolute;
+          // bottom: 10.8%;
+          width: 95%;
           text-align: center;
+
+          .link-to-archive {
+            color: white;
+            text-decoration: none;
+          }
         }
       }
 
@@ -796,28 +805,35 @@
         transform: rotateX(180deg);
         align-items: center;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
 
         .right-wrong-icon-container {
-          height: 40%;
+          width: 15%;
           margin-top: 5%;
 
           .right-wrong-icon {
-            height: 100%;
+            width: 100%;
             text-align: center;
             margin-left: auto;
             margin-right: auto;
           }
           .right-wrong-header {
             margin-top: 5%;
+            margin-bottom: 0;
             text-align: center;
           }
         }
 
         .right-wrong-text {
-          margin-bottom: 5%;
-          width: 100%;
+          // position: absolute;
+          // bottom: 10.8%;
+          width: 95%;
           text-align: center;
+
+          .link-to-archive {
+            color: white;
+            text-decoration: none;
+          }
         }
       }
 

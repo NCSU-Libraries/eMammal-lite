@@ -15,7 +15,15 @@
       <h1 class="right-wrong-header lg-header">Oops!</h1>
     </div>
   </div>
-  <h2 class="right-wrong-text xl-text oblique-text">
-    That's not the right answer.
-  </h2>
+  <div class="right-wrong-text">
+    <h2 class="xl-text oblique-text">
+      That's not the right answer.
+    </h2>
+    <h2 class="xs-text">
+      This card will be stored and brought back around for you to try again.
+    </h2>
+    <h2 class="xs-text">
+      Having trouble remembering what a <%= Photo.find(@identification.photo_id).animal.name %> looks like. Check out the <%= link_to "PHOTO ARCHIVE", photos_path, class:"link-to-archive bold-text" %>.
+    </h2>
+  </div>
 <% end %>
