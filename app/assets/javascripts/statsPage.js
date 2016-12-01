@@ -243,7 +243,6 @@ var loadStatsPageJS = function() {
       resizeTimeout = setTimeout(function() {
         // Set the width of the card if on a desktop display
         if (window.matchMedia("(min-width: 769px)").matches) {
-          console.log("deskyop");
           $(".accordion-item").css("height", "");
           $(".stats-group-header").removeClass("not-active");
         }

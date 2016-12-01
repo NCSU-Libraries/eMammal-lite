@@ -26,7 +26,7 @@
           "LEARN MORE" => learn_more_path
         }.each do |page, page_info| %>
           <% if yield(:header_text) == page %>
-            <h2 class="xs-text bold-text link"><%= page %></h2>
+            <h2 class="xs-text bold-text link current-link"><%= page %></h2>
           <% else %>
             <%= link_to page, page_info, class: "xs-text link" %>
           <% end %>
@@ -40,7 +40,7 @@
         "PHOTO ARCHIVE" => photos_path
       }.each do |page, page_info| %>
         <% if yield(:header_text) == page %>
-          <h2 class="lg-text bold-text link"><%= page %></h2>
+          <h2 class="lg-text bold-text link current-link"><%= page %></h2>
         <% else %>
           <%= link_to page, page_info, class: "lg-text link" %>
         <% end %>
@@ -70,3 +70,9 @@
   </div>
 
 </header>
+
+<div class="header-page-icon-desktop">
+  <% if !yield(:icon).empty? %>
+  <%= image_tag(yield(:icon), alt: "identify icon", class: "center-img-resposive") %>
+  <% end %>
+</div>

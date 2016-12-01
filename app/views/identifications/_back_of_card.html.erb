@@ -23,7 +23,7 @@
       This card will be stored and brought back around for you to try again.
     </h2>
     <h2 class="xs-text">
-      Having trouble remembering what a <%= Photo.find(@identification.photo_id).animal.name %> looks like. Check out the <%= link_to "PHOTO ARCHIVE", photos_path, class:"link-to-archive bold-text" %>.
+      Having trouble remembering what a <%= Photo.find(@identification.photo_id).animal.name %> looks like? Check out the <%= link_to "PHOTO ARCHIVE", photos_path(search: Photo.find(@identification.photo_id).animal.name), action: "get", class:"link-to-archive bold-text" %>.
     </h2>
   </div>
 <% end %>

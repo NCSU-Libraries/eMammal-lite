@@ -1,8 +1,10 @@
 <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %> visible">
+  <%  if message.length > 0 %>
+  <div class="alert alert-<%= message_type %>">
     <a href="#" data-dismiss="alert" class="close">×</a>
     <ul>
         <h1 class="lg-text"><%= message %></h1>
     </ul>
   </div>
+  <% end %>
 <% end %>

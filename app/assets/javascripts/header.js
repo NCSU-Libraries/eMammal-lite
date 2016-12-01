@@ -21,6 +21,12 @@ var loadHeaderJS = function() {
         $(".will-blur").toggleClass("blur");
         $(".prevent-click").toggleClass("visible");
       });
+
+      $(".header-page-icon-desktop").on("click", function() {
+        $(".info-drop-down").toggleClass("pull-down");
+        $(".will-blur").toggleClass("blur");
+        $(".prevent-click").toggleClass("visible");
+      });
     }
     // $(".menu-btn").on("click", toggleOverlays);
     // $(".prevent-click").on("click", toggleOverlays);
@@ -51,8 +57,8 @@ var loadHeaderJS = function() {
       // Check if header is present and return if not
       if ($(".header").length < 1) { return; }
 
-      $(".info-drop-down").css("top", $(".info-drop-down").outerHeight() * -1);
-      $(".menu").css("left", $(".menu").outerWidth() * -1);
+      $(".info-drop-down").removeClass("pull-down");
+      $(".menu").removeClass("pull-right");
       $(".will-blur").removeClass("blur");
       $(".prevent-click").removeClass("visible");
     });

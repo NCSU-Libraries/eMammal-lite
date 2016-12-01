@@ -19,5 +19,12 @@
 </body>
 <script type="text/javascript">
   window.scrollTo(0,1);
+
+  $(function() {
+    var alert = $(".alert")
+    if (alert.length > 0) {
+      alert.addClass("fade-out")
+    }
+  });
 </script>
 </html>

@@ -195,11 +195,28 @@ a {
 
 
 /*Flash messages*/
+#error_explanation {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  color: $BioIndigo;
+
+  @include media("<=tablet") {
+    top: 0;
+  }
+  @include media(">tablet") {
+    top: 110px;
+  }
+}
+
 .alert {
   padding: 16px;
   position: absolute;
   z-index: 100;
   text-align: left;
+
+  transition-duration: 0.6s;
+  transition-delay: 4s;
 
   a {
     text-decoration: none;
@@ -215,31 +232,36 @@ a {
     top: 110px;
     left: calc(15% - 8px);
     width: calc(70% - 16px);
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: thin;
   };
 }
 
+.alert.fade-out {
+  transform: rotateX(90deg);
+}
+
 .alert-error {
-    background-color: transparentize($PyromanFlame, 0.1);
+    background-color: transparentize(white, 0.1);
     border-color: $BioIndigo;
     color: $BioIndigo;
  }
 
 .alert-alert {
-    background-color: transparentize($PyromanFlame, 0.1);
+    background-color: transparentize(white, 0.1);
     border-color: $BioIndigo;
     color: $BioIndigo;
  }
 
 .alert-success {
-    background-color: transparentize($BioIndigo, 0.25);
+    background-color: transparentize(white, 0.25);
     border-color: $PyromanFlame;
     color: $PyromanFlame;
  }
 
 .alert-notice {
-    background-color: transparentize($BioIndigo, 0.25);
+    background-color: transparentize(white, 0.25);
     border-color: $PyromanFlame;
     color: $PyromanFlame;
  }
@@ -281,6 +303,10 @@ a {
 
 @include media("<=tablet") {
   .desktop-header {
+    display: none;
+  }
+
+  .header-page-icon-desktop {
     display: none;
   }
 
@@ -344,6 +370,10 @@ a {
     justify-content: space-between;
     align-items: center;
 
+    .current-link {
+      color: $BioIndigo !important;
+    }
+
     .logo-left {
       display: flex;
       height: 30%;
@@ -372,6 +402,7 @@ a {
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
+        cursor: pointer;
 
         .link {
           margin-top: 4px;
@@ -380,7 +411,7 @@ a {
           color: $BioIndigo;
 
           &:hover {
-            font-weight: bold;
+            color: $PyromanFlame;
           }
         }
       }
@@ -393,6 +424,7 @@ a {
       margin-right: 3.3%;
       justify-content: flex-end;
       align-items: center;
+      cursor: pointer;
 
       .link {
         margin-left: 4vw;
@@ -400,7 +432,7 @@ a {
         color: $BioIndigo;
 
         &:hover {
-          font-weight: bold;
+          color: $PyromanFlame;
         }
       }
 
@@ -429,6 +461,23 @@ a {
     }
   }
 
+  .header-page-icon-desktop {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    top: 135px;
+    z-index: 100;
+    margin-left: 3.3%;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      max-width: 25px;
+      height: auto;
+    }
+  }
+
   .page-with-header {
     height: calc(100vh - 110px);
     background-image: linear-gradient(rgba(255,255,255,0.95),rgba(255,255,255,0.95)), image-url("background@0.5x.png");
@@ -440,11 +489,7 @@ a {
 
 /* Menu */
 
-@include media(">tablet") {
-  .menu {
-    display: none;
-  }
-}
+
 
 .menu {
   position: absolute;
@@ -582,7 +627,6 @@ a {
 
 .info-drop-down {
   position: absolute;
-  padding-bottom: 8%;
   background-color: white;
   color: $BioIndigo;
 
@@ -590,6 +634,7 @@ a {
     bottom: 100%;
     width: 100%;
     height: auto;
+    padding-bottom: 8%;
 
     transition: 0.6s ease-in-out;
     transform: translateY(0);
@@ -598,6 +643,9 @@ a {
   @include media(">tablet") {
     top: 110px;
     right: 100%;
+    width: 350px;
+    z-index: 200;
+
     height: calc(100vh - 110px);
 
     transition: 0.6s ease-in-out;
@@ -606,13 +654,11 @@ a {
 
   .info-drop-down-header {
       width: 100%;
-      height: 15vh;
       display: flex;
       align-items: center;
       justify-content: flex-end;
 
       .header-page-icon {
-        width: 5vw;
         height: auto;
         margin-right: 12.3%;
         cursor: pointer;
@@ -621,6 +667,22 @@ a {
           width: 100%;
           max-width: 57px;
           height: auto;
+        }
+      }
+
+      @include media("<=tablet") {
+        height: 15vh;
+
+        .header-page-icon {
+          width: 5vw;
+        }
+      }
+
+
+      @include media(">tablet") {
+        .header-page-icon {
+          margin-top: 25px;
+          width: 25px;
         }
       }
   }

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  validates :name, presence: true
   has_many :identifications
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

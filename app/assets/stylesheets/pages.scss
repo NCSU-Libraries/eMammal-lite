@@ -543,7 +543,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    // pointer-events: none;
+
+    .link-to-archive {
+      color: lighten($PyromanFlame, 15%);
+      text-decoration: none;
+    }
   }
 }
 
@@ -599,7 +603,6 @@
   .card-container {
     height: 75vh;
     min-height: 426px;
-    // max-height: 650px;
 
     .card {
       width: 42.3vh;
@@ -624,15 +627,10 @@
         align-content: center;
 
         .right-wrong-icon-container {
-          // position: absolute;
-          // height: 23.5%;
-          // width: 100%;
           width: 41.8%;
           margin-top: 13%;
-          // top: 13%;
 
           .right-wrong-icon {
-            // width: 41.8%;
             width: 100%;
             text-align: center;
             margin-left: auto;
@@ -645,15 +643,8 @@
         }
 
         .right-wrong-text {
-          // position: absolute;
-          // bottom: 10.8%;
           width: 95%;
           text-align: center;
-
-          .link-to-archive {
-            color: white;
-            text-decoration: none;
-          }
         }
       }
 
@@ -829,11 +820,6 @@
           // bottom: 10.8%;
           width: 95%;
           text-align: center;
-
-          .link-to-archive {
-            color: white;
-            text-decoration: none;
-          }
         }
       }
 
@@ -1018,6 +1004,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   overflow-y: scroll;
+  transform: translateZ(0);
   -webkit-overflow-scrolling: touch;
 
   @include media("<=tablet") {
@@ -1052,6 +1039,8 @@
 
     .sm-img {
       height: 110%;
+      width: auto;
+      will-change: scroll-position;
     }
   }
 }

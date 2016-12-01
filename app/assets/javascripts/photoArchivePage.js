@@ -268,10 +268,15 @@ var loadPhotoArchivePageJS = function() {
       }
     });
 
+    // $(".photos-container").on("scroll", _.debounce(function() {
+    //     console.log("scrolling");
+    //   }, 200)
+    // )
+
 
     var resizeTimeout;
     $(window).on("resize", function() {
-
+      if ($(".photo-archive-page").length < 1) { return; }
       function updateMap() {
         var mapSVG = d3.select(".map").select("svg");
         var proj = d3.geoMercator()

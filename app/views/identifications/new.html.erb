@@ -13,18 +13,13 @@
         <div id="photo_content" class="id-card-choice-container will-blur-photo">
           <%= render 'photo_content'%>
         </div>
-        <!-- <button type="submit" name="button" form="new_identification" class="skip-container will-blur-photo xs-text skip-text">
-          skip >
-        </button> -->
         <div class="skip-container will-blur-photo">
           <%= link_to new_identification_path, class: "xs-text skip-text", remote: true do %>
           skip >
           <% end %>
         </div>
       </div>
-      <div id="back_of_card" class="back">
-      
-      </div>
+      <div id="back_of_card" class="back"></div>
     </div>
     <%= link_to new_identification_path, class: "next-arrow flex-column-center flash", remote: true do %>
       <svg>
