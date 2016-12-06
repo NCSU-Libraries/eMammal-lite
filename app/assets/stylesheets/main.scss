@@ -215,7 +215,7 @@ a {
   z-index: 100;
   text-align: left;
 
-  transition-duration: 0.6s;
+  transition-duration: 0.5s;
   transition-delay: 4s;
 
   a {
@@ -239,7 +239,7 @@ a {
 }
 
 .alert.fade-out {
-  transform: rotateX(90deg);
+  opacity: 0;
 }
 
 .alert-error {
@@ -372,6 +372,7 @@ a {
 
     .current-link {
       color: $BioIndigo !important;
+      cursor: default;
     }
 
     .logo-left {
@@ -424,12 +425,12 @@ a {
       margin-right: 3.3%;
       justify-content: flex-end;
       align-items: center;
-      cursor: pointer;
 
       .link {
         margin-left: 4vw;
         text-decoration: none;
         color: $BioIndigo;
+        cursor: pointer;
 
         &:hover {
           color: $PyromanFlame;
@@ -452,29 +453,16 @@ a {
 
         a {
           text-decoration: none;
+
+          &:hover {
+            color: $PyromanFlame;
+          }
         }
       }
     }
 
     .header-page-title {
       color: $BioIndigo;
-    }
-  }
-
-  .header-page-icon-desktop {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    top: 135px;
-    z-index: 100;
-    margin-left: 3.3%;
-    cursor: pointer;
-
-    img {
-      width: 100%;
-      max-width: 25px;
-      height: auto;
     }
   }
 
@@ -488,8 +476,6 @@ a {
 
 
 /* Menu */
-
-
 
 .menu {
   position: absolute;
@@ -660,7 +646,6 @@ a {
 
       .header-page-icon {
         height: auto;
-        margin-right: 12.3%;
         cursor: pointer;
 
         img {
@@ -675,6 +660,7 @@ a {
 
         .header-page-icon {
           width: 5vw;
+          margin-right: 12.3%;
         }
       }
 
@@ -683,6 +669,13 @@ a {
         .header-page-icon {
           margin-top: 25px;
           width: 25px;
+          margin-right: calc(-3.3vw - 25px);
+          transition-duration: 0.3s;
+          transition-timing-function: ease;
+        }
+
+        .header-page-icon.open {
+          margin-right: 12.3%;
         }
       }
   }

@@ -18,12 +18,14 @@
   <!-- <%= debug(params) if Rails.env.development? %> -->
 </body>
 <script type="text/javascript">
-  window.scrollTo(0,1);
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    window.scrollTo(0,1);
+  }
 
   $(function() {
     var alert = $(".alert")
     if (alert.length > 0) {
-      alert.addClass("fade-out")
+      alert.addClass("hidden")
     }
   });
 </script>

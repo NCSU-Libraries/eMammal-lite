@@ -20,28 +20,14 @@
     .desktop-header {
       background-color: transparent;
       box-shadow: none !important;
-
-      .logo-text, .link {
-        color: white !important;
-      }
-
-      .logo-border-right {
-        border-right-color: white !important;
-      }
     }
 
     .desktop-header.with-about {
       transition-duration: 2s;
       background-color: rgba(255,255,255,.7);
 
-      .logo-text, .link {
-        transition-duration: 2s;
-        color: $BioIndigo !important;
-      }
-
-      .logo-border-right {
-        transition-duration: 2s;
-        border-right-color: $BioIndigo !important;
+      .link:hover {
+        color: $PyromanFlame;
       }
     }
   }
@@ -127,28 +113,28 @@
 
   @keyframes backgroundImageAnimation {
     0% {
-      background-image: url("https://s3.amazonaws.com/emammalphoto/d17278s4i4_o.jpg");
+      background-image: image-url("landing/desktop-gallery/raccoon.jpg");
     }
     20% {
-      background-image: url("https://s3.amazonaws.com/emammalphoto/d17690s6i19_o.jpg");
+      background-image: image-url("landing/desktop-gallery/bear.jpg");
     }
     40% {
-      background-image: url("https://s3.amazonaws.com/emammalphoto/4286s4i30_o.jpg");
+      background-image: image-url("landing/desktop-gallery/deer.jpg");
     }
     60% {
-      background-image: url("https://s3.amazonaws.com/emammalphoto/d19658s62i5_o.jpg");
+      background-image: image-url("landing/desktop-gallery/coyote.jpg");
     }
     80% {
-      background-image: url("https://s3.amazonaws.com/emammalphoto/d19519s9i7_o.jpg");
+      background-image: image-url("landing/desktop-gallery/fox.jpg");
     }
     100% {
-      background-image: url("https://s3.amazonaws.com/emammalphoto/d17451s24i7_o.jpg");
+      background-image: image-url("landing/desktop-gallery/cat.jpg");
     }
   }
 
   @include media(">tablet") {
     overflow-y: hidden;
-    background-image: url("https://s3.amazonaws.com/emammalphoto/d17278s4i4_o.jpg");
+    background-image: image-url("landing/desktop-gallery/raccoon.jpg");
     background-size: cover;
     background-position: center;
     animation-duration: 60s;
@@ -184,10 +170,6 @@
         text-align: center;
         margin-top: 8.6%;
       }
-    }
-
-    .lib-logo {
-      display: none;
     }
 
     .up-arrow {
@@ -288,7 +270,7 @@
     background-color: $PyromanFlame;
     color: white;
 
-    &:hover, &:active, &:focus {
+    &:hover, &:active, &:focus, &:active:focus {
       color: $PyromanFlame;
       background-color: white;
     }
@@ -310,6 +292,10 @@
 .signup-or-guest {
   a {
     text-decoration: none;
+
+    &:hover {
+        color: $PyromanFlame;
+      }
   }
 
   span {
@@ -367,7 +353,7 @@
 
     h2 {
       margin-top: 8px;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
       color: $BioIndigo;
     }
 
@@ -382,6 +368,10 @@
         padding: 20px;
         width: 70%;
         justify-content: flex-start;
+        border-color: lighten($BioIndigo, 40%);
+        border-left-style: solid;
+        border-right-style: solid;
+        border-width: thin;
 
         .animal-icon {
           width: 18vw;
@@ -393,7 +383,7 @@
       @include media(">tablet") {
         width: 50%;
         max-width: 500px;
-        height: 7vh;
+        // height: 7vh;
         justify-content: center;
         flex-wrap: wrap;
 
@@ -446,7 +436,7 @@
       }
 
       @include media(">tablet") {
-        margin-top: 102px;
+        margin-top: 32px;
       }
     }
   }
@@ -461,6 +451,10 @@
 
   a {
     word-wrap: break-word;
+
+    &:hover {
+      color: $PyromanFlame;
+    }
   }
 }
 

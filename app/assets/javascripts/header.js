@@ -14,15 +14,11 @@ var loadHeaderJS = function() {
         $(".info-drop-down").removeClass("pull-down");
         $(".will-blur").removeClass("blur");
         $(".prevent-click").removeClass("visible");
+        $(".header-page-icon").removeClass("open");
       });
 
       $(".header-page-icon").on("click", function() {
-        $(".info-drop-down").toggleClass("pull-down");
-        $(".will-blur").toggleClass("blur");
-        $(".prevent-click").toggleClass("visible");
-      });
-
-      $(".header-page-icon-desktop").on("click", function() {
+        $(this).toggleClass("open");
         $(".info-drop-down").toggleClass("pull-down");
         $(".will-blur").toggleClass("blur");
         $(".prevent-click").toggleClass("visible");
@@ -42,6 +38,7 @@ var loadHeaderJS = function() {
       $(".menu").removeClass("pull-right");
       $(".will-blur").removeClass("blur");
       $(".prevent-click").removeClass("visible");
+      $(".header-page-icon").removeClass("open");
     });
 
     // console.log("loaded js for pages with mobile header");
@@ -59,6 +56,7 @@ var loadHeaderJS = function() {
 
       $(".info-drop-down").removeClass("pull-down");
       $(".menu").removeClass("pull-right");
+      $(".header-page-icon").removeClass("open");
       $(".will-blur").removeClass("blur");
       $(".prevent-click").removeClass("visible");
     });
