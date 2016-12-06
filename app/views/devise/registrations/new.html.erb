@@ -1,9 +1,10 @@
 <% provide(:header_text, "SIGN UP")%>
 <%= render 'layouts/header' %>
-  <%= devise_error_messages! %>
+  <!-- <%= devise_error_messages! %> -->
   <div class="signup-page page-with-header flex-column-center will-blur">
     <%= image_tag "login/cat-logo.png", class:"center-img-resposive login-logo" %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex-column-center signup-form-container" }) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
       <%= f.text_field :name, class:"emammal-text-input login-text-input lg-text", placeholder:"Username", autofocus: true %>
       <%= f.email_field :email, class:"emammal-text-input login-text-input lg-text", placeholder:"Email" %>
       <%= f.password_field :password, class:"emammal-text-input login-text-input lg-text", placeholder:"Password", autocomplete: "off" %>

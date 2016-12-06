@@ -196,13 +196,12 @@ a {
 
 /*Flash messages*/
 #error_explanation {
-  position: absolute;
-  width: 100%;
-  z-index: 100;
-  color: $BioIndigo;
+  color: $PyromanFlame;
+  background-color: transparent;
 
   @include media("<=tablet") {
-    top: 0;
+    width: 100%;
+    padding: 16px;
   }
   @include media(">tablet") {
     top: 110px;
