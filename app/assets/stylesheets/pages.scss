@@ -1512,6 +1512,10 @@
             width: 45%;
             opacity: 0.75;
             text-align: left;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
         }
 
