@@ -4,7 +4,13 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.search(params[:search]).paginate(page: params[:page], per_page: 30)
+    if params[:filter]
+      search_by = current_or_guest_user.photos.merge(Identification.correct_identification)
+    else
+      search_by = Photo
+    end
+
+    @photos = search_by.search(params[:search]).paginate(page: params[:page], per_page: 30)
 
     respond_to do |format|
       format.html

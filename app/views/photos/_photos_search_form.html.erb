@@ -3,4 +3,7 @@
   <%= button_tag(type: "submit", class: "flex-column-center photo-search-btn") do %>
     <i class="material-icons">search</i>
   <% end %>
+  <%= label_tag(:search) do %>
+    <%= check_box_tag(:filter, params[:filter]) %> Filter by my tags
+  <% end %>
 <% end %>

@@ -997,8 +997,10 @@
 .photos-container {
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-content: flex-start;
   overflow-y: scroll;
   transform: translateZ(0);
+  background-color: white;
   -webkit-overflow-scrolling: touch;
 
   @include media("<=tablet") {
