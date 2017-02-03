@@ -386,6 +386,10 @@ a {
       .logo-text {
         margin-left: 5px;
         white-space: nowrap;
+
+        a {
+          text-decoration: none;
+        }
       }
 
       .logo-border-right {

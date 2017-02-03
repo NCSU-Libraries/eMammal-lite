@@ -17,8 +17,8 @@
 
   <div class="desktop-header flex-row-center">
     <div class="logo-left">
-      <%= image_tag("cat-logo-header.png", alt: "eMammal Lite logo", class: "center-img-resposive") %>
-      <h1 class="lg-text logo-text">eMAMMAL LITE</h1>
+      <%= link_to image_tag("cat-logo-header.png", alt: "eMammal Lite logo", class: "center-img-resposive"), root_path %>
+      <h1 class="lg-text logo-text"><%= link_to("eMAMMAL LITE", root_path) %></h1>
       <div class="logo-border-right"></div>
       <div class="ancillary-links">
         <% {

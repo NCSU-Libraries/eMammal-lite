@@ -1,9 +1,11 @@
 class Photo < ActiveRecord::Base
   belongs_to :animal, foreign_key: :animal_id
   belongs_to :project, foreign_key: :project_id
-  has_many :identifications
+  has_many :identification
+  has_many :users, through: :identification
 
-  def self.search(search_query)
+  # Search for photos by animal name. Filter by user if indicated
+  def self.search(search_query, filter)
     if !search_query.blank?
       animal_names = Animal.distinct.pluck(:name)
       animal_words = Animal.distinct.pluck(:name).join(" ").split(" ")
@@ -11,7 +13,7 @@ class Photo < ActiveRecord::Base
       fuzzy_search = fuzzy_names.find(search_query)
       joins(:animal).where("name LIKE ?", "%#{fuzzy_search}%")
     else
-      self
+      self.all
     end
   end
 
