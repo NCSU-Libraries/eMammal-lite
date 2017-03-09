@@ -4,6 +4,7 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
+    # Filter photos by current users tags
     if params[:filter]
       search_by = current_or_guest_user.photos.merge(Identification.correct_identification)
     else
@@ -17,7 +18,7 @@ class PhotosController < ApplicationController
       format.js
     end
 
-    gon.map = JSON.parse(File.read('app/assets/javascripts/world.geojson'))
+    gon.map = JSON.parse(File.read('app/assets/javascripts/world-simp.geojson'))
   end
 
   # GET /photos/1

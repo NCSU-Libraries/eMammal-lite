@@ -1,9 +1,11 @@
-<%= form_tag(photos_path, method: "get", id: "photo-search", class:"flex-row-center", remote: true) do %>
-  <%= text_field_tag :search, params[:search], type: "search", class: "emammal-text-input lg-text photo-search-input", placeholder: "Animal name" %>
-  <%= button_tag(type: "submit", class: "flex-column-center photo-search-btn") do %>
-    <i class="material-icons">search</i>
-  <% end %>
-  <%= label_tag(:search) do %>
+<%= form_tag(photos_path, method: "get", id: "photo-search", class:"flex-column-center", remote: true) do %>
+  <div class="flex-row-center">
+    <%= text_field_tag :search, params[:search], type: "search", class: "emammal-text-input lg-text photo-search-input", placeholder: "Animal name" %>
+    <%= button_tag(type: "submit", class: "flex-column-center photo-search-btn") do %>
+      <i class="material-icons">search</i>
+    <% end %>
+  </div>
+  <%= label_tag(:search, class: "filter-check-box") do %>
     <%= check_box_tag(:filter, params[:filter]) %> Filter by my tags
   <% end %>
 <% end %>

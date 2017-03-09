@@ -19,6 +19,7 @@ var loadPhotoArchivePageJS = function() {
           return;
         }
         card.toggleClass("flipped");
+        $(".flip-info-container").addClass("hidden");
       });
     }
     addAnimationTriggers();
@@ -109,6 +110,7 @@ var loadPhotoArchivePageJS = function() {
     }
     makeMap();
 
+    // Resize the map when new card comes in or window is resized
     function updateMap() {
       proj.fitSize([parseFloat(mapSVG.style("width")),
           parseFloat(mapSVG.style("height"))], topojson.feature(mapData, mapData.objects.world));
@@ -118,6 +120,7 @@ var loadPhotoArchivePageJS = function() {
         .attr("d", path);
     }
 
+    // Add data to the pin and put it in the correct spot on the map
     function drawProjectLocationPin() {
       proj.fitSize([parseFloat(mapSVG.style("width")),
         parseFloat(mapSVG.style("height"))], topojson.feature(mapData, mapData.objects.world));
