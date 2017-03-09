@@ -4,14 +4,21 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.search(params[:search]).paginate(page: params[:page], per_page: 30)
+    # Filter photos by current users tags
+    if params[:filter]
+      search_by = current_or_guest_user.photos.merge(Identification.correct_identification)
+    else
+      search_by = Photo
+    end
+
+    @photos = search_by.search(params[:search]).paginate(page: params[:page], per_page: 30)
 
     respond_to do |format|
       format.html
       format.js
     end
 
-    gon.map = JSON.parse(File.read('app/assets/javascripts/world.geojson'))
+    gon.map = JSON.parse(File.read('app/assets/javascripts/world-simp.geojson'))
   end
 
   # GET /photos/1

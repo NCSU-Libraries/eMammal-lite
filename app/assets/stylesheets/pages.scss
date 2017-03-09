@@ -473,7 +473,6 @@
   footer {
     margin-top: 35px;
     margin-bottom: 35px;
-    height: 220px;
     width: 70%;
     margin-left: 15%;
     display: flex;
@@ -481,7 +480,7 @@
     align-items: center;
     justify-content: center;
     .lib-logo {
-      height: 30%;
+      width: 125px;
     }
     p {
       text-align: center;
@@ -573,6 +572,7 @@
 
   position: absolute;
   right: 0;
+  top: 0;
   width: 11%;
   height: 75vh;
   justify-content: center;
@@ -946,6 +946,11 @@
 /* Photo Archive */
 
 .photo-search-container {
+  .filter-check-box {
+    margin-top: 16px;
+    color: #4156A1;
+  }
+
   @include media("<=tablet") {
     height: 18.7vh;
 
@@ -967,6 +972,7 @@
     }
 
     .photo-search-btn {
+      cursor: pointer;
       margin-top: 2px;
     }
   };
@@ -997,8 +1003,10 @@
 .photos-container {
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-content: flex-start;
   overflow-y: scroll;
   transform: translateZ(0);
+  background-color: white;
   -webkit-overflow-scrolling: touch;
 
   @include media("<=tablet") {
@@ -1014,27 +1022,48 @@
   }
 
   .img-box {
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
 
-    @include media("<=tablet") {
-      width: 32vw;
-      height: 32vw;
-      margin: 0.5vw;
+    .img-link {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include media("<=tablet") {
+        width: 32vw;
+        height: 32vw;
+        margin: 0.5vw;
+      }
+
+      @include media(">tablet") {
+        width: 19.5vw;
+        height: 19.5vw;
+        margin: 0.2vw;
+      }
+
+      .sm-img {
+        height: 110%;
+        width: auto;
+        will-change: scroll-position;
+      }
     }
 
-    @include media(">tablet") {
-      width: 19.5vw;
-      height: 19.5vw;
-      margin: 0.2vw;
-    }
+    .user-identified-mark {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      width: 15%;
+      height: 15%;
+      max-width: 28px;
+      max-height: 28px;
+      pointer-events: none;
 
-    .sm-img {
-      height: 110%;
-      width: auto;
-      will-change: scroll-position;
+      .user-identified-icon {
+        width: 100%;
+        height: 100%;
+        fill: $PyromanFlame;
+      }
     }
   }
 }
@@ -1055,6 +1084,23 @@
 
   .card-absolute {
     margin: 0;
+
+      .flip-info-container {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        color: $PyromanFlame;
+
+        .flip-info-text {
+          text-align: center;
+          margin-top: 0;
+          background: rgba(256,256,256,0.75);
+          border-radius: 0 0 25px 25px;
+        }
+      }
+
 
     .back {
       background-color: white;

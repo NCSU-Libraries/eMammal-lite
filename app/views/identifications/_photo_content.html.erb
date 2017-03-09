@@ -29,9 +29,10 @@
       </h2>
     </div>
   </div>
+
   <script type="text/javascript">
-    // Draw the map on the initial page load
-    function makeMap() {
+    // Draw the map and pin if the identification is correct
+    function makeMapAndPin() {
       var mapData = gon.map;
       var mapSVG = d3.select(".map").select("svg");
       var proj = d3.geoMercator()
@@ -74,6 +75,6 @@
         (pointXY[1] - pinHeight) +
         ") scale(" + pinScale + ")")
     }
-    makeMap();
+    makeMapAndPin();
   </script>
 <% end %>

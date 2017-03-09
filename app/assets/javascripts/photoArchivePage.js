@@ -19,6 +19,7 @@ var loadPhotoArchivePageJS = function() {
           return;
         }
         card.toggleClass("flipped");
+        $(".flip-info-container").addClass("hidden");
       });
     }
     addAnimationTriggers();
@@ -42,6 +43,7 @@ var loadPhotoArchivePageJS = function() {
           "duration": 600,
           "easing": "easeInQuart",
           "complete": function() {
+            updateMap();
             drawProjectLocationPin();
             makeGraphs();
           }
@@ -74,15 +76,17 @@ var loadPhotoArchivePageJS = function() {
       }
     }
 
+    // The topojson file and some other variable used for drawing and
+    // updating map and map pin.
+    var mapData = gon.map;
+    var mapSVG = d3.select(".map").select("svg");
+    var proj = d3.geoMercator()
+      .center([0, 40]);
+
     // Draw the map on the initial page load
     function makeMap() {
-      var mapData = gon.map;
-      var mapSVG = d3.select(".map").select("svg");
-      var proj = d3.geoMercator()
-        .center([0, 40])
-        .scale(parseFloat(mapSVG.style("height"))/3.9)
-        .translate([parseFloat(mapSVG.style("width")) / 2,
-          parseFloat(mapSVG.style("height")) / 2]);
+        proj.fitSize([parseFloat(mapSVG.style("width")),
+          parseFloat(mapSVG.style("height"))], topojson.feature(mapData, mapData.objects.world));
       var path = d3.geoPath(proj);
 
       mapSVG.selectAll("path")
@@ -91,6 +95,7 @@ var loadPhotoArchivePageJS = function() {
         .attr("class", "map-path")
         .attr("d", path);
 
+      // Draw pin but don't bind any data to it yet
       var pin = mapSVG.append("g").attr("class", "map-pin");
 
       pin.append("path")
@@ -105,13 +110,20 @@ var loadPhotoArchivePageJS = function() {
     }
     makeMap();
 
+    // Resize the map when new card comes in or window is resized
+    function updateMap() {
+      proj.fitSize([parseFloat(mapSVG.style("width")),
+          parseFloat(mapSVG.style("height"))], topojson.feature(mapData, mapData.objects.world));
+      var path = d3.geoPath(proj);
+
+      mapSVG.selectAll(".map-path")
+        .attr("d", path);
+    }
+
+    // Add data to the pin and put it in the correct spot on the map
     function drawProjectLocationPin() {
-      var mapSVG = d3.select(".map").select("svg");
-      var proj = d3.geoMercator()
-        .center([0, 40])
-        .scale(parseFloat(mapSVG.style("height"))/3.9)
-        .translate([parseFloat(mapSVG.style("width")) / 2,
-          parseFloat(mapSVG.style("height")) / 2]);
+      proj.fitSize([parseFloat(mapSVG.style("width")),
+        parseFloat(mapSVG.style("height"))], topojson.feature(mapData, mapData.objects.world));
 
       // Project the project location coordinates for the map pin
       var coords = $(".map-data").data("url");
@@ -128,6 +140,23 @@ var loadPhotoArchivePageJS = function() {
         (pointXY[1] - pinHeight) +
         ") scale(" + pinScale + ")");
       pin.classed("visible", true);
+    }
+
+    function updateProjectLocationPin() {
+      // Project the project location coordinates for the map pin
+      var coords = $(".map-data").data("url");
+      var pointXY = proj(coords);
+
+      // Create group for the pin graphical pieces and set scale factor
+      var pin = d3.select(".map-pin");
+      var pinScale = 0.2;
+
+      var pinWidth = pin.node().getBBox().width * pinScale;
+      var pinHeight = pin.node().getBBox().height * pinScale;
+      pin.attr("transform", "translate(" +
+        (pointXY[0] - pinWidth / 2) + "," +
+        (pointXY[1] - pinHeight) +
+        ") scale(" + pinScale + ")");
     }
 
     // Make the data graphics that will show on the back of the card
@@ -268,47 +297,22 @@ var loadPhotoArchivePageJS = function() {
       }
     });
 
-    // $(".photos-container").on("scroll", _.debounce(function() {
-    //     console.log("scrolling");
-    //   }, 200)
-    // )
+    // Submit the search form when 'filter by my tags' checkbox is toggled
+    $(".filter-check-box").on("change", function() {
+      $("form").submit();
+    });
 
 
     var resizeTimeout;
     $(window).on("resize", function() {
       if ($(".photo-archive-page").length < 1) { return; }
-      function updateMap() {
-        var mapSVG = d3.select(".map").select("svg");
-        var proj = d3.geoMercator()
-          .center([0, 40])
-          .scale(parseFloat(mapSVG.style("height"))/3.9)
-          .translate([parseFloat(mapSVG.style("width")) / 2,
-            parseFloat(mapSVG.style("height")) / 2]);
-        var path = d3.geoPath(proj);
 
-        mapSVG.selectAll(".map-path")
-          .attr("d", path);
-
-        // Project the project location coordinates for the map pin
-        var coords = $(".map-data").data("url");
-        var pointXY = proj(coords);
-
-        // Create group for the pin graphical pieces and set scale factor
-        var pin = d3.select(".map-pin");
-        var pinScale = 0.2;
-
-        var pinWidth = pin.node().getBBox().width * pinScale;
-        var pinHeight = pin.node().getBBox().height * pinScale;
-        pin.attr("transform", "translate(" +
-          (pointXY[0] - pinWidth / 2) + "," +
-          (pointXY[1] - pinHeight) +
-          ") scale(" + pinScale + ")");
-      }
       updateMap();
+      updateProjectLocationPin();
 
       clearTimeout(resizeTimeout);
 
-      // Set uo function to run on end of resize event to test new size
+      // Set up function to run on end of resize event to test new size
       resizeTimeout = setTimeout(function() {
         // Set the width of the card if on a desktop display
         if (window.matchMedia("(min-width: 769px)").matches) {

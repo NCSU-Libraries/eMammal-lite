@@ -22,7 +22,6 @@
         <!-- archive_photo partial -->
       </div>
       <div id="photo_content" class="id-card-choice-container will-blur-archive-photo">
-        <!-- archive_photo_content partial -->
         <div class="id-card-answer flex-column-center">
           <div id="animal_info">
 
@@ -37,6 +36,9 @@
           </div>
         </div>
       </div>
+      <div class="flip-info-container">
+        <h3 class="xs-text flip-info-text">Flip card for photo stats</h3>
+      </div>
     </div>
     <div id="back_of_card" class="back">
       <!-- archive_back_of_card partial -->
@@ -48,5 +50,5 @@
 </div>
 <%= render 'shared/menu'%>
 
-<% provide(:info_text, "Browse the eMammal Lite photo archive. Not doing too well at tagging animals? No problem! All the animals are here, so poke around, study up, or just explore our collection of over 5,000 camera trap images. Click on an image to view more information.")%>
+<% provide(:info_text, "Browse the eMammal Lite photo archive. Not doing too well at tagging animals? No problem! All the animals are here, so poke around, study up, or just explore our collection of over 5,000 camera trap images. Your tags are marked with a tag symbol. Click on an image to view more information.")%>
 <%= render 'shared/info_drop_down' %>

@@ -4,7 +4,7 @@ class IdentificationsController < ApplicationController
   def new
     @identification = Identification.new
     @photo = get_random_not_identified_photo
-    gon.map = JSON.parse(File.read('app/assets/javascripts/world.geojson'))
+    gon.map = JSON.parse(File.read('app/assets/javascripts/world-simp.geojson'))
 
     # Get the 'wrong' animals from the two_similar_animals function
     get_similar_animals

@@ -1,6 +1,13 @@
 <% @photos.each_with_index do |photo, number| %>
-    <%= link_to image_tag("https://s3.amazonaws.com/emammalphoto/#{photo.source}_o.jpg", alt: "eMammal Lite", class: "sm-img"), photo_path(photo), class: "img-box", remote: true %>
-    <!-- <div class="img-box">
-      <%= image_tag("https://s3.amazonaws.com/emammalphoto/#{photo.source}_o.jpg", alt: "eMammal Lite", class: "sm-img img-#{number}") %>
-    </div> -->
+  <div class="img-box">
+    <%= link_to image_tag("https://s3.amazonaws.com/emammalphoto/#{photo.source}_o.jpg", alt: "eMammal Lite", class: "sm-img"), photo_path(photo), class: "img-link", remote: true %>
+    <% if current_or_guest_user.photos.include?(photo) %>
+      <div class="user-identified-mark">
+        <svg class="user-identified-icon">
+          <use xlink:href="<%= "#identify" %>"></use>
+        </svg>
+      </div>
+
+    <% end %>
+  </div>
 <% end %>
