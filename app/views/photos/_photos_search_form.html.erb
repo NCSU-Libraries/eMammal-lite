@@ -5,7 +5,7 @@
       <i class="material-icons">search</i>
     <% end %>
   </div>
-  <%= label_tag(:search, class: "filter-check-box") do %>
+  <label class="filter-check-box">
     <%= check_box_tag(:filter, params[:filter]) %> Filter by my tags
-  <% end %>
+  </label>
 <% end %>
