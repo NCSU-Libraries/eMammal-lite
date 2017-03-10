@@ -1,0 +1,103 @@
+// Place all the styles related to the Immersion controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$immersion-width: 6816px;
+$immersion-height: 2240px;
+
+$tile-width: 426px;
+$tile-height: 320px;
+
+$grid-columns: 16;
+$grid-rows: 7;
+
+.immersion-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  .panel-left {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: $tile-width * 3;
+    height: $immersion-height;
+    background-color: $BioIndigo;
+
+    .immersion-logo {
+      width: 940px;
+    }
+  }
+
+  .panel-center {
+    display: flex;
+    width: $tile-width * 11;
+    height: $immersion-height;
+    background-image: image-url("landing/desktop-gallery/raccoon.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+  }
+
+  .panel-right {
+    display: flex;
+    flex-direction: column;
+    width: $tile-width * 2;
+    height: $immersion-height;
+
+    .top-scores {
+      width: 100%;
+      height: $tile-height * 2;
+      background-color: #BF9B45;
+    }
+
+    .global-accuracy {
+      width: 100%;
+      height: $tile-height * 2;
+      background-color: #A8733A;
+    }
+
+    .global-top-identified {
+      width: 100%;
+      height: $tile-height * 3;
+      background-color: #905028;
+    }
+  }
+}
+
+// Add a grid simulating the tiles and a
+// transparent image as an overlay TODO: REMOVE FOR PRODUCTION
+.test-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $immersion-width;
+  height: $immersion-height;
+
+  pointer-events: none;
+
+  .transparent-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $immersion-width;
+    height: $immersion-height;
+    background-image: image-url("immersion/immersion-test.jpg");
+    opacity: 0.25;
+  }
+
+  .tile {
+    box-sizing: border-box;
+    border-color: #000;
+    border-width: 1px;
+    border-style: solid;
+    background-color: none;
+  }
+
+  @for $i from 1 through ($grid-columns * $grid-rows) {
+    .tile-#{$i - 1} {
+      width: $tile-width;
+      height: $tile-height;
+      float: left;
+    }
+  }
+}
