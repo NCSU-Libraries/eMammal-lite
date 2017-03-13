@@ -14,6 +14,8 @@ $grid-rows: 7;
 .immersion-wrapper {
   display: flex;
   flex-direction: row;
+  width: $immersion-width;
+  height: $immersion-height;
 
   .panel-left {
     display: flex;
@@ -22,20 +24,133 @@ $grid-rows: 7;
     width: $tile-width * 3;
     height: $immersion-height;
     background-color: $BioIndigo;
+    overflow: hidden;
 
     .immersion-logo {
       width: 940px;
+    }
+
+    .ribbon {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      top: $tile-height - 178px;
+      right: $tile-width * 13;
+      width: 90px;
+      overflow: hidden;
+
+      .ribbon-1 {
+        height: 178px;
+        width: 100%;
+        background-color: $PyromanFlame;
+        z-index: 1;
+      }
+
+      .ribbon-2 {
+        height: 178px;
+        width: 100%;
+        background-color: #ac3517;
+        transform: rotate(-35deg);
+        transform-origin: top left;
+        z-index: 0;
+      }
+    }
+  }
+
+  // Animal image background for center panel
+  .panel-center-background {
+    position: absolute;
+    left: $tile-width * 3 - 20px;
+    width: $tile-width * 11 + 40px;
+    height: $immersion-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    pointer-events: none;
+
+    .project-background-img {
+      width: 100%;
+      filter: blur(20px) brightness(0.7);
+      z-index: -100;
     }
   }
 
   .panel-center {
     display: flex;
+    flex-direction: row;
     width: $tile-width * 11;
     height: $immersion-height;
-    background-image: image-url("landing/desktop-gallery/raccoon.jpg");
-    background-size: cover;
-    background-position: center;
-    filter: blur(2px);
+
+    .project-info-immersion {
+      display: flex;
+      flex-direction: column;
+      width: $tile-width * 4;
+      height: 100%;
+
+      .project-banner {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 100%;
+        height: $tile-height;
+
+        .project-name-immersion {
+          padding-top: 32px;
+          padding-bottom: 42px;
+          padding-left: 18px;
+          background-color: #D14905;
+          font-size: 86px;
+          font-weight: bold;
+          color: white;
+        }
+      }
+
+      .project-description {
+        width: 100%;
+        height: $tile-height;
+
+        .project-description-text {
+          font-size: 40px;
+          color: white;
+          padding-left: 90px;
+          padding-right: 90px;
+        }
+      }
+
+      .map {
+        width: 100%;
+        height: $tile-height * 3.5;
+
+        svg {
+          width: 100%;
+          height: 100%;
+
+          .map-path {
+            fill: #fff;
+            opacity: 0.75;
+          }
+
+          .map-pin {
+            visibility: hidden;
+
+            .pin-outer {
+              fill: $PyromanFlame;
+            }
+
+            .pin-inner {
+              fill: #fff;
+            }
+          }
+        }
+      }
+    }
+
+    .card-carousel {
+      display: flex;
+      width: $tile-width * 7;
+      height: $immersion-height;
+    }
   }
 
   .panel-right {
@@ -47,19 +162,19 @@ $grid-rows: 7;
     .top-scores {
       width: 100%;
       height: $tile-height * 2;
-      background-color: #BF9B45;
+      background-color: #F1A33A;
     }
 
     .global-accuracy {
       width: 100%;
       height: $tile-height * 2;
-      background-color: #A8733A;
+      background-color: #E37637;
     }
 
     .global-top-identified {
       width: 100%;
       height: $tile-height * 3;
-      background-color: #905028;
+      background-color: $PyromanFlame;
     }
   }
 }
@@ -72,6 +187,7 @@ $grid-rows: 7;
   left: 0;
   width: $immersion-width;
   height: $immersion-height;
+  z-index: 666;
 
   pointer-events: none;
 

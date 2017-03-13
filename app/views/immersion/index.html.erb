@@ -1,9 +1,31 @@
 <div class="immersion-wrapper">
   <div class="panel-left">
     <%= image_tag("immersion/immersion-logo.png", alt: "eMammal Lite logo", class: "immersion-logo") %>
+    <div class="ribbon">
+    <div class="ribbon-1"></div>
+    <div class="ribbon-2"></div>
+    </div>
+  </div>
+  <div class="panel-center-background">
+    <%= image_tag("landing/desktop-gallery/raccoon.jpg", class: "project-background-img") %>
   </div>
   <div class="panel-center">
+    <div class="project-info-immersion">
+      <div class="project-banner">
+        <span class="project-name-immersion"><%= @project.name %></span>
+      </div>
+      <div class="project-description">
+        <p class="project-description-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offici.
+        </p>
+      </div>
+      <div class="map" data-url="<%= [@project.lon, @project.lat] %>">>
+        <svg ></svg>
+      </div>
+    </div>
+    <div class="card-carousel">
 
+    </div>
   </div>
   <div class="panel-right">
     <div class="top-scores">

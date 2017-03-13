@@ -19,6 +19,7 @@
 //= require d3-selection.min.js
 //= require d3-array.min.js
 //= require d3-geo.min.js
+//= require d3-transition.v1.min.js
 //= require topojson-client.min.js
 //= require transitions.js
 //= require jquery.easing.1.3.js

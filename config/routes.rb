@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'learn_more' => 'pages#learn_more'
   get 'identify' => 'pages#identify'
   get 'how_to' => 'pages#how_to'
+  get 'immersion/new_project_data'
 
   resources :immersion
   resources :photos
