@@ -1,9 +1,12 @@
-<div class="immersion-wrapper">
+<div class="immersion-page">
   <div class="panel-left">
     <%= image_tag("immersion/immersion-logo.png", alt: "eMammal Lite logo", class: "immersion-logo") %>
+    <div class="emammal-info">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
     <div class="ribbon">
-    <div class="ribbon-1"></div>
-    <div class="ribbon-2"></div>
+      <div class="ribbon-1"></div>
+      <div class="ribbon-2"></div>
     </div>
   </div>
   <div class="panel-center-background">
@@ -19,12 +22,37 @@
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offici.
         </p>
       </div>
-      <div class="map" data-url="<%= [@project.lon, @project.lat] %>">>
+      <div class="map" data-url="<%= [@project.lon, @project.lat] %>">
         <svg ></svg>
       </div>
     </div>
-    <div class="card-carousel">
-
+    <div class="cards-and-link-container">
+      <div class="participate-link-holder">
+        <h1 class="main-heading heading-style">WANT TO PARTICIPATE?</h1>
+        <h2 class="sub-heading heading-style">go.ncsu.edu/emammallite</h2>
+      </div>
+      <div class="card-carousel">
+        <div class="cards card-1">
+          <img class="animal-img" src="http://placekitten.com/1600/960" alt="">
+          <h1 class="animal-name"></h1>
+        </div>
+        <div class="cards card-2">
+          <img class="animal-img" src="http://placekitten.com/1200/1080" alt="">
+          <h1 class="animal-name"></h1>
+        </div>
+        <div class="cards card-3">
+          <img class="animal-img" src="http://placekitten.com/1000/680" alt="">
+          <h1 class="animal-name"></h1>
+        </div>
+        <div class="cards card-4">
+          <img class="animal-img" src="http://placekitten.com/1024/768" alt="">
+          <h1 class="animal-name"></h1>
+        </div>
+        <div class="cards card-5">
+          <img class="animal-img" src="http://placekitten.com/680/200" alt="">
+          <h1 class="animal-name"></h1>
+        </div>
+      </div>
     </div>
   </div>
   <div class="panel-right">

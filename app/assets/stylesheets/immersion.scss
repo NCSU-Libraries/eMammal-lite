@@ -11,7 +11,7 @@ $tile-height: 320px;
 $grid-columns: 16;
 $grid-rows: 7;
 
-.immersion-wrapper {
+.immersion-page {
   display: flex;
   flex-direction: row;
   width: $immersion-width;
@@ -19,8 +19,8 @@ $grid-rows: 7;
 
   .panel-left {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     width: $tile-width * 3;
     height: $immersion-height;
     background-color: $BioIndigo;
@@ -28,6 +28,14 @@ $grid-rows: 7;
 
     .immersion-logo {
       width: 940px;
+    }
+
+    .emammal-info {
+      margin-top: 50px;
+      padding-left: $tile-width / 2;
+      padding-right: $tile-width / 2;
+      font-size: 46px;
+      color: white;
     }
 
     .ribbon {
@@ -146,10 +154,92 @@ $grid-rows: 7;
       }
     }
 
-    .card-carousel {
+    .cards-and-link-container {
       display: flex;
+      flex-direction: column;
       width: $tile-width * 7;
       height: $immersion-height;
+
+      .participate-link-holder {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        height: $tile-height;
+        text-align: right;
+
+        .heading-style {
+          font-weight: bold;
+          color: white;
+          letter-spacing: 8px;
+          margin-top: 0;
+          margin-bottom: 0;
+          margin-right: 54px;
+        }
+
+        .main-heading {
+          font-size: 72px;
+        }
+
+        .sub-heading {
+          font-size: 68px;
+        }
+      }
+
+      .card-carousel {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: $tile-height * 5;
+        overflow: hidden;
+
+        .cards {
+          position: absolute;
+          left: $tile-width * 14;
+          width: $tile-width * 2;
+          height: $tile-height * 4;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          background-color: $BioIndigo;
+          z-index: -1;
+          flex-shrink: 0;
+          transform: translateX(0) scale(0.25);
+
+          .animal-img {
+            width: 100%;
+            height: auto;
+          }
+
+          .animal-name {
+            font-size: 72px;
+            color: white;
+          }
+        }
+
+        @keyframes carouselAnimation {
+          0% {
+            transform: translateX(0) scale(0.25);
+          }
+          50% {
+            transform: translateX(-$tile-width * 5) scale(1);
+          }
+          100% {
+            transform: translateX(-$tile-width * 10) scale(0.25);
+          }
+        }
+
+        .animate-card {
+          animation-duration: 50s;
+          animation-name: carouselAnimation;
+          animation-iteration-count: infinite;
+          animation-direction: normal;
+          animation-timing-function: linear;
+        }
+
+
+      }
     }
   }
 

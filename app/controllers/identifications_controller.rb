@@ -72,13 +72,13 @@ end
     def get_top_five_and_user_score
       sorted_scores = User.joins(:identifications)
         .where("correct_identification = true")
-        .group("id").count.sort_by{|k,v| -v}.to_h
+        .group("id").count.sort_by{|key,value| -value}.to_h
 
       @top_five = sorted_scores.take(5).to_h
 
       if !@top_five.keys.include?(current_or_guest_user.id)
         @user_rank = sorted_scores.keys.find_index(current_or_guest_user.id)
-        @user_rank ||= User.count - 1
+        @user_rank ||= sorted_scores.length
         @user_rank += 1
       end
 
