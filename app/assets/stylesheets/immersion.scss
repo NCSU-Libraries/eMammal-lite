@@ -208,6 +208,7 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
+          animation-duration: 10s;
 
           .animal-img {
             width: 100%;
@@ -234,11 +235,11 @@ $grid-rows: 7;
           25% {
             transform: translateX(-$tile-width * 2.5) scale(0.5);
           }
-          40% {
-            transform: translateX(-$tile-width * 4) scale(1);
+          30% {
+            transform: translateX(-$tile-width * 3) scale(1);
           }
-          60% {
-            transform: translateX(-$tile-width * 6) scale(1);
+          70% {
+            transform: translateX(-$tile-width * 7) scale(1);
           }
           75% {
             transform: translateX(-$tile-width * 7.5) scale(0.5);
@@ -249,9 +250,8 @@ $grid-rows: 7;
         }
 
         .animate-card {
-          animation-duration: 20s;
           animation-name: carouselAnimation;
-          animation-iteration-count: infinite;
+          animation-iteration-count: 1;
           animation-direction: normal;
           animation-timing-function: linear;
         }

@@ -36,39 +36,56 @@ function loadImmersionJS() {
     }
     makeMap();
 
-    var imageInfo = [];
+    var photoData = [];
 
     // This interval is 1/5 of the entire animation time set in the
     // ".animate-card" css class
-    var animateCardInterval = window.setInterval(animateCard, 4000);
+    // var animateCardInterval = window.setInterval(animateCard, 4000);
     var cardNumber = 0;
-    function animateCard() {
+    var cards = $(".cards");
+    var animationLength = parseInt(cards.css("animation-duration")) * 1000;
+    cards.on("animationstart", function() {
+      console.log("START CARD");
+      window.setTimeout(animateCard, animationLength / cards.length);
+    });
+    cards.on("animationend", function() {
+      $(this).removeClass("animate-card");
+        console.log("END CARD");
 
-      if (cardNumber < imageInfo.length) {
-        if (!$(".card-" + (cardNumber % 5 + 1)).hasClass("animate-card")) {
-          $(".card-" + (cardNumber % 5 + 1)).addClass("animate-card");
+        if(!$(".cards").hasClass("animate-card")) {
+          changeProject();
+          cardNumber = 0;
         }
-        var photoInfo = imageInfo[cardNumber];
+    });
 
-        var enteredCard = d3.select(".card-" + (cardNumber % 5 + 1));
-        enteredCard.select(".animal-img")
-          .attr("src",
-            "https://s3.amazonaws.com/emammalphoto/" +
-            photoInfo.source + "_o.jpg"
-          );
-        enteredCard.select(".animal-name").text(photoInfo.animal);
-        enteredCard.select(".sci-name").text(photoInfo.sci_name);
-        // $(".card-" + (cardNumber % 5 + 1) + " animal-name").text("TEST" + cardNumber)
+    function animateCard() {
+      var card = $(".card-" + (cardNumber % 5 + 1));
+
+
+      if (cardNumber < photoData.length) {
+        if (!card.hasClass("animate-card")) {
+          card.addClass("animate-card");
+        }
+
+        addInfoToCard();
+
       } else {
-        $(".card-" + (cardNumber % 5 + 1)).removeClass("animate-card");
+        card.removeClass("animate-card");
       }
 
       cardNumber++;
+    }
 
-      if(!$(".cards").hasClass("animate-card")) {
-        changeProject();
-        cardNumber = 0;
-      }
+    function addInfoToCard() {
+      var photoInfo = photoData[cardNumber];
+      var enteredCard = d3.select(".card-" + (cardNumber % 5 + 1));
+      enteredCard.select(".animal-img")
+        .attr("src",
+          "https://s3.amazonaws.com/emammalphoto/" +
+          photoInfo.source + "_o.jpg"
+        );
+      enteredCard.select(".animal-name").text(photoInfo.animal);
+      enteredCard.select(".sci-name").text(photoInfo.sci_name);
     }
 
     function updateProjectLocationPin(projectLatLon) {
@@ -104,10 +121,10 @@ function loadImmersionJS() {
         success: function(json) {
           console.log(json);
           var projectData = json[0];
-          var photoData = json[1];
+          photoData = json[1];
           updateProjectLocationPin([projectData.lon, projectData.lat]);
           updateProjectInfo(projectData.name, projectData.description);
-          imageInfo = photoData;
+          animateCard();
         }
       });
     }
