@@ -234,11 +234,11 @@ $grid-rows: 7;
           25% {
             transform: translateX(-$tile-width * 2.5) scale(0.5);
           }
-          45% {
-            transform: translateX(-$tile-width * 4.5) scale(1);
+          40% {
+            transform: translateX(-$tile-width * 4) scale(1);
           }
-          55% {
-            transform: translateX(-$tile-width * 5.5) scale(1);
+          60% {
+            transform: translateX(-$tile-width * 6) scale(1);
           }
           75% {
             transform: translateX(-$tile-width * 7.5) scale(0.5);

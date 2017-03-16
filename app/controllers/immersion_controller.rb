@@ -10,7 +10,8 @@ class ImmersionController < ApplicationController
     @project_reduced = {
       lat: @project.lat,
       lon: @project.lon,
-      name: @project.name
+      name: @project.name,
+      description: @project.description
     }
     # Get all the associated photos from that project and necessary photo data
     @photos = @project.photos.sample(20).pluck(:id, :animal_id, :source)

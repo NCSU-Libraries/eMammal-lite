@@ -90,8 +90,9 @@ function loadImmersionJS() {
       pin.style("visibility", "visible");
     }
 
-    function updateProjectInfo(projectName) {
-      $(".project-name-immersion").text(projectName);
+    function updateProjectInfo(name, description) {
+      $(".project-name-immersion").text(name);
+      $(".project-description-text").text(description);
     }
 
     // Update data for new project on a timer
@@ -105,7 +106,7 @@ function loadImmersionJS() {
           var projectData = json[0];
           var photoData = json[1];
           updateProjectLocationPin([projectData.lon, projectData.lat]);
-          updateProjectInfo(projectData.name);
+          updateProjectInfo(projectData.name, projectData.description);
           imageInfo = photoData;
         }
       });
