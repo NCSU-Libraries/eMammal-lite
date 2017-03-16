@@ -36,23 +36,39 @@ function loadImmersionJS() {
     }
     makeMap();
 
-    var imageInfo = {};
+    var imageInfo = [];
 
     // This interval is 1/5 of the entire animation time set in the
     // ".animate-card" css class
-    var animateCardInterval = window.setInterval(animateCard, 10000);
+    var animateCardInterval = window.setInterval(animateCard, 4000);
     var cardNumber = 0;
     function animateCard() {
-      if (!$(".card-" + (cardNumber % 5 + 1)).hasClass("animate-card")) {
-        $(".card-" + (cardNumber % 5 + 1)).addClass("animate-card");
+
+      if (cardNumber < imageInfo.length) {
+        if (!$(".card-" + (cardNumber % 5 + 1)).hasClass("animate-card")) {
+          $(".card-" + (cardNumber % 5 + 1)).addClass("animate-card");
+        }
+        var photoInfo = imageInfo[cardNumber];
+
+        var enteredCard = d3.select(".card-" + (cardNumber % 5 + 1));
+        enteredCard.select(".animal-img")
+          .attr("src",
+            "https://s3.amazonaws.com/emammalphoto/" +
+            photoInfo.source + "_o.jpg"
+          );
+        enteredCard.select(".animal-name").text(photoInfo.animal);
+        enteredCard.select(".sci-name").text(photoInfo.sci_name);
+        // $(".card-" + (cardNumber % 5 + 1) + " animal-name").text("TEST" + cardNumber)
+      } else {
+        $(".card-" + (cardNumber % 5 + 1)).removeClass("animate-card");
       }
 
-      var enteredCard = d3.select(".card-" + (cardNumber % 5 + 1));
-      enteredCard.select(".animal-img").attr("src", "http://placekitten.com/1600/" + (Math.floor(Math.random() * 760) + 200 ));
-      enteredCard.select(".animal-name").text("Card " + (cardNumber + 1));
-      // $(".card-" + (cardNumber % 5 + 1) + " animal-name").text("TEST" + cardNumber)
-      console.log(enteredCard);
       cardNumber++;
+
+      if(!$(".cards").hasClass("animate-card")) {
+        changeProject();
+        cardNumber = 0;
+      }
     }
 
     function updateProjectLocationPin(projectLatLon) {
@@ -73,14 +89,13 @@ function loadImmersionJS() {
         ") scale(" + pinScale + ")");
       pin.style("visibility", "visible");
     }
-    updateProjectLocationPin($(".map").data("url"));
 
     function updateProjectInfo(projectName) {
       $(".project-name-immersion").text(projectName);
     }
 
     // Update data for new project on a timer
-    var updateInterval = window.setInterval(changeProject, 60000);
+    // var updateInterval = window.setInterval(changeProject, 60000);
     function changeProject() {
       $.ajax({
         type: "GET",
@@ -89,15 +104,15 @@ function loadImmersionJS() {
           console.log(json);
           var projectData = json[0];
           var photoData = json[1];
-          var animalData = json[2];
           updateProjectLocationPin([projectData.lon, projectData.lat]);
           updateProjectInfo(projectData.name);
-          clearInterval(animateCardInterval);
+          imageInfo = photoData;
         }
       });
     }
 
-
+    //Initial load of data
+    changeProject();
 
 
     // Grid of panels simulating Immersion screen TODO: REMOVE FOR PRODUCTION

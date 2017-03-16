@@ -201,8 +201,10 @@ $grid-rows: 7;
           height: $tile-height * 4;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: flex-start;
+          align-items: center;
           background-color: $BioIndigo;
+          color: white;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
@@ -214,24 +216,40 @@ $grid-rows: 7;
 
           .animal-name {
             font-size: 72px;
-            color: white;
+            text-align: center;
+            margin-bottom: 0;
+          }
+
+          .sci-name {
+            font-size: 63px;
+            font-style: italic;
+            text-align: center;
           }
         }
 
         @keyframes carouselAnimation {
           0% {
-            transform: translateX(0) scale(0.25);
+            transform: translateX(0) scale(0.5);
           }
-          50% {
-            transform: translateX(-$tile-width * 5) scale(1);
+          25% {
+            transform: translateX(-$tile-width * 2.5) scale(0.5);
+          }
+          45% {
+            transform: translateX(-$tile-width * 4.5) scale(1);
+          }
+          55% {
+            transform: translateX(-$tile-width * 5.5) scale(1);
+          }
+          75% {
+            transform: translateX(-$tile-width * 7.5) scale(0.5);
           }
           100% {
-            transform: translateX(-$tile-width * 10) scale(0.25);
+            transform: translateX(-$tile-width * 10) scale(0.5);
           }
         }
 
         .animate-card {
-          animation-duration: 50s;
+          animation-duration: 20s;
           animation-name: carouselAnimation;
           animation-iteration-count: infinite;
           animation-direction: normal;
