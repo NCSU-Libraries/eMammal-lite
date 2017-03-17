@@ -221,6 +221,41 @@ $grid-rows: 7;
         height: $tile-height * 5;
         overflow: hidden;
 
+
+        @keyframes carouselAnimation {
+          0% {
+            transform: translateX(-$tile-width * 0) scale(0.5);
+            z-index: -1;
+          }
+          40% {
+            transform: translateX(-$tile-width * 4.0) scale(0.5);
+            z-index: -1;
+          }
+          45% {
+            transform: translateX(-$tile-width * 4.0) scale(1);
+            z-index: 1;
+          }
+          60% {
+            transform: translateX(-$tile-width * 6.5) scale(1);
+            z-index: 1;
+          }
+          65% {
+            transform: translateX(-$tile-width * 6.5) scale(0.5);
+            z-index: -1;
+          }
+          100% {
+            transform: translateX(-$tile-width * 10) scale(0.5);
+            z-index: -1;
+          }
+        }
+
+        .animate-card {
+          animation-name: carouselAnimation;
+          animation-iteration-count: 1;
+          animation-direction: normal;
+          animation-timing-function: linear;
+        }
+
         .cards {
           position: absolute;
           left: $tile-width * 14;
@@ -235,7 +270,7 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          animation-duration: 60s;
+          animation-duration: 10s;
 
           .animal-img {
             width: 100%;
@@ -323,40 +358,6 @@ $grid-rows: 7;
               }
             }
           }
-        }
-
-        @keyframes carouselAnimation {
-          0% {
-            transform: translateX(-$tile-width * 0) scale(0.5);
-            z-index: -1;
-          }
-          40% {
-            transform: translateX(-$tile-width * 4.0) scale(0.5);
-            z-index: -1;
-          }
-          45% {
-            transform: translateX(-$tile-width * 3.75) scale(1);
-            z-index: 1;
-          }
-          50% {
-            transform: translateX(-$tile-width * 5.75) scale(1);
-            z-index: 1;
-          }
-          55% {
-            transform: translateX(-$tile-width * 5.5) scale(0.5);
-            z-index: -1;
-          }
-          100% {
-            transform: translateX(-$tile-width * 10) scale(0.5);
-            z-index: -1;
-          }
-        }
-
-        .animate-card {
-          animation-name: carouselAnimation;
-          animation-iteration-count: 1;
-          animation-direction: normal;
-          animation-timing-function: linear;
         }
       }
     }

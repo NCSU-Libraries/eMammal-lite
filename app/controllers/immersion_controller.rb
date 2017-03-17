@@ -7,6 +7,7 @@ class ImmersionController < ApplicationController
   def new_project_data
     # Get a random project and take only necessary data
     @project = Project.offset(rand(Project.count)).first
+    # @project = Project.find(5)
     @project_reduced = {
       lat: @project.lat,
       lon: @project.lon,

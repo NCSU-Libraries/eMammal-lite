@@ -45,12 +45,10 @@ function loadImmersionJS() {
     var cards = $(".cards");
     var animationLength = parseInt(cards.css("animation-duration")) * 1000;
     cards.on("animationstart", function() {
-      console.log("START CARD");
       window.setTimeout(animateCard, animationLength / cards.length);
     });
     cards.on("animationend", function() {
       $(this).removeClass("animate-card");
-        console.log("END CARD");
 
         if(!$(".cards").hasClass("animate-card")) {
           changeProject();
@@ -88,7 +86,7 @@ function loadImmersionJS() {
       enteredCard.select(".sci-name").text(photoInfo.sci_name);
 
       // Test if the photo has been attempted (i.e., at least one stat is > 0)
-      if (d3.values(photoInfo.stats).every(function(d) { return d !== 0; })) {
+      if (!d3.values(photoInfo.stats).every(function(d) { return d === 0; })) {
         makeCardGraphs();
       }
 
@@ -97,23 +95,24 @@ function loadImmersionJS() {
         // Filter the data to remove any weird values and the total and sort high to low
         var filteredData = d3.entries(data)
           .filter(function(d) { return d.key != "total" && d.value >= 0; })
-          .sort(function (a,b) { return b.value - a.value; });
+          .sort(function (a,b) { return b.key - a.key; });
 
-          console.log(data);
-        if (filteredData.length > 0) {
-          var textSizes = ["lg-header", "sm-header", "lg-text"];
+        var textSizes = ["lg-header", "sm-header", "lg-text"];
+
+        if (d3.select(".card-" + (cardNumber % 5 + 1)).select("g").empty()) {
 
           var filter = enteredCard.select(".stats").selectAll(".has-filter").append("defs")
             .append("filter")
               .attr("id", "blur")
             .append("feGaussianBlur")
               .attr("stdDeviation", 5);
-
-          makeBarChart();
-          makePieChart();
         }
 
-        function makeBarChart() {
+        makeBarChart(filteredData);
+        makePieChart(filteredData);
+
+        function makeBarChart(graphData) {
+          // console.log(filteredData, photoInfo.animal, enteredCard);
           var width = $(".bar-chart").width();
           var height = $(".bar-chart").height();
           var barHeight = 45;
@@ -124,47 +123,83 @@ function loadImmersionJS() {
             "incorrect":"Incorrect tags: ",
             "skipped": "Skips: "};
 
-          var bar = enteredCard.select(".stats").select(".bar-chart-svg").selectAll("g")
-              .data(filteredData)
-              .enter().append("g");
+          var bar = enteredCard.select(".bar-chart-svg").selectAll("g")
+              .data(graphData);
 
-            bar.append("rect")
-              .attr("class", "svg-shadow")
-            	.attr("x", 9)
-            	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 18; })
-            	.attr("width", function(d) {
-                return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
-              })
-            	.attr("height", barHeight)
-              .attr("filter", "url(#blur)");
+          var barEnter = bar.enter().append("g");
 
-            bar.append("rect")
-            	.attr("x", 0)
-            	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 9; })
-            	.attr("width", function(d) {
-                return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
-              })
-            	.attr("height", barHeight)
-              .attr("class", function(d) { return "color-immersion-" + d.key; });
+          barEnter.append("rect")
+            .attr("class", "svg-shadow")
+          	.attr("x", 9)
+          	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 18; })
+          	.attr("width", function(d) {
+              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+            })
+          	.attr("height", barHeight)
+            .attr("filter", "url(#blur)");
 
-            // bar.append("text")
-            // 	.text(function(d) { return d.key; })
-            // 	.attr("class", "xs-text bar-title")
-            // 	.attr("x", 0)
-            // 	.attr("y", function(d, i) {
-            //     return i * barHeight * 4 + topPadding - 2;
-            //   });
+          bar.select(".svg-shadow")
+            .attr("width", function(d) {
+              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+            });
 
-            bar.append("text")
-            	.text(function(d) { return text[d.key] + d.value; })
-            	.attr("class", "bar-label")
-            	.attr("x", 0)
-            	.attr("y", function(d, i) {
-                return i * barHeight * 3 + topPadding;
-              });
+          barEnter.append("rect")
+          	.attr("x", 0)
+          	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 9; })
+          	.attr("width", function(d) {
+              console.log(d, photoInfo.animal);
+              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+            })
+          	.attr("height", barHeight)
+            .attr("class", function(d) { return "total-bars color-immersion-" + d.key; });
+
+          bar.select(".total-bars")
+            .attr("width", function(d) {
+              console.log(d, photoInfo.animal);
+              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+            });
+
+          barEnter.append("text")
+          	.text(function(d) { return text[d.key] + d.value; })
+          	.attr("class", "bar-label")
+          	.attr("x", 0)
+          	.attr("y", function(d, i) {
+              return i * barHeight * 3 + topPadding;
+            });
+
+          bar.select(".bar-label")
+          	.text(function(d) { return text[d.key] + d.value; });
         }
 
-        function makePieChart() {
+        // function updateBarChart() {
+        //   console.log("UPDATING BAR CHART", filteredData, photoInfo.animal);
+        //   var width = $(".bar-chart").width();
+        //   var height = $(".bar-chart").height();
+        //   var horPadding = 24;
+        //   var text = {
+        //     "correct": "Correct tags: ",
+        //     "incorrect":"Incorrect tags: ",
+        //     "skipped": "Skips: "};
+        //
+        //   var bar = enteredCard.select(".bar-chart-svg").selectAll("g")
+        //       .data(filteredData);
+        //
+        //   bar.selectAll(".svg-shadow")
+        //     .attr("width", function(d) {
+        //       console.log("updated svg-shadow");
+        //       return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
+        //     });
+        //
+        //   bar.selectAll(".total-bars")
+        //     .attr("width", function(d) {
+        //       return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
+        //     });
+        //
+        //   bar.selectAll(".bar-label")
+        //     .text(function(d) { return text[d.key] + d.value; });
+        // }
+
+        function makePieChart(graphData) {
           var width = $(".pie-chart-svg").width();
           var height = $(".pie-chart-svg").height();
 
@@ -190,7 +225,7 @@ function loadImmersionJS() {
 
           // Add data to groups that will hold the pie pieces and text
           var piePiece = pieChart.selectAll("g")
-              .data(piePieceArcs(filteredData))
+              .data(piePieceArcs(graphData))
               .enter().append("g")
               .attr("class", "pie-piece");
 
@@ -249,7 +284,6 @@ function loadImmersionJS() {
         type: "GET",
         url: "/immersion/new_project_data",
         success: function(json) {
-          console.log(json);
           var projectData = json[0];
           photoData = json[1];
           updateProjectLocationPin([projectData.lon, projectData.lat]);
