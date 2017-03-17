@@ -15,7 +15,7 @@
   <div class="panel-center">
     <div class="project-info-immersion">
       <div class="project-banner">
-        <span class="project-name-immersion"><%= @project.name %></span>
+        <h1 class="project-name-immersion"><%= @project.name %></h1>
       </div>
       <div class="project-description">
         <p class="project-description-text">
@@ -33,29 +33,19 @@
       </div>
       <div class="card-carousel">
         <div class="cards card-1">
-          <img class="animal-img" src="/" alt="">
-          <h1 class="animal-name"></h1>
-          <h1 class="sci-name"></h1>
+          <%= render 'card' %>
         </div>
         <div class="cards card-2">
-          <img class="animal-img" src="/" alt="">
-          <h1 class="animal-name"></h1>
-          <h1 class="sci-name"></h1>
+          <%= render 'card' %>
         </div>
         <div class="cards card-3">
-          <img class="animal-img" src="/" alt="">
-          <h1 class="animal-name"></h1>
-          <h1 class="sci-name"></h1>
+          <%= render 'card' %>
         </div>
         <div class="cards card-4">
-          <img class="animal-img" src="/" alt="">
-          <h1 class="animal-name"></h1>
-          <h1 class="sci-name"></h1>
+          <%= render 'card' %>
         </div>
         <div class="cards card-5">
-          <img class="animal-img" src="/" alt="">
-          <h1 class="animal-name"></h1>
-          <h1 class="sci-name"></h1>
+          <%= render 'card' %>
         </div>
       </div>
     </div>
@@ -73,4 +63,4 @@
   </div>
 </div>
 <!-- Testing overlay TODO: REMOVE FOR PRODUCTION -->
-<!-- <div class="test-wrapper"></div> -->
+<div class="test-wrapper"></div>

@@ -11,11 +11,30 @@ $tile-height: 320px;
 $grid-columns: 16;
 $grid-rows: 7;
 
+/* Colors for graphics*/
+.color-immersion-correct {
+  fill: lighten($BioIndigo, 20%);
+}
+
+.color-immersion-incorrect {
+  fill: $PyromanFlame;
+}
+
+.color-immersion-skipped {
+  fill: #909090;
+}
+
+.svg-shadow {
+  fill: darken($BioIndigo, 10%);
+}
+
 .immersion-page {
   display: flex;
   flex-direction: row;
   width: $immersion-width;
   height: $immersion-height;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   .panel-left {
     display: flex;
@@ -107,10 +126,18 @@ $grid-rows: 7;
           padding-top: 32px;
           padding-bottom: 42px;
           padding-left: 18px;
+          padding-right: 42px;
+          margin-bottom: 0px;
+          margin-top: 0px;
           background-color: #D14905;
           font-size: 86px;
           font-weight: bold;
           color: white;
+          word-wrap: normal;
+          white-space: nowrap;
+          overflow: visible;
+          display: table;
+          min-width: calc(100% - 42px);
         }
       }
 
@@ -197,8 +224,8 @@ $grid-rows: 7;
         .cards {
           position: absolute;
           left: $tile-width * 14;
-          width: $tile-width * 2;
-          height: $tile-height * 4;
+          width: $tile-width * 2.5;
+          height: $tile-height * 5;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -208,7 +235,7 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          animation-duration: 10s;
+          animation-duration: 40s;
 
           .animal-img {
             width: 100%;
@@ -218,6 +245,7 @@ $grid-rows: 7;
           .animal-name {
             font-size: 72px;
             text-align: center;
+            margin-top: 45px;
             margin-bottom: 0;
           }
 
@@ -225,27 +253,102 @@ $grid-rows: 7;
             font-size: 63px;
             font-style: italic;
             text-align: center;
+            margin-top: 18px;
+            margin-bottom: 0;
+          }
+
+          .stats {
+            width: 100%;
+            height: 450px;
+            margin-top: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .bar-chart {
+              width: 45%;
+              height: 100%;
+              overflow: visible;
+
+              .bar-chart-header {
+                margin-left: 8px;
+                margin-top: 0;
+                margin-bottom: 8px;
+                color: $PyromanFlame;
+              }
+
+              .bar-chart-svg {
+                width: 100%;
+                height: 100%;
+              }
+
+              .bar-label {
+                font-size: 45px;
+                fill: white;
+                text-anchor: start;
+                text-transform: capitalize;
+              }
+
+              .bar-title {
+                font-size: 54px;
+                fill: white;
+                text-anchor: start;
+                text-transform: capitalize;
+              }
+            }
+
+            .pie-chart {
+                height: 100%;
+                width: 45%;
+
+              .pie-chart-header {
+                margin-left: 8px;
+                margin-right: 8px;
+                margin-top: 0;
+                color: $PyromanFlame;
+              }
+
+              .pie-chart-svg {
+                width: 100%;
+                height: 90%;
+              }
+
+              .pie-piece {
+                stroke-width: 9px;
+              }
+
+              .pie-piece-label {
+                fill: white;
+                text-anchor: middle;
+              }
+            }
           }
         }
 
         @keyframes carouselAnimation {
           0% {
-            transform: translateX(0) scale(0.5);
+            transform: translateX(-$tile-width * 0) scale(0.5);
+            z-index: -1;
           }
-          25% {
-            transform: translateX(-$tile-width * 2.5) scale(0.5);
+          40% {
+            transform: translateX(-$tile-width * 4.0) scale(0.5);
+            z-index: -1;
           }
-          30% {
-            transform: translateX(-$tile-width * 3) scale(1);
+          45% {
+            transform: translateX(-$tile-width * 3.75) scale(1);
+            z-index: 1;
           }
-          70% {
-            transform: translateX(-$tile-width * 7) scale(1);
+          50% {
+            transform: translateX(-$tile-width * 5.75) scale(1);
+            z-index: 1;
           }
-          75% {
-            transform: translateX(-$tile-width * 7.5) scale(0.5);
+          55% {
+            transform: translateX(-$tile-width * 5.5) scale(0.5);
+            z-index: -1;
           }
           100% {
             transform: translateX(-$tile-width * 10) scale(0.5);
+            z-index: -1;
           }
         }
 

@@ -86,6 +86,136 @@ function loadImmersionJS() {
         );
       enteredCard.select(".animal-name").text(photoInfo.animal);
       enteredCard.select(".sci-name").text(photoInfo.sci_name);
+
+      // Test if the photo has been attempted (i.e., at least one stat is > 0)
+      if (d3.values(photoInfo.stats).every(function(d) { return d !== 0; })) {
+        makeCardGraphs();
+      }
+
+      function makeCardGraphs() {
+        var data = photoInfo.stats;
+        // Filter the data to remove any weird values and the total and sort high to low
+        var filteredData = d3.entries(data)
+          .filter(function(d) { return d.key != "total" && d.value >= 0; })
+          .sort(function (a,b) { return b.value - a.value; });
+
+          console.log(data);
+        if (filteredData.length > 0) {
+          var textSizes = ["lg-header", "sm-header", "lg-text"];
+
+          var filter = enteredCard.select(".stats").selectAll(".has-filter").append("defs")
+            .append("filter")
+              .attr("id", "blur")
+            .append("feGaussianBlur")
+              .attr("stdDeviation", 5);
+
+          makeBarChart();
+          makePieChart();
+        }
+
+        function makeBarChart() {
+          var width = $(".bar-chart").width();
+          var height = $(".bar-chart").height();
+          var barHeight = 45;
+          var topPadding = barHeight;
+          var horPadding = 24;
+          var text = {
+            "correct": "Correct tags: ",
+            "incorrect":"Incorrect tags: ",
+            "skipped": "Skips: "};
+
+          var bar = enteredCard.select(".stats").select(".bar-chart-svg").selectAll("g")
+              .data(filteredData)
+              .enter().append("g");
+
+            bar.append("rect")
+              .attr("class", "svg-shadow")
+            	.attr("x", 9)
+            	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 18; })
+            	.attr("width", function(d) {
+                return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
+              })
+            	.attr("height", barHeight)
+              .attr("filter", "url(#blur)");
+
+            bar.append("rect")
+            	.attr("x", 0)
+            	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 9; })
+            	.attr("width", function(d) {
+                return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
+              })
+            	.attr("height", barHeight)
+              .attr("class", function(d) { return "color-immersion-" + d.key; });
+
+            // bar.append("text")
+            // 	.text(function(d) { return d.key; })
+            // 	.attr("class", "xs-text bar-title")
+            // 	.attr("x", 0)
+            // 	.attr("y", function(d, i) {
+            //     return i * barHeight * 4 + topPadding - 2;
+            //   });
+
+            bar.append("text")
+            	.text(function(d) { return text[d.key] + d.value; })
+            	.attr("class", "bar-label")
+            	.attr("x", 0)
+            	.attr("y", function(d, i) {
+                return i * barHeight * 3 + topPadding;
+              });
+        }
+
+        function makePieChart() {
+          var width = $(".pie-chart-svg").width();
+          var height = $(".pie-chart-svg").height();
+
+          // Create the initial arc parameters
+          var arc = d3.arc()
+           .innerRadius(0)
+           .outerRadius(height / 2 - 18);
+
+          // Use d3.pie to set up reading of data to calculate inner/outer arc radius
+          var piePieceArcs = d3.pie().value(function(d) { return d.value; });
+
+          // Create group and move to center of div
+          var pieChart = enteredCard.select(".stats").select(".pie-chart-svg")
+            .append("g")
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+          pieChart.append("circle")
+            .attr("class", "svg-shadow")
+            .attr("cx", 9)
+            .attr("cy", 9)
+            .attr("r", height / 2 - 18)
+            .attr("filter", "url(#blur)");
+
+          // Add data to groups that will hold the pie pieces and text
+          var piePiece = pieChart.selectAll("g")
+              .data(piePieceArcs(filteredData))
+              .enter().append("g")
+              .attr("class", "pie-piece");
+
+          // Create paths of the pieces using the arc parameters
+          piePiece.append("path")
+            .attr("class", function(d) { return "pie-piece color-immersion-" + d.data.key; })
+            .attr("d", arc);
+
+          // Add text to centroid of each pie piece
+          piePiece.append("text")
+          	.text(function(d) { return d.data.value > 0 ?
+                Math.floor(d.data.value / data.total * 100) + "%" : "";
+            })
+          	.attr("class", function(d, i) {
+              return textSizes[i] + " pie-piece-label"; })
+          	.attr("x", function(d) { return arc.centroid(d)[0]; })
+          	.attr("y", function(d) { return arc.centroid(d)[1]; });
+
+          d3.selectAll(".pie-table")
+            .data(filteredData)
+            .text(function(d) {
+              return Math.floor(d.value / data.total * 100) + "% " + d.key;
+            });
+        }
+      }
     }
 
     function updateProjectLocationPin(projectLatLon) {

@@ -14,7 +14,7 @@ class ImmersionController < ApplicationController
       description: @project.description
     }
     # Get all the associated photos from that project and necessary photo data
-    @photos = @project.photos.sample(20).pluck(:id, :animal_id, :source)
+    @photos = @project.photos.sample(10).pluck(:id, :animal_id, :source)
       .map{ |v| {
         id: v[0],
         animal: Animal.find(v[1]).name,
