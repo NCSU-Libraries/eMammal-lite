@@ -235,7 +235,7 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          animation-duration: 40s;
+          animation-duration: 60s;
 
           .animal-img {
             width: 100%;
@@ -358,8 +358,6 @@ $grid-rows: 7;
           animation-direction: normal;
           animation-timing-function: linear;
         }
-
-
       }
     }
   }
