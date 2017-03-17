@@ -2,7 +2,12 @@
   <div class="panel-left">
     <%= image_tag("immersion/immersion-logo.png", alt: "eMammal Lite logo", class: "immersion-logo") %>
     <div class="emammal-info">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <p>
+        eMammal Lite contains over 4,000 camera trap images from 30 research projects around the world that are a part of the larger eMammal camera trapping project. Each of these photos helps scientists and conservationists document wildlife that may otherwise go unseen.
+      </p>
+      <p>
+        While taking a photo with a camera trap is easily done with modern photography hardware, it is up to a human to provide the actual identification of what tripped the camera. It takes a lot of time and effort for researchers to analyze and identify each photo from a project. eMammal Lite asks you to help out by identifying, or tagging, animals captured in camera trap photos. Test your wildlife knowledge and explore the amazing animals you might find in your backyard or on the other side of the world!
+      </p>
     </div>
     <div class="ribbon">
       <div class="ribbon-1"></div>
@@ -15,15 +20,13 @@
   <div class="panel-center">
     <div class="project-info-immersion">
       <div class="project-banner">
-        <h1 class="project-name-immersion"><%= @project.name %></h1>
+        <h1 class="project-name-immersion"></h1>
       </div>
       <div class="project-description">
-        <p class="project-description-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offici.
-        </p>
+        <p class="project-description-text"></p>
       </div>
       <div class="map" data-url="<%= [@project.lon, @project.lat] %>">
-        <svg ></svg>
+        <svg></svg>
       </div>
     </div>
     <div class="cards-and-link-container">
