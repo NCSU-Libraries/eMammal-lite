@@ -97,15 +97,16 @@ function loadImmersionJS() {
           .filter(function(d) { return d.key != "total" && d.value >= 0; })
           .sort(function (a,b) { return b.key - a.key; });
 
-        var textSizes = ["lg-header", "sm-header", "lg-text"];
+        var textSizes = ["54px", "45px", "36px"];
 
         if (d3.select(".card-" + (cardNumber % 5 + 1)).select("g").empty()) {
 
-          var filter = enteredCard.select(".stats").selectAll(".has-filter").append("defs")
-            .append("filter")
-              .attr("id", "blur")
-            .append("feGaussianBlur")
-              .attr("stdDeviation", 5);
+          // var filter = enteredCard.select(".stats")
+          //   .selectAll(".has-filter").append("defs")
+          //     .append("filter")
+          //       .attr("id", "blur")
+          //     .append("feGaussianBlur")
+          //       .attr("stdDeviation", 5);
         }
 
         makeBarChart(filteredData);
@@ -122,6 +123,7 @@ function loadImmersionJS() {
             "correct": "Correct tags: ",
             "incorrect":"Incorrect tags: ",
             "skipped": "Skips: "};
+          var maxValue = d3.max(graphData.map(function(d) { return d.value; }));
 
           var bar = enteredCard.select(".bar-chart-svg").selectAll("g")
               .data(graphData);
@@ -131,32 +133,30 @@ function loadImmersionJS() {
           barEnter.append("rect")
             .attr("class", "svg-shadow")
           	.attr("x", 9)
-          	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 18; })
+          	.attr("y", function(d, i) { return i * barHeight * 2.5 + topPadding + 63; })
           	.attr("width", function(d) {
-              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+              return d.value / maxValue * (width - horPadding * 2) + 1;
             })
           	.attr("height", barHeight)
             .attr("filter", "url(#blur)");
 
           bar.select(".svg-shadow")
             .attr("width", function(d) {
-              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+              return d.value / maxValue * (width - horPadding * 2) + 1;
             });
 
           barEnter.append("rect")
           	.attr("x", 0)
-          	.attr("y", function(d, i) { return i * barHeight * 3 + topPadding + 9; })
+          	.attr("y", function(d, i) { return i * barHeight * 2.5 + topPadding + 54; })
           	.attr("width", function(d) {
-              console.log(d, photoInfo.animal);
-              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+              return d.value / maxValue * (width - horPadding * 2) + 1;
             })
           	.attr("height", barHeight)
             .attr("class", function(d) { return "total-bars color-immersion-" + d.key; });
 
           bar.select(".total-bars")
             .attr("width", function(d) {
-              console.log(d, photoInfo.animal);
-              return d.value / graphData[0].value * (width - horPadding * 2) + 1;
+              return d.value / maxValue * (width - horPadding * 2) + 1;
             });
 
           barEnter.append("text")
@@ -164,40 +164,12 @@ function loadImmersionJS() {
           	.attr("class", "bar-label")
           	.attr("x", 0)
           	.attr("y", function(d, i) {
-              return i * barHeight * 3 + topPadding;
+              return i * barHeight * 2.5 + topPadding + 45;
             });
 
           bar.select(".bar-label")
           	.text(function(d) { return text[d.key] + d.value; });
         }
-
-        // function updateBarChart() {
-        //   console.log("UPDATING BAR CHART", filteredData, photoInfo.animal);
-        //   var width = $(".bar-chart").width();
-        //   var height = $(".bar-chart").height();
-        //   var horPadding = 24;
-        //   var text = {
-        //     "correct": "Correct tags: ",
-        //     "incorrect":"Incorrect tags: ",
-        //     "skipped": "Skips: "};
-        //
-        //   var bar = enteredCard.select(".bar-chart-svg").selectAll("g")
-        //       .data(filteredData);
-        //
-        //   bar.selectAll(".svg-shadow")
-        //     .attr("width", function(d) {
-        //       console.log("updated svg-shadow");
-        //       return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
-        //     });
-        //
-        //   bar.selectAll(".total-bars")
-        //     .attr("width", function(d) {
-        //       return d.value / filteredData[0].value * (width - horPadding * 2) + 1;
-        //     });
-        //
-        //   bar.selectAll(".bar-label")
-        //     .text(function(d) { return text[d.key] + d.value; });
-        // }
 
         function makePieChart(graphData) {
           var width = $(".pie-chart-svg").width();
@@ -211,38 +183,56 @@ function loadImmersionJS() {
           // Use d3.pie to set up reading of data to calculate inner/outer arc radius
           var piePieceArcs = d3.pie().value(function(d) { return d.value; });
 
+          var pieChart;
+          if (enteredCard.select(".pie-chart-svg").select("g").empty()) {
           // Create group and move to center of div
-          var pieChart = enteredCard.select(".stats").select(".pie-chart-svg")
+          pieChart = enteredCard.select(".stats").select(".pie-chart-svg")
             .append("g")
+            .attr("class", "pie-group")
             .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-          pieChart.append("circle")
-            .attr("class", "svg-shadow")
-            .attr("cx", 9)
-            .attr("cy", 9)
-            .attr("r", height / 2 - 18)
-            .attr("filter", "url(#blur)");
+            pieChart.append("circle")
+              .attr("class", "svg-shadow")
+              .attr("cx", 9)
+              .attr("cy", 9)
+              .attr("r", height / 2 - 18)
+              .attr("filter", "url(#blur)");
+          } else pieChart = enteredCard.select(".pie-group");
 
           // Add data to groups that will hold the pie pieces and text
           var piePiece = pieChart.selectAll("g")
-              .data(piePieceArcs(graphData))
-              .enter().append("g")
+              .data(piePieceArcs(graphData));
+
+          var piePieceEnter = piePiece.enter().append("g")
               .attr("class", "pie-piece");
 
           // Create paths of the pieces using the arc parameters
-          piePiece.append("path")
-            .attr("class", function(d) { return "pie-piece color-immersion-" + d.data.key; })
+          piePieceEnter.append("path")
+            .attr("class", function(d) {
+              return "pie-piece color-immersion-" + d.data.key;
+            })
             .attr("d", arc);
 
+          piePiece.select(".pie-piece").attr("d", arc);
+
           // Add text to centroid of each pie piece
-          piePiece.append("text")
-          	.text(function(d) { return d.data.value > 0 ?
+          piePieceEnter.append("text")
+            .attr("class", "pie-piece-label")
+            .text(function(d) { return d.data.value > 0 ?
                 Math.floor(d.data.value / data.total * 100) + "%" : "";
             })
-          	.attr("class", function(d, i) {
-              return textSizes[i] + " pie-piece-label"; })
-          	.attr("x", function(d) { return arc.centroid(d)[0]; })
-          	.attr("y", function(d) { return arc.centroid(d)[1]; });
+            .attr("x", function(d) { return arc.centroid(d)[0]; })
+            .attr("y", function(d) { return arc.centroid(d)[1]; })
+            .style("font-size", function(d, i) { return textSizes[i]; });
+
+
+          piePiece.select(".pie-piece-label")
+            .text(function(d) { return d.data.value > 0 ?
+                Math.floor(d.data.value / data.total * 100) + "%" : "";
+            })
+            .attr("x", function(d) { return arc.centroid(d)[0]; })
+            .attr("y", function(d) { return arc.centroid(d)[1]; })
+            .style("font-size", function(d, i) { return textSizes[i]; });
 
           d3.selectAll(".pie-table")
             .data(filteredData)

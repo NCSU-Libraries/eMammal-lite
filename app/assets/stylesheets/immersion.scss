@@ -13,15 +13,15 @@ $grid-rows: 7;
 
 /* Colors for graphics*/
 .color-immersion-correct {
-  fill: lighten($BioIndigo, 20%);
+  fill: lighten($BioIndigo, 10%);
 }
 
 .color-immersion-incorrect {
-  fill: $PyromanFlame;
+  fill: lighten($BioIndigo, 30%);
 }
 
 .color-immersion-skipped {
-  fill: #909090;
+  fill: darken($BioIndigo, 15%);
 }
 
 .svg-shadow {
@@ -227,12 +227,12 @@ $grid-rows: 7;
             transform: translateX(-$tile-width * 0) scale(0.5);
             z-index: -1;
           }
-          40% {
-            transform: translateX(-$tile-width * 4.0) scale(0.5);
+          35% {
+            transform: translateX(-$tile-width * 3.5) scale(0.5);
             z-index: -1;
           }
-          45% {
-            transform: translateX(-$tile-width * 4.0) scale(1);
+          40% {
+            transform: translateX(-$tile-width * 3.5) scale(1);
             z-index: 1;
           }
           60% {
@@ -280,7 +280,7 @@ $grid-rows: 7;
           .animal-name {
             font-size: 72px;
             text-align: center;
-            margin-top: 45px;
+            margin-top: 27px;
             margin-bottom: 0;
           }
 
@@ -294,67 +294,77 @@ $grid-rows: 7;
 
           .stats {
             width: 100%;
-            height: 450px;
-            margin-top: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
 
-            .bar-chart {
-              width: 45%;
-              height: 100%;
-              overflow: visible;
-
-              .bar-chart-header {
-                margin-left: 8px;
-                margin-top: 0;
-                margin-bottom: 8px;
-                color: $PyromanFlame;
-              }
-
-              .bar-chart-svg {
-                width: 100%;
-                height: 100%;
-              }
-
-              .bar-label {
-                font-size: 45px;
-                fill: white;
-                text-anchor: start;
-                text-transform: capitalize;
-              }
-
-              .bar-title {
-                font-size: 54px;
-                fill: white;
-                text-anchor: start;
-                text-transform: capitalize;
-              }
+            .stats-title {
+              font-size: 63px;
+              margin-top: 63px;
+              margin-left: 5%;
+              margin-bottom: 0;
             }
 
-            .pie-chart {
-                height: 100%;
+            .charts {
+              width: 100%;
+              height: 450px;
+              margin-top: auto;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+
+              .bar-chart {
                 width: 45%;
+                height: 100%;
 
-              .pie-chart-header {
-                margin-left: 8px;
-                margin-right: 8px;
-                margin-top: 0;
-                color: $PyromanFlame;
+                .bar-chart-header {
+                  margin-left: 8px;
+                  margin-top: 0;
+                  margin-bottom: 8px;
+                  color: $PyromanFlame;
+                }
+
+                .bar-chart-svg {
+                  width: 100%;
+                  height: 100%;
+                }
+
+                .bar-label {
+                  font-size: 45px;
+                  fill: white;
+                  text-anchor: start;
+                  text-transform: capitalize;
+                }
+
+                .bar-title {
+                  font-size: 54px;
+                  fill: white;
+                  text-anchor: start;
+                  text-transform: capitalize;
+                }
               }
 
-              .pie-chart-svg {
-                width: 100%;
-                height: 90%;
-              }
+              .pie-chart {
+                  height: 100%;
+                  width: 45%;
 
-              .pie-piece {
-                stroke-width: 9px;
-              }
+                .pie-chart-header {
+                  margin-left: 8px;
+                  margin-right: 8px;
+                  margin-top: 0;
+                  color: $PyromanFlame;
+                }
 
-              .pie-piece-label {
-                fill: white;
-                text-anchor: middle;
+                .pie-chart-svg {
+                  width: 100%;
+                  height: 90%;
+                }
+
+                .pie-piece {
+                  stroke-width: 9px;
+                }
+
+                .pie-piece-label {
+                  fill: white;
+                  text-anchor: middle;
+                }
               }
             }
           }
