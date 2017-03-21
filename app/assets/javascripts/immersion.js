@@ -50,10 +50,10 @@ function loadImmersionJS() {
     cards.on("animationend", function() {
       $(this).removeClass("animate-card");
 
-        if(!$(".cards").hasClass("animate-card")) {
-          changeProject();
-          cardNumber = 0;
-        }
+      if(!$(".cards").hasClass("animate-card")) {
+        changeProject();
+        cardNumber = 0;
+      }
     });
 
     function animateCard() {
@@ -267,6 +267,21 @@ function loadImmersionJS() {
       $(".project-description-text").text(description);
     }
 
+    function updateGlobalStats(globalStats) {
+      var accurace = globalStats[1];
+      var topAnimals = globalStats[2];
+
+      function updateTopFive() {
+        var topScores = d3.select(".top-scores-list")
+          .selectAll("div").data(globalStats[0]);
+
+        topScores.enter().append("div")
+          .text(function(d) { return d.name; });
+      }
+
+      updateTopFive();
+    }
+
     // Update data for new project on a timer
     // var updateInterval = window.setInterval(changeProject, 60000);
     function changeProject() {
@@ -283,9 +298,22 @@ function loadImmersionJS() {
       });
     }
 
+    // Update data for global stats on a timer
+    // var updateInterval = window.setInterval(getCurrentGlobalStats, 10000);
+    function getCurrentGlobalStats() {
+      $.ajax({
+        type: "GET",
+        url: "/immersion/current_global_stats",
+        success: function(json) {
+          console.log(json);
+          updateGlobalStats(json);
+        }
+      });
+    }
+
     //Initial load of data
     changeProject();
-
+    getCurrentGlobalStats();
 
     // Grid of panels simulating Immersion screen TODO: REMOVE FOR PRODUCTION
     function testingBackground() {

@@ -378,11 +378,22 @@ $grid-rows: 7;
     flex-direction: column;
     width: $tile-width * 2;
     height: $immersion-height;
+    color: white;
+
+    .headers {
+      font-size: 72px;
+      text-align: center;
+    }
 
     .top-scores {
       width: 100%;
       height: $tile-height * 2;
       background-color: #F1A33A;
+
+      .top-scores-list {
+        font-size: 45px;
+        padding-left: $tile-width / 4;
+      }
     }
 
     .global-accuracy {

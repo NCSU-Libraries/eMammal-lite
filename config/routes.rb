@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'identify' => 'pages#identify'
   get 'how_to' => 'pages#how_to'
   get 'immersion/new_project_data'
+  get 'immersion/current_global_stats'
 
   resources :immersion
   resources :photos
