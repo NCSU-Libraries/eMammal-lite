@@ -226,25 +226,39 @@ $grid-rows: 7;
           0% {
             transform: translateX(-$tile-width * 0) scale(0.5);
             z-index: -1;
+            opacity: 0;
           }
-          35% {
-            transform: translateX(-$tile-width * 3.5) scale(0.5);
+          20% {
+            transform: translateX(-$tile-width * .2 * 9) scale(0.5);
             z-index: -1;
+            opacity: 1;
           }
           40% {
-            transform: translateX(-$tile-width * 3.5) scale(1);
+            transform: translateX(-$tile-width * .40 * 9) scale(0.5);
+            z-index: -1;
+            opacity: 1;
+          }
+          45% {
+            transform: translateX(-$tile-width * .40 * 9) scale(1);
             z-index: 1;
           }
           60% {
-            transform: translateX(-$tile-width * 6.5) scale(1);
+            transform: translateX(-$tile-width * .65 * 9) scale(1);
             z-index: 1;
           }
           65% {
-            transform: translateX(-$tile-width * 6.5) scale(0.5);
+            transform: translateX(-$tile-width * .65 * 9) scale(0.5);
             z-index: -1;
+            opacity: 1;
+          }
+          80% {
+            transform: translateX(-$tile-width * .8 * 9) scale(0.5);
+            z-index: -1;
+            opacity: 1;
           }
           100% {
-            transform: translateX(-$tile-width * 10) scale(0.5);
+            transform: translateX(-$tile-width * 9) scale(0.5);
+            opacity: 0;
             z-index: -1;
           }
         }
@@ -270,7 +284,7 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          animation-duration: 40s;
+          animation-duration: 60s;
 
           .animal-img {
             width: 100%;
@@ -294,18 +308,20 @@ $grid-rows: 7;
 
           .stats {
             width: 100%;
+            margin-top: auto;
+            margin-bottom: 27px;
 
             .stats-title {
               font-size: 63px;
-              margin-top: 63px;
+              margin-top: 27px;
               margin-left: 5%;
               margin-bottom: 0;
             }
 
             .charts {
               width: 100%;
-              height: 450px;
-              margin-top: auto;
+              height: 400px;
+              // margin-top: auto;
               display: flex;
               flex-direction: row;
               justify-content: center;
@@ -354,7 +370,7 @@ $grid-rows: 7;
 
                 .pie-chart-svg {
                   width: 100%;
-                  height: 90%;
+                  height: 100%;
                 }
 
                 .pie-piece {
