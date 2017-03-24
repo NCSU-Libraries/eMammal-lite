@@ -268,18 +268,205 @@ function loadImmersionJS() {
     }
 
     function updateGlobalStats(globalStats) {
-      var accurace = globalStats[1];
-      var topAnimals = globalStats[2];
 
-      function updateTopFive() {
-        var topScores = d3.select(".top-scores-list")
-          .selectAll("div").data(globalStats[0]);
+      function updateTopFive(topFiveData) {
+        var topScores = d3.selectAll(".top-score").data(topFiveData);
 
-        topScores.enter().append("div")
-          .text(function(d) { return d.name; });
+        if (d3.select(".top-score").select(".score").empty()) {
+          topScores.append("h2")
+            .text(function(d, i) { return d.score; })
+            .attr("class", "score");
+
+          topScores.append("h2")
+            .text(function(d, i) { return d.name; })
+            .attr("class", "name");
+
+          topScores.append("div")
+            .attr("class", function(d) {
+              return d.icon !== null ? "icon icon-" + d.icon : "icon icon-default";
+            });
+        } else {
+          topScores.select(".score")
+            .text(function(d, i) { return d.score; })
+            .attr("class", "score");
+
+          topScores.select(".name")
+            .text(function(d, i) { return d.name; })
+            .attr("class", "name");
+
+          topScores.select(".icon")
+            .attr("class", function(d) {
+              return d.icon !== null ? "icon icon-" + d.icon : "icon icon-default";
+            });
+        }
       }
 
-      updateTopFive();
+      function updateAccuracyDonut(accuracyData) {
+        var width = $(".accuracy-svg").width();
+        var height = $(".accuracy-svg").height();
+
+        // Create the initial arc parameters
+        var arc = d3.arc()
+         .innerRadius(height / 2 - 27)
+         .outerRadius(height / 2 - 9);
+
+        // Use d3.pie to set up reading of data to calculate inner/outer arc radius
+        var piePieceArcs = d3.pie().value(function(d) { return d; });
+
+        var donutChart;
+        // Create group and move to center of div
+        if (d3.select(".accuracy-svg").select("g").empty()) {
+         donutChart = d3.select(".accuracy-svg")
+          .append("g")
+          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+          .attr("class", "donut-chart");
+        } else donutChart = d3.select(".donut-chart");
+        // If user has not id'd any photos put in default data
+        var cleanData = accuracyData.attempts === 0 ?
+          [1, 0] :
+          [
+            (accuracyData.attempts - accuracyData.correct),
+            accuracyData.correct
+          ];
+
+        // Add data to groups that will hold the donut pieces and text
+        var donutPiece = donutChart.selectAll("g")
+            .data(piePieceArcs(cleanData));
+
+        var donutPieceEnter = donutPiece.enter().append("g")
+            .attr("class", "donut-piece");
+
+        // Create paths of the pieces using the arc parameters
+        donutPieceEnter.append("path")
+          .attr("class", function(d, i) { return "stat stat-color-" + i; })
+          .attr("d", arc);
+
+        donutPiece.select(".stat").attr("d", arc);
+
+        var accuracy = Math.ceil(accuracyData.correct / accuracyData.attempts * 100) || 0;
+        donutPieceEnter.append("text")
+          .text(accuracy + "%")
+          .attr("class", "donut-text");
+
+        donutPiece.select(".donut-text").text(accuracy + "%");
+
+        if (accuracy > 0) {
+          d3.select(".accuracy-number")
+            .text(accuracy + "%");
+        }
+      }
+
+      function updateTopIdentifiedBarGraph(topIdentifiedData) {
+        var width = $(".top-identified-svg").width();
+        var height = $(".top-identified-svg").height();
+        var topPadding = 45;
+        var animalCounts = topIdentifiedData.map(function(d) { return d.tags; });
+        var animalNames = topIdentifiedData.map(function(d) { return d.name; });
+
+        function getMaxOfArray(numArray) {
+          return Math.max.apply(null, numArray);
+        }
+
+        var bar = d3.select(".top-identified-svg").selectAll("g")
+            .data(animalCounts);
+
+        var barEnter = bar.enter().append("g");
+
+        barEnter.append("rect")
+        	.attr("x", function(d, i) { return i * width / 3; })
+        	.attr("y",  function(d) {
+            return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
+          })
+        	.attr("width", width / 3)
+        	.attr("height", function(d) {
+            return (d / getMaxOfArray(animalCounts) * height - topPadding);
+          })
+          .attr("class", "bar");
+
+        bar.select(".bar")
+          .attr("y",  function(d) {
+            return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
+          })
+        	.attr("height", function(d) {
+            return (d / getMaxOfArray(animalCounts) * height - topPadding);
+          });
+
+        barEnter.append("text")
+          .text(function(d) { return d; })
+        	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
+        	.attr("y",  function(d) {
+            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) + 36;
+          })
+          .attr("class", "bar-number-text");
+
+        bar.select(".bar-number-text")
+          .text(function(d) { return d; })
+          .attr("y",  function(d) {
+            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) + 36;
+          });
+
+        var barLabelTextEnter = barEnter.append("text")
+          .text("")
+        	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
+        	.attr("y",  function(d) {
+            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) - 13;
+          })
+          .attr("class", "bar-label-text");
+
+        var barLabelText = bar.select(".bar-label-text")
+          .attr("y",  function(d) {
+            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) - 13;
+          });
+
+        // Split animal names at spaces for the text label tspans
+        var tspaner = animalNames.map(function(d) {
+          return d.split(" ").map(function(d) {
+            return d;
+          });
+        });
+
+        // Add tspans to label text to handle long multi-word names
+        barLabelTextEnter.selectAll("tspan")
+          .data(function(d, i) {return tspaner[i].reverse(); })
+          .enter().append("tspan")
+          .text(function(d) { return d; })
+          .attr("dy", function(d, i) { return i > 0 ? -45 : 0; })
+          .attr("x", function() {
+            return parseFloat(d3.select(this.parentNode).attr("x"));
+          });
+
+        barLabelText.selectAll("tspan")
+          .data(function(d, i) {return tspaner[i].reverse(); })
+          .text(function(d) { return d; })
+          .attr("dy", function(d, i) { return i > 0 ? -45 : 0; });
+
+        if (d3.select(".bar-axis").empty()) {
+          d3.select(".top-identified-svg").append("rect")
+            .attr("x", "0")
+            .attr("y", "99%")
+            .attr("width", "100%")
+            .attr("height", "9px")
+            .attr("class", "bar-axis");
+        }
+
+        // Handle top tags HTML text based on the number of animal types the
+        // user has identified
+        if (animalCounts.length > 0) {
+          var topTagsText = "";
+          if (animalCounts.length === 1) {
+            topTagsText = "<span class='bold-text'>" + animalNames[0] + "</span> is the only animal identified by NC State users in eMammal Lite so far.";
+          } else if (animalCounts.length === 2) {
+            topTagsText = "<span class='bold-text'>" + animalNames[0] + "</span>  and <span class='bold-text'>" + animalNames[1] + "</span> are the top two animal types identified by NC State users";
+          } else if (animalCounts.length === 3) {
+            topTagsText = "The top three animals tagged by NC State users are <span class='bold-text'>"+ animalNames[0] + "</span>, <span class='bold-text'>" + animalNames[1] + "</span>, and <span class='bold-text'>" + animalNames[2] + "</span>.";
+          }
+          d3.select(".top-identified-descrpition").html(topTagsText);
+        }
+      }
+
+      updateTopFive(globalStats[0]);
+      updateAccuracyDonut(globalStats[1]);
+      updateTopIdentifiedBarGraph(globalStats[2]);
     }
 
     // Update data for new project on a timer
@@ -299,13 +486,12 @@ function loadImmersionJS() {
     }
 
     // Update data for global stats on a timer
-    // var updateInterval = window.setInterval(getCurrentGlobalStats, 10000);
+    var updateInterval = window.setInterval(getCurrentGlobalStats, 10000);
     function getCurrentGlobalStats() {
       $.ajax({
         type: "GET",
         url: "/immersion/current_global_stats",
         success: function(json) {
-          console.log(json);
           updateGlobalStats(json);
         }
       });

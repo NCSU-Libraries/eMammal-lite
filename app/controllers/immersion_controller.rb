@@ -45,7 +45,7 @@ end
     end
 
     def get_top_five
-      sorted_scores = User.joins(:identifications)
+      sorted_scores = User.where("email LIKE ?", '%ncsu.edu%').joins(:identifications)
         .where("correct_identification = true")
         .group("id").count.sort_by{ |k, v| -v }
 

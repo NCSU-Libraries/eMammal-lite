@@ -25,7 +25,7 @@
       <div class="project-description">
         <p class="project-description-text"></p>
       </div>
-      <div class="map" data-url="<%= [@project.lon, @project.lat] %>">
+      <div class="map">
         <svg></svg>
       </div>
     </div>
@@ -55,19 +55,30 @@
   </div>
   <div class="panel-right">
     <div class="top-scores">
-      <h1 class="headers" >Top Scores</h1>
+      <h1 class="headers">Top Scores at NCSU</h1>
       <div class="top-scores-list">
-        <div class="top-score">
-
-        </div>
+        <div class="top-score score-1"><h2 class="rank">1</h2></div>
+        <div class="top-score score-2"><h2 class="rank">2</h2></div>
+        <div class="top-score score-3"><h2 class="rank">3</h2></div>
+        <div class="top-score score-4"><h2 class="rank">4</h2></div>
+        <div class="top-score score-5"><h2 class="rank">5</h2></div>
       </div>
     </div>
     <div class="global-accuracy">
-
+      <svg class="accuracy-svg"></svg>
+        <h1 class="headers">Accuracy</h1>
+        <h2 class="stat-description accuracy-descrpition">
+          eMammal Lite users from NC State correctly tag animals <span class="accuracy-number"></span> of the time.
+        </h2>
     </div>
     <div class="global-top-identified">
-
+      <svg class="top-identified-svg"></svg>
+        <h1 class="headers">Top Identified</h1>
+        <h2 class="stat-description top-identified-descrpition"></h2>
     </div>
+    <!-- <div class="stats-title">
+      <h1 class="headers">NC STATE <small>USER STATS</small></h1>
+    </div> -->
   </div>
 </div>
 <!-- Testing overlay TODO: REMOVE FOR PRODUCTION -->

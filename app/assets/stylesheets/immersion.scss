@@ -126,7 +126,7 @@ $grid-rows: 7;
           padding-top: 32px;
           padding-bottom: 42px;
           padding-left: 18px;
-          padding-right: 42px;
+          padding-right: 21px;
           margin-bottom: 0px;
           margin-top: 0px;
           background-color: #D14905;
@@ -270,7 +270,7 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          animation-duration: 10s;
+          animation-duration: 40s;
 
           .animal-img {
             width: 100%;
@@ -382,31 +382,172 @@ $grid-rows: 7;
 
     .headers {
       font-size: 72px;
+      margin-top: 45px;
+      margin-bottom: 45px;
+      text-align: center;
+    }
+
+    .stat-description {
+      margin-top: 0;
+      margin-left: 63px;
+      margin-right: 63px;
+      font-size: 36px;
       text-align: center;
     }
 
     .top-scores {
       width: 100%;
       height: $tile-height * 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       background-color: #F1A33A;
 
       .top-scores-list {
-        font-size: 45px;
-        padding-left: $tile-width / 4;
+        width: $tile-width * 3 / 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+
+
+        .top-score {
+          width: 100%;
+          height: 81px;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: flex-start;
+
+          h2 {
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+
+          .rank {
+            font-size: 45px;
+            width: 117px;
+          }
+
+          .score {
+            font-family: UniversRoman;
+            font-size: 58px;
+            font-weight: bold;
+            width: 216px;
+          }
+
+          .name {
+            font-size: 45px;
+          }
+
+          .icon {
+            height: 54px;
+            width: 54px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-left: auto;
+          }
+
+          /*
+            Images used for user icons. Using background images so we can
+            reference them via js without erb.
+          */
+          $animals: bear, deer, giraffe, otter, rabbit, raccoon, walrus, wolf, zebra;
+
+          @each $animal in $animals {
+            .icon-#{$animal} {
+              background-image: image-url("animal-icons/#{$animal}.png");
+            }
+          }
+
+          .icon-default {
+            background-image: image-url("menu/user-default-photo@3x.png");
+          }
+        }
       }
     }
 
     .global-accuracy {
       width: 100%;
       height: $tile-height * 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-color: #E37637;
+
+      .accuracy-svg {
+        height: $tile-height - 18px;
+        width: 50%;
+
+        .stat-color-0 {
+          fill: white;
+          opacity: 0.25;
+        }
+
+        .stat-color-1 {
+          fill: white;
+        }
+
+        .donut-text {
+          fill: white;
+          font-family: UniversRoman;
+          font-size: 90px;
+          font-weight: bold;
+          dominant-baseline: middle;
+          text-anchor: middle;
+        }
+      }
     }
 
     .global-top-identified {
       width: 100%;
       height: $tile-height * 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
       background-color: $PyromanFlame;
+
+      .top-identified-svg {
+        width: 75%;
+        height: $tile-height * 5 / 4;
+        margin-top: 63px;
+        font-family: UniversRoman;
+        overflow: visible;
+        font-weight: bold;
+
+        .bar-number-text {
+          fill: white;
+          font-size: 63px;
+          dominant-baseline: text-before-edge;
+          text-anchor: middle;
+        }
+
+        .bar {
+          stroke: $PyromanFlame;
+          stroke-width: 18px;
+          fill: white;
+          opacity: 0.25;
+        }
+
+        .bar-label-text {
+          fill: white;
+          font-size: 36px;
+          text-anchor: middle;
+        }
+
+        .bar-axis {
+          fill: white;
+        }
+      }
     }
+
+    // .stats-title {
+    //   width: 100%;
+    //   height: $tile-height / 2;
+    //   background-color: #990000;
+    // }
   }
 }
 
