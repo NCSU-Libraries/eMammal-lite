@@ -33,6 +33,11 @@ function loadImmersionJS() {
         .attr("cx", "29.87px")
         .attr("cy", "29.73px")
         .attr("r", "11.75px");
+
+      var mapWidth = parseInt(mapSVG.style("width"));
+      var mapHeight = parseInt(mapSVG.style("height"));
+      pin.attr("transform", "translate(" +
+        mapWidth / 2 + ",0)");
     }
     makeMap();
 
@@ -58,7 +63,6 @@ function loadImmersionJS() {
 
     function animateCard() {
       var card = $(".card-" + (cardNumber % 5 + 1));
-
 
       if (cardNumber < photoData.length) {
         if (!card.hasClass("animate-card")) {
@@ -86,8 +90,23 @@ function loadImmersionJS() {
       enteredCard.select(".sci-name").text(photoInfo.sci_name);
 
       // Test if the photo has been attempted (i.e., at least one stat is > 0)
-      if (!d3.values(photoInfo.stats).every(function(d) { return d === 0; })) {
+      if (!d3.values(photoInfo.stats).every(function(d) {
+        return d === 0;
+      })) {
+        enteredCard.select(".stats")
+          .style("visibility", "visible")
+          .style("height", "auto");
+        enteredCard.select(".no-stats-filler")
+          .style("visibility", "hidden")
+          .style("height", "0");
         makeCardGraphs();
+      } else {
+        enteredCard.select(".stats")
+          .style("visibility", "hidden")
+          .style("height", "0");
+        enteredCard.select(".no-stats-filler")
+          .style("visibility", "visible")
+          .style("height", "auto");
       }
 
       function makeCardGraphs() {
@@ -96,18 +115,6 @@ function loadImmersionJS() {
         var filteredData = d3.entries(data)
           .filter(function(d) { return d.key != "total" && d.value >= 0; })
           .sort(function (a,b) { return b.key - a.key; });
-
-        var textSizes = ["54px", "45px", "36px"];
-
-        if (d3.select(".card-" + (cardNumber % 5 + 1)).select("g").empty()) {
-
-          // var filter = enteredCard.select(".stats")
-          //   .selectAll(".has-filter").append("defs")
-          //     .append("filter")
-          //       .attr("id", "blur")
-          //     .append("feGaussianBlur")
-          //       .attr("stdDeviation", 5);
-        }
 
         makeBarChart(filteredData);
         makePieChart(filteredData);
@@ -223,7 +230,10 @@ function loadImmersionJS() {
             })
             .attr("x", function(d) { return arc.centroid(d)[0]; })
             .attr("y", function(d) { return arc.centroid(d)[1]; })
-            .style("font-size", function(d, i) { return textSizes[i]; });
+            .style("font-size", function(d) {
+              return ((d.data.value / data.total * 100) * 18 / 100 + 36) +
+                "px";
+            });
 
 
           piePiece.select(".pie-piece-label")
@@ -232,12 +242,9 @@ function loadImmersionJS() {
             })
             .attr("x", function(d) { return arc.centroid(d)[0]; })
             .attr("y", function(d) { return arc.centroid(d)[1]; })
-            .style("font-size", function(d, i) { return textSizes[i]; });
-
-          d3.selectAll(".pie-table")
-            .data(filteredData)
-            .text(function(d) {
-              return Math.floor(d.value / data.total * 100) + "% " + d.key;
+            .style("font-size", function(d) {
+              return ((d.data.value / data.total * 100) * 18 / 100 + 36) +
+                "px";
             });
         }
       }
@@ -245,7 +252,6 @@ function loadImmersionJS() {
 
     function updateProjectLocationPin(projectLatLon) {
       // Project the project location coordinates for the map pin
-      // var coords = $(".map").data("url");
       var coords = projectLatLon;
       var pointXY = proj(coords);
 
@@ -255,16 +261,24 @@ function loadImmersionJS() {
 
       var pinWidth = pin.node().getBBox().width * pinScale;
       var pinHeight = pin.node().getBBox().height * pinScale;
-      pin.attr("transform", "translate(" +
-        (pointXY[0] - pinWidth / 2) + "," +
-        (pointXY[1] - pinHeight) +
-        ") scale(" + pinScale + ")");
+
+      var t = d3.transition()
+        .duration(4000)
+        .ease(d3.easeCubicOut);
+
+      pin.transition(t)
+        .attr(
+          "transform", "translate(" +
+          (pointXY[0] - pinWidth / 2) + "," +
+          (pointXY[1] - pinHeight) +
+          ") scale(" + pinScale + ")"
+        );
       pin.style("visibility", "visible");
     }
 
     function updateProjectInfo(name, description) {
-      $(".project-name-immersion").text(name);
-      $(".project-description-text").text(description);
+      d3.select(".project-name-immersion").text(name);
+      d3.select(".project-description-text").text(description);
     }
 
     function updateGlobalStats(globalStats) {
