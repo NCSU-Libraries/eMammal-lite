@@ -37,6 +37,7 @@ $grid-rows: 7;
   flex-direction: row;
   width: $immersion-width;
   height: $immersion-height;
+  z-index: -1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 

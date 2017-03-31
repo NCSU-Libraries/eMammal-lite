@@ -103,16 +103,15 @@ function loadImmersionJS() {
 
     function updateProjectInfo(name, description) {
       var t = d3.transition()
-        .duration(2500)
-        .ease(d3.easeCubicOut);
+        .duration(2500);
 
       var banner = d3.select(".project-name-immersion");
-      var bannerWidth = parseInt(banner.style("width")) + 21;
+      var bannerWidth = parseInt(banner.style("width")) + 30;
 
       banner
-        .transition(t)
+        .transition(t).ease(d3.easeCubicOut)
           .style("transform", "translateX(-" + bannerWidth + "px)")
-        .transition(t)
+        .transition(t).ease(d3.easeCubicIn)
           .style("transform", "translateX(0)")
           .text(name);
 
@@ -122,14 +121,38 @@ function loadImmersionJS() {
         .transition(t)
           .style("opacity", 1)
           .text(description);
+
+      d3.select(".project-background-img")
+        .transition(t)
+          .style("filter", "blur(20px) brightness(0.1)")
+          .on("end", function() {
+            var randomPic = Math.floor(Math.random() * photoData.length);
+            d3.select(this)
+            .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
+              photoData[randomPic].source + "_o.jpg");
+            d3.active(this)
+              .transition(t)
+                .style("filter", "blur(20px) brightness(0.7)");
+          });
+
+
+
     }
 
     function addInfoToCard() {
       var photoInfo = photoData[cardNumber];
       var enteredCard = d3.select(".card-" + (cardNumber % 5 + 1));
+
+      // var animalPhoto = document.getElementById("background-img");
+      // animalPhoto.addEventListener("load", function() {
+      //   enteredCard.select(".animal-name").text(photoInfo.animal);
+      //   enteredCard.select(".sci-name").text(photoInfo.sci_name);
+      // })
+      // animalPhoto.src = "https://s3.amazonaws.com/emammalphoto/" +
+      //   photoInfo.source + "_o.jpg"
+
       enteredCard.select(".animal-img")
-        .attr("src",
-          "https://s3.amazonaws.com/emammalphoto/" +
+        .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
           photoInfo.source + "_o.jpg"
         );
       enteredCard.select(".animal-name").text(photoInfo.animal);
