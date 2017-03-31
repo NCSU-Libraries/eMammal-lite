@@ -18,6 +18,7 @@
 //= require d3-collection.min.js
 //= require d3-selection.min.js
 //= require d3-array.min.js
+//= require d3-color.min.js
 //= require d3-dispatch.min.js
 //= require d3-ease.min.js
 //= require d3-interpolate.min.js

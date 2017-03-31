@@ -142,6 +142,7 @@ $grid-rows: 7;
           overflow: visible;
           display: table;
           min-width: calc(100% - 42px);
+          z-index: -1
         }
       }
 
@@ -288,7 +289,8 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          animation-duration: 60s;
+          // animation-duration: 60s;
+          animation-duration: 10s;
 
           .animal-img {
             width: 100%;

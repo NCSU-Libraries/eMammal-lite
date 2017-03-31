@@ -68,14 +68,60 @@ function loadImmersionJS() {
         if (!card.hasClass("animate-card")) {
           card.addClass("animate-card");
         }
-
         addInfoToCard();
-
       } else {
         card.removeClass("animate-card");
       }
-
       cardNumber++;
+    }
+
+    function updateProjectLocationPin(projectLatLon) {
+      // Project the project location coordinates for the map pin
+      var coords = projectLatLon;
+      var pointXY = proj(coords);
+
+      // Create group for the pin graphical pieces and set scale factor
+      var pin = d3.select(".map-pin");
+      var pinScale = 0.5;
+
+      var pinWidth = pin.node().getBBox().width * pinScale;
+      var pinHeight = pin.node().getBBox().height * pinScale;
+
+      var t = d3.transition()
+        .duration(5000)
+        .ease(d3.easeCubicOut);
+
+      pin.transition(t)
+        .attr(
+          "transform", "translate(" +
+          (pointXY[0] - pinWidth / 2) + "," +
+          (pointXY[1] - pinHeight) +
+          ") scale(" + pinScale + ")"
+        );
+      pin.style("visibility", "visible");
+    }
+
+    function updateProjectInfo(name, description) {
+      var t = d3.transition()
+        .duration(2500)
+        .ease(d3.easeCubicOut);
+
+      var banner = d3.select(".project-name-immersion");
+      var bannerWidth = parseInt(banner.style("width")) + 21;
+
+      banner
+        .transition(t)
+          .style("transform", "translateX(-" + bannerWidth + "px)")
+        .transition(t)
+          .style("transform", "translateX(0)")
+          .text(name);
+
+      d3.select(".project-description-text")
+        .transition(t)
+          .style("opacity", 0)
+        .transition(t)
+          .style("opacity", 1)
+          .text(description);
     }
 
     function addInfoToCard() {
@@ -97,16 +143,14 @@ function loadImmersionJS() {
           .style("visibility", "visible")
           .style("height", "auto");
         enteredCard.select(".no-stats-filler")
-          .style("visibility", "hidden")
-          .style("height", "0");
+          .style("display", "none");
         makeCardGraphs();
       } else {
         enteredCard.select(".stats")
           .style("visibility", "hidden")
           .style("height", "0");
         enteredCard.select(".no-stats-filler")
-          .style("visibility", "visible")
-          .style("height", "auto");
+          .style("display", "block");
       }
 
       function makeCardGraphs() {
@@ -248,37 +292,6 @@ function loadImmersionJS() {
             });
         }
       }
-    }
-
-    function updateProjectLocationPin(projectLatLon) {
-      // Project the project location coordinates for the map pin
-      var coords = projectLatLon;
-      var pointXY = proj(coords);
-
-      // Create group for the pin graphical pieces and set scale factor
-      var pin = d3.select(".map-pin");
-      var pinScale = 0.5;
-
-      var pinWidth = pin.node().getBBox().width * pinScale;
-      var pinHeight = pin.node().getBBox().height * pinScale;
-
-      var t = d3.transition()
-        .duration(4000)
-        .ease(d3.easeCubicOut);
-
-      pin.transition(t)
-        .attr(
-          "transform", "translate(" +
-          (pointXY[0] - pinWidth / 2) + "," +
-          (pointXY[1] - pinHeight) +
-          ") scale(" + pinScale + ")"
-        );
-      pin.style("visibility", "visible");
-    }
-
-    function updateProjectInfo(name, description) {
-      d3.select(".project-name-immersion").text(name);
-      d3.select(".project-description-text").text(description);
     }
 
     function updateGlobalStats(globalStats) {
