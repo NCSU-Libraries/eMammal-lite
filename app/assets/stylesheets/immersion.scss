@@ -104,6 +104,7 @@ $grid-rows: 7;
     .project-background-img {
       width: 100%;
       filter: blur(20px) brightness(0.7);
+      transform: translateZ(0);
       z-index: -100;
     }
   }
@@ -143,6 +144,7 @@ $grid-rows: 7;
           overflow: visible;
           display: table;
           min-width: calc(100% - 42px);
+          transform: translateZ(0);
           z-index: -1
         }
       }
@@ -230,40 +232,40 @@ $grid-rows: 7;
 
         @keyframes carouselAnimation {
           0% {
-            transform: translateX(-$tile-width * 0) scale(0.5);
+            transform: translateX(-$tile-width * 0) perspective(500px) translateZ(-500px);
             z-index: -1;
             opacity: 0;
           }
           20% {
-            transform: translateX(-$tile-width * .2 * 9) scale(0.5);
+            transform: translateX(-$tile-width * .2 * 9) perspective(500px) translateZ(-500px);
             z-index: -1;
             opacity: 1;
           }
           40% {
-            transform: translateX(-$tile-width * .40 * 9) scale(0.5);
+            transform: translateX(-$tile-width * .40 * 9) perspective(500px) translateZ(-250px);
             z-index: -1;
             opacity: 1;
           }
           45% {
-            transform: translateX(-$tile-width * .40 * 9) scale(1);
+            transform: translateX(-$tile-width * .40 * 9) perspective(500px) translateZ(0);
             z-index: 1;
           }
           60% {
-            transform: translateX(-$tile-width * .65 * 9) scale(1);
+            transform: translateX(-$tile-width * .65 * 9) perspective(500px) translateZ(0);
             z-index: 1;
           }
           65% {
-            transform: translateX(-$tile-width * .65 * 9) scale(0.5);
+            transform: translateX(-$tile-width * .65 * 9) perspective(500px) translateZ(-250px);
             z-index: -1;
             opacity: 1;
           }
           80% {
-            transform: translateX(-$tile-width * .8 * 9) scale(0.5);
+            transform: translateX(-$tile-width * .8 * 9) perspective(500px) translateZ(-250px);
             z-index: -1;
             opacity: 1;
           }
           100% {
-            transform: translateX(-$tile-width * 9) scale(0.5);
+            transform: translateX(-$tile-width * 9) perspective(500px) translateZ(-250px);
             opacity: 0;
             z-index: -1;
           }
@@ -289,7 +291,7 @@ $grid-rows: 7;
           color: white;
           z-index: -1;
           flex-shrink: 0;
-          transform: translateX(0) scale(0.25);
+          transform: translateX(0) perspective(500px) translateZ(-250px);
           animation-duration: 60s;
           // animation-duration: 10s;
 

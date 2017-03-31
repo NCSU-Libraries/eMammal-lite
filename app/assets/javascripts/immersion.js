@@ -87,17 +87,14 @@ function loadImmersionJS() {
       var pinWidth = pin.node().getBBox().width * pinScale;
       var pinHeight = pin.node().getBBox().height * pinScale;
 
-      var t = d3.transition()
-        .duration(5000)
-        .ease(d3.easeCubicOut);
-
-      pin.transition(t)
-        .attr(
-          "transform", "translate(" +
-          (pointXY[0] - pinWidth / 2) + "," +
-          (pointXY[1] - pinHeight) +
-          ") scale(" + pinScale + ")"
-        );
+      pin.transition()
+        .duration(5000).ease(d3.easeCubicIn)
+          .attr(
+            "transform", "translate(" +
+            (pointXY[0] - pinWidth / 2) + "," +
+            (pointXY[1] - pinHeight) +
+            ") scale(" + pinScale + ")"
+          );
       pin.style("visibility", "visible");
     }
 
@@ -121,22 +118,6 @@ function loadImmersionJS() {
         .transition(t)
           .style("opacity", 1)
           .text(description);
-
-      d3.select(".project-background-img")
-        .transition(t)
-          .style("filter", "blur(20px) brightness(0.1)")
-          .on("end", function() {
-            var randomPic = Math.floor(Math.random() * photoData.length);
-            d3.select(this)
-            .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
-              photoData[randomPic].source + "_o.jpg");
-            d3.active(this)
-              .transition(t)
-                .style("filter", "blur(20px) brightness(0.7)");
-          });
-
-
-
     }
 
     function addInfoToCard() {
@@ -530,7 +511,20 @@ function loadImmersionJS() {
           photoData = json[1];
           updateProjectLocationPin([projectData.lon, projectData.lat]);
           updateProjectInfo(projectData.name, projectData.description);
-          animateCard();
+
+      d3.select(".project-background-img")
+        .transition().duration(2500)
+          .style("filter", "blur(20px) brightness(0.1)")
+        .on("end", function() {
+          var randomPic = Math.floor(Math.random() * photoData.length);
+          d3.select(this)
+          .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
+            photoData[randomPic].source + "_o.jpg");
+          d3.active(this)
+            .transition().duration(2500)
+              .style("filter", "blur(20px) brightness(0.7)")
+            .on("end", animateCard);
+          });
         }
       });
     }
