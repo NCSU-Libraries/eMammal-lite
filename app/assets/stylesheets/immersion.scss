@@ -144,7 +144,6 @@ $grid-rows: 7;
           overflow: visible;
           display: table;
           min-width: calc(100% - 42px);
-          will-change: transform;
           z-index: -1
         }
       }
@@ -176,7 +175,6 @@ $grid-rows: 7;
 
           .map-pin {
             visibility: hidden;
-            will-change: transform;
 
             .pin-outer {
               fill: $PyromanFlame;
@@ -293,7 +291,6 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          will-change: transform;
           animation-duration: 60s;
           // animation-duration: 10s;
 
