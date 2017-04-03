@@ -295,8 +295,18 @@ function loadImmersionJS() {
             .text(function(d) { return d.data.value > 0 ?
                 Math.floor(d.data.value / data.total * 100) + "%" : "";
             })
-            .attr("x", function(d) { return arc.centroid(d)[0]; })
-            .attr("y", function(d) { return arc.centroid(d)[1]; })
+            .attr("x", function(d) {
+              if (Math.floor(d.data.value / data.total * 100) < 15) {
+                arc.outerRadius(height / 1.5);
+              }
+              return arc.centroid(d)[0];
+            })
+            .attr("y", function(d) {
+              if (Math.floor(d.data.value / data.total * 100) < 15) {
+                arc.outerRadius(height / 1.5);
+              }
+              return arc.centroid(d)[1];
+             })
             .style("font-size", function(d) {
               return ((d.data.value / data.total * 100) * 18 / 100 + 36) +
                 "px";
@@ -504,11 +514,11 @@ function loadImmersionJS() {
         if (animalCounts.length > 0) {
           var topTagsText = "";
           if (animalCounts.length === 1) {
-            topTagsText = "<span class='bold-text'>" + animalNames[0] + "</span> is the only animal identified by NC State users in eMammal Lite so far.";
+            topTagsText = "<span class='bold-text'>" + animalNames[0] + "</span> is the only animal identified by eMammal Lite users in eMammal Lite so far.";
           } else if (animalCounts.length === 2) {
-            topTagsText = "<span class='bold-text'>" + animalNames[0] + "</span>  and <span class='bold-text'>" + animalNames[1] + "</span> are the top two animal types identified by NC State users";
+            topTagsText = "<span class='bold-text'>" + animalNames[0] + "</span>  and <span class='bold-text'>" + animalNames[1] + "</span> are the top two animal types identified by eMammal Lite users";
           } else if (animalCounts.length === 3) {
-            topTagsText = "The top three animals tagged by NC State users are <span class='bold-text'>"+ animalNames[0] + "</span>, <span class='bold-text'>" + animalNames[1] + "</span>, and <span class='bold-text'>" + animalNames[2] + "</span>.";
+            topTagsText = "The top three animals tagged by eMammal Lite users are <span class='bold-text'>"+ animalNames[0] + "</span>, <span class='bold-text'>" + animalNames[1] + "</span>, and <span class='bold-text'>" + animalNames[2] + "</span>.";
           }
           d3.select(".top-identified-descrpition").html(topTagsText);
         }
