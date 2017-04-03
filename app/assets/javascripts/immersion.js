@@ -2,11 +2,21 @@ function loadImmersionJS() {
   if ($(".immersion-page").length > 0) { immersionPage(); }
 
   function immersionPage() {
+    // Add method to d3 to move an item to the back of the parent node
+    d3.selection.prototype.moveToBack = function() {
+      return this.each(function() {
+          var firstChild = this.parentNode.firstChild;
+          if (firstChild) {
+              this.parentNode.insertBefore(this, firstChild);
+          }
+      });
+    };
+
     // The topojson file and some other variable used for drawing and
     // updating map and map pin.
     var mapData = gon.map;
     var mapSVG = d3.select(".map").select("svg");
-    var proj = d3.geoMercator()
+    var proj = d3.geoNaturalEarth()
       .center([10, 40]);
 
     // Draw the map on the initial page load
@@ -266,7 +276,8 @@ function loadImmersionJS() {
             .attr("class", function(d) {
               return "pie-piece color-immersion-" + d.data.key;
             })
-            .attr("d", arc);
+            .attr("d", arc)
+            .moveToBack();
 
           piePiece.select(".pie-piece").attr("d", arc);
 

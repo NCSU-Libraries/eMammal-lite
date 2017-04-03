@@ -25,6 +25,7 @@
 //= require d3-timer.min.js
 //= require d3-transition.min.js
 //= require d3-geo.min.js
+//= require d3-geo-projection.min.js
 //= require topojson-client.min.js
 //= require transitions.js
 //= require jquery.easing.1.3.js
