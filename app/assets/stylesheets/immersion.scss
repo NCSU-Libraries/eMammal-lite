@@ -103,7 +103,7 @@ $grid-rows: 7;
 
     .project-background-img {
       width: 100%;
-      filter: blur(20px) brightness(0.7);
+      // filter: blur(20px) brightness(0.7);
       transform: translateZ(0);
       z-index: -100;
     }
