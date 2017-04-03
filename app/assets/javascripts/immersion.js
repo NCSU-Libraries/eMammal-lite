@@ -113,11 +113,11 @@ function loadImmersionJS() {
         .duration(2500);
 
       var banner = d3.select(".project-name-immersion");
-      var bannerWidth = parseInt(banner.style("width")) + 30;
+      var tileWidth = 426;
 
       banner
         .transition(t).ease(d3.easeCubicOut)
-          .style("transform", "translateX(-" + bannerWidth + "px)")
+          .style("transform", "translateX(-" + tileWidth * 6 + "px)")
         .transition(t).ease(d3.easeCubicIn)
           .style("transform", "translateX(0)")
           .text(name);

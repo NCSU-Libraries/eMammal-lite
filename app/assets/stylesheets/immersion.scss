@@ -38,8 +38,6 @@ $grid-rows: 7;
   width: $immersion-width;
   height: $immersion-height;
   z-index: -1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
   .panel-left {
     display: flex;
@@ -277,6 +275,7 @@ $grid-rows: 7;
           animation-iteration-count: 1;
           animation-direction: normal;
           animation-timing-function: linear;
+          will-change: transform;
         }
 
         .cards {
@@ -293,7 +292,6 @@ $grid-rows: 7;
           z-index: -1;
           flex-shrink: 0;
           transform: translateX(0) scale(0.25);
-          will-change: transform;
           animation-duration: 60s;
           // animation-duration: 10s;
 
