@@ -113,11 +113,19 @@ function loadImmersionJS() {
         .duration(2500);
 
       var banner = d3.select(".project-name-immersion");
-      var tileWidth = 426;
+      var bannerWidth = parseInt(banner.style("width")) + 30;
 
       banner
         .transition(t).ease(d3.easeCubicOut)
-          .style("transform", "translateX(-" + tileWidth * 6 + "px)")
+          .style("transform", "translateX(-" + bannerWidth + "px)")
+          .on("end", function() {
+            // if new name is longer need to move banner a little further
+            d3.select(this)
+              .text(name)
+              .style("transform", "translateX(-" +
+                (parseInt(banner.style("width")) + 60)+ "px)"
+              );
+          })
         .transition(t).ease(d3.easeCubicIn)
           .style("transform", "translateX(0)")
           .text(name);

@@ -38,6 +38,8 @@ $grid-rows: 7;
   width: $immersion-width;
   height: $immersion-height;
   z-index: -1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
   .panel-left {
     display: flex;
@@ -142,7 +144,6 @@ $grid-rows: 7;
           overflow: visible;
           display: table;
           min-width: calc(100% - 42px);
-          will-change: transform;
           z-index: -1
         }
       }
@@ -174,7 +175,6 @@ $grid-rows: 7;
 
           .map-pin {
             visibility: hidden;
-            will-change: transform;
 
             .pin-outer {
               fill: $PyromanFlame;
@@ -235,11 +235,6 @@ $grid-rows: 7;
             z-index: -1;
             opacity: 0;
           }
-          20% {
-            transform: translateX(-$tile-width * .2 * 9) scale(0.5);
-            z-index: -1;
-            opacity: 1;
-          }
           40% {
             transform: translateX(-$tile-width * .40 * 9) scale(0.5);
             z-index: -1;
@@ -258,11 +253,6 @@ $grid-rows: 7;
             z-index: -1;
             opacity: 1;
           }
-          80% {
-            transform: translateX(-$tile-width * .8 * 9) scale(0.5);
-            z-index: -1;
-            opacity: 1;
-          }
           100% {
             transform: translateX(-$tile-width * 9) scale(0.5);
             opacity: 0;
@@ -275,7 +265,6 @@ $grid-rows: 7;
           animation-iteration-count: 1;
           animation-direction: normal;
           animation-timing-function: linear;
-          will-change: transform;
         }
 
         .cards {
