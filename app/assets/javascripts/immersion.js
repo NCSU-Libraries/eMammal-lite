@@ -317,8 +317,18 @@ function loadImmersionJS() {
             .text(function(d) { return d.data.value > 0 ?
                 Math.floor(d.data.value / data.total * 100) + "%" : "";
             })
-            .attr("x", function(d) { return arc.centroid(d)[0]; })
-            .attr("y", function(d) { return arc.centroid(d)[1]; })
+            .attr("x", function(d) {
+              if (Math.floor(d.data.value / data.total * 100) < 15) {
+                arc.outerRadius(height / 1.5);
+              }
+              return arc.centroid(d)[0];
+            })
+            .attr("y", function(d) {
+              if (Math.floor(d.data.value / data.total * 100) < 15) {
+                arc.outerRadius(height / 1.5);
+              }
+              return arc.centroid(d)[1];
+             })
             .style("font-size", function(d) {
               return ((d.data.value / data.total * 100) * 18 / 100 + 36) +
                 "px";
