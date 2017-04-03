@@ -523,19 +523,21 @@ function loadImmersionJS() {
           updateProjectLocationPin([projectData.lon, projectData.lat]);
           updateProjectInfo(projectData.name, projectData.description);
 
-      d3.select(".project-background-img")
-        .transition().duration(2500)
-          .style("filter", "blur(20px) brightness(0.1)")
-        .on("end", function() {
-          var randomPic = Math.floor(Math.random() * photoData.length);
-          d3.select(this)
-          .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
-            photoData[randomPic].source + "_o.jpg");
-          d3.active(this)
-            .transition().duration(2500)
-              .style("filter", "blur(20px) brightness(0.7)")
-            .on("end", animateCard);
-          });
+          animateCard();
+
+          // d3.select(".project-background-img")
+          //   .transition().duration(2500)
+          //     .style("filter", "blur(20px) brightness(0.1)")
+          //   .on("end", function() {
+          //     var randomPic = Math.floor(Math.random() * photoData.length);
+          //     d3.select(this)
+          //     .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
+          //       photoData[randomPic].source + "_o.jpg");
+          //     d3.active(this)
+          //       .transition().duration(2500)
+          //         .style("filter", "blur(20px) brightness(0.7)")
+          //       .on("end", animateCard);
+          //     });
         }
       });
     }
