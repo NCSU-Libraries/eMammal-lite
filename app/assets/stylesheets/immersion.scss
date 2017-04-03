@@ -232,18 +232,13 @@ $grid-rows: 7;
         @keyframes carouselAnimation {
           0% {
             transform: translateX(-$tile-width * 0) scale(0.5);
-            z-index: -1;
-            opacity: 0;
           }
           20% {
             transform: translateX(-$tile-width * .2 * 9) scale(0.5);
-            z-index: -1;
-            opacity: 1;
           }
           40% {
             transform: translateX(-$tile-width * .40 * 9) scale(0.5);
             z-index: -1;
-            opacity: 1;
           }
           45% {
             transform: translateX(-$tile-width * .40 * 9) scale(1);
@@ -256,7 +251,6 @@ $grid-rows: 7;
           65% {
             transform: translateX(-$tile-width * .65 * 9) scale(0.5);
             z-index: -1;
-            opacity: 1;
           }
           80% {
             transform: translateX(-$tile-width * .8 * 9) scale(0.5);
