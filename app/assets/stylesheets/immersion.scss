@@ -92,20 +92,29 @@ $grid-rows: 7;
   // Animal image background for center panel
   .panel-center-background {
     position: absolute;
-    left: $tile-width * 3 - 20px;
-    width: $tile-width * 11 + 40px;
+    left: $tile-width * 3 - 1;
+    width: $tile-width * 11;
     height: $immersion-height;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: black;
     overflow: hidden;
     pointer-events: none;
+    z-index: -100;
 
     .project-background-img {
+      position: absolute;
       width: 100%;
-      // filter: blur(20px) brightness(0.7);
-      transform: translateZ(0);
-      z-index: -100;
+    }
+
+    .visible-img {
+      opacity: 1;
+      transition-property: opacity;
+      transition-duration: 5s;
+    }
+
+    .hidden-img {
+      opacity: 0;
+      transition-property: opacity;
+      transition-duration: 5s;
     }
   }
 
@@ -233,9 +242,6 @@ $grid-rows: 7;
           0% {
             transform: translateX(-$tile-width * 0) scale(0.5);
           }
-          20% {
-            transform: translateX(-$tile-width * .2 * 9) scale(0.5);
-          }
           40% {
             transform: translateX(-$tile-width * .40 * 9) scale(0.5);
             z-index: -1;
@@ -253,7 +259,6 @@ $grid-rows: 7;
             z-index: -1;
           }
           80% {
-            transform: translateX(-$tile-width * .8 * 9) scale(0.5);
             z-index: -1;
             opacity: 1;
           }
@@ -284,6 +289,7 @@ $grid-rows: 7;
           color: white;
           z-index: -1;
           flex-shrink: 0;
+          backface-visibility: hidden;
           transform: translateX(0) scale(0.25);
           animation-duration: 60s;
           // animation-duration: 10s;

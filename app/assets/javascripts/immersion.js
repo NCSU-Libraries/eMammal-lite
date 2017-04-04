@@ -113,7 +113,7 @@ function loadImmersionJS() {
         .duration(2500);
 
       var banner = d3.select(".project-name-immersion");
-      var bannerWidth = parseInt(banner.style("width")) + 30;
+      var bannerWidth = parseInt(banner.style("width")) + 39;
 
       banner
         .transition(t).ease(d3.easeCubicOut)
@@ -553,19 +553,17 @@ function loadImmersionJS() {
 
           animateCard();
 
-          // d3.select(".project-background-img")
-          //   .transition().duration(2500)
-          //     .style("filter", "blur(20px) brightness(0.1)")
-          //   .on("end", function() {
-          //     var randomPic = Math.floor(Math.random() * photoData.length);
-          //     d3.select(this)
-          //     .attr("src", "https://s3.amazonaws.com/emammalphoto/" +
-          //       photoData[randomPic].source + "_o.jpg");
-          //     d3.active(this)
-          //       .transition().duration(2500)
-          //         .style("filter", "blur(20px) brightness(0.7)")
-          //       .on("end", animateCard);
-          //     });
+          d3.selectAll(".project-background-img")
+            .classed("visible-img", false)
+            .classed("hidden-img", true);
+          d3.select(".img-" + Math.floor(Math.random() * 15))
+          .style("top", function() {
+            console.log();
+            return -parseInt(d3.select(this).style("height")) / 2 +
+            window.innerHeight / 2 + "px";
+          })
+            .classed("visible-img", true)
+            .classed("hidden-img", false);
         }
       });
     }
