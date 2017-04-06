@@ -32,9 +32,12 @@ class ImmersionController < ApplicationController
     get_top_five
     get_global_accuracy
     get_global_top_tags
+    has_changed = Identification.last.created_at > 10.seconds.ago
 
     respond_to do |format|
-      format.json { render json: [@top_five, @global_accuracy, @global_top_tags] }
+      format.json { render json: [
+        @top_five, @global_accuracy, @global_top_tags, has_changed
+      ] }
     end
   end
 end

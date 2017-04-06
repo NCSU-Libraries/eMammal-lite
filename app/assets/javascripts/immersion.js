@@ -138,6 +138,19 @@ function loadImmersionJS() {
           .text(description);
     }
 
+    function updateBackgroundImg() {
+      d3.selectAll(".project-background-img")
+        .classed("visible-img", false)
+        .classed("hidden-img", true);
+      d3.select(".img-" + Math.floor(Math.random() * 15))
+      .style("top", function() {
+        return -parseInt(d3.select(this).style("height")) / 2 +
+        window.innerHeight / 2 + "px";
+      })
+      .classed("visible-img", true)
+      .classed("hidden-img", false);
+    }
+
     function addInfoToCard() {
       var photoInfo = photoData[cardNumber];
       var enteredCard = d3.select(".card-" + (cardNumber % 5 + 1));
@@ -445,7 +458,8 @@ function loadImmersionJS() {
         barEnter.append("rect")
         	.attr("x", function(d, i) { return i * width / 3; })
         	.attr("y",  function(d) {
-            return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
+            return height + topPadding -
+            (d / getMaxOfArray(animalCounts) * height);
           })
         	.attr("width", width / 3)
         	.attr("height", function(d) {
@@ -455,7 +469,8 @@ function loadImmersionJS() {
 
         bar.select(".bar")
           .attr("y",  function(d) {
-            return height + topPadding - (d / getMaxOfArray(animalCounts) * height);
+            return height + topPadding -
+            (d / getMaxOfArray(animalCounts) * height);
           })
         	.attr("height", function(d) {
             return (d / getMaxOfArray(animalCounts) * height - topPadding);
@@ -465,27 +480,31 @@ function loadImmersionJS() {
           .text(function(d) { return d; })
         	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
         	.attr("y",  function(d) {
-            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) + 36;
+            return height + topPadding -
+            (d / getMaxOfArray(animalCounts) * height) + 36;
           })
           .attr("class", "bar-number-text");
 
         bar.select(".bar-number-text")
           .text(function(d) { return d; })
           .attr("y",  function(d) {
-            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) + 36;
+            return height + topPadding -
+            (d / getMaxOfArray(animalCounts) * height) + 36;
           });
 
         var barLabelTextEnter = barEnter.append("text")
           .text("")
         	.attr("x", function(d, i) { return i * width / 3 + width / 6; })
         	.attr("y",  function(d) {
-            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) - 13;
+            return height + topPadding -
+            (d / getMaxOfArray(animalCounts) * height) - 13;
           })
           .attr("class", "bar-label-text");
 
         var barLabelText = bar.select(".bar-label-text")
           .attr("y",  function(d) {
-            return height + topPadding - (d / getMaxOfArray(animalCounts) * height) - 13;
+            return height + topPadding -
+            (d / getMaxOfArray(animalCounts) * height) - 13;
           });
 
         // Split animal names at spaces for the text label tspans
@@ -550,39 +569,31 @@ function loadImmersionJS() {
           photoData = json[1];
           updateProjectLocationPin([projectData.lon, projectData.lat]);
           updateProjectInfo(projectData.name, projectData.description);
+          updateBackgroundImg();
 
           animateCard();
-
-          d3.selectAll(".project-background-img")
-            .classed("visible-img", false)
-            .classed("hidden-img", true);
-          d3.select(".img-" + Math.floor(Math.random() * 15))
-          .style("top", function() {
-            console.log();
-            return -parseInt(d3.select(this).style("height")) / 2 +
-            window.innerHeight / 2 + "px";
-          })
-            .classed("visible-img", true)
-            .classed("hidden-img", false);
         }
       });
     }
 
     // Update data for global stats on a timer
     var updateInterval = window.setInterval(getCurrentGlobalStats, 10000);
-    function getCurrentGlobalStats() {
+    function getCurrentGlobalStats(first) {
       $.ajax({
         type: "GET",
         url: "/immersion/current_global_stats",
         success: function(json) {
-          updateGlobalStats(json);
+          console.log(json);
+          if (json[3] || first) {
+            updateGlobalStats(json);
+          }
         }
       });
     }
 
     //Initial load of data
     changeProject();
-    getCurrentGlobalStats();
+    getCurrentGlobalStats(true);
 
     // Grid of panels simulating Immersion screen TODO: REMOVE FOR PRODUCTION
     function testingBackground() {
