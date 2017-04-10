@@ -31,13 +31,16 @@ class ImmersionController < ApplicationController
   def current_global_stats
     get_top_five
     get_global_accuracy
-    get_global_top_tags
-    has_changed = Identification.last.created_at > 10.seconds.ago
+    get_global_top_tags_immersion
 
     respond_to do |format|
-      format.json { render json: [
-        @top_five, @global_accuracy, @global_top_tags, has_changed
-      ] }
+      format.json { render json: {
+          topFive: @top_five,
+          accuracy: @global_accuracy,
+          topTags: @global_top_tags_immersion,
+          update: Identification.last.created_at > 10.seconds.ago
+        }
+      }
     end
   end
 end
@@ -66,13 +69,13 @@ end
       @global_accuracy = {correct: correct, attempts: total}
     end
 
-    def get_global_top_tags
+    def get_global_top_tags_immersion
       topAnimals = Identification
         .where("correct_identification = true")
         .group("user_identification")
         .count.sort_by{ |k, v| -v }[0..2]
 
-      @global_top_tags = topAnimals.map{ |k,v| {
+      @global_top_tags_immersion = topAnimals.map{ |k,v| {
           name: Animal.find(k).name, tags: v
         }}
     end
