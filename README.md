@@ -1,10 +1,14 @@
-# eMammal lite
+# eMammal Lite
 
-## About
+A web application for identifying and exploring camera trap images from the eMammal project
+
+## About eMammal Lite
 
 eMammal Lite is a web application that provides a fun and engaging way to explore over 4,000 candid images of wildlife from around the world and participate in camera trapping and animal identification methods used by ecological researchers. Each image in this collection helps scientists and conservationists document wildlife that may otherwise go unseen and while taking a photo with a camera trap is easily done with modern photography hardware, it is up to a human to provide the actual identification of what tripped the camera. It takes a lot of time and effort for researchers to analyze and identify each photo from a project. eMammal Lite asks the user to help out by identifying, or tagging, animals captured in camera trap photos. The application also provides a photo archive to explore the entire collection of images and data and a stats page that allows users to compare their identification abilities with others.
 
 This application utilizes information from a database of camera trap images and associated metadata provided by researchers from the [eMammal](https://emammal.si.edu/) camera trapping project—a tool for collecting, archiving, and sharing camera trapping images and data. Imagery and data from this database are used to create interfaces for users to 1) identify animals in a flashcard-like game and 2) view, explore, and search the entire collection of images. User-generated data collected from the gaming interface is used to create a stats interface for users to explore user-generated statistics such as personal and global identification accuracy and score.
+
+To view eMammal Lite, visit <https://eml.lib.ncsu.edu/>
 
 ## Installation instructions for development environment
 
@@ -14,13 +18,13 @@ This application utilizes information from a database of camera trap images and 
 
     * MySQL
 
-1. Set up `secrets.yml` file [(rails documentation reference)](https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#config-secrets-yml)
+1. Set up `secrets.yml` file ([Rails documentation reference](https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#config-secrets-yml))
   
     1. Create `secrets.yml` file in `config` folder
 
     1. Generate keys for `development` and `test` sections by running `rake secret` in console. Copy and paste each key to `secrets.yml`
 
-1. Set up `database.yml` [(rails documentation reference)](https://edgeguides.rubyonrails.org/configuring.html#configuring-a-mysql-or-mariadb-database)
+1. Set up `database.yml` ([Rails documentation reference](https://edgeguides.rubyonrails.org/configuring.html#configuring-a-mysql-or-mariadb-database))
 
     1. Create `database.yml` file in `config` folder
 
