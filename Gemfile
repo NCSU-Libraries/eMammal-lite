@@ -8,7 +8,7 @@ gem 'mysql2', '>= 0.3.13', '< 0.5.3'
 # devise
 # gem 'devise', '4.1.1'
 # Bootstrap
-# gem 'bootstrap-sass', '~> 3.3' and mysql0.5.
+# gem 'bootstrap-sass', '~> 3.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem "autoprefixer-rails"

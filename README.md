@@ -18,6 +18,12 @@ To view eMammal Lite, visit <https://eml.lib.ncsu.edu/>
 
     * MySQL
 
+1. Use `bundler` to install gems ([Installing and using Bundler](https://bundler.io/)):
+
+    ```bash
+    bundle install
+    ```
+
 1. Set up `secrets.yml` file ([Rails documentation reference](https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#config-secrets-yml))
   
     1. Create `secrets.yml` file in `config` folder
@@ -34,7 +40,7 @@ To view eMammal Lite, visit <https://eml.lib.ncsu.edu/>
     development:
       adapter: mysql2
       encoding: utf8mb4
-      database: emmamal-lite_development
+      database: emammal-lite_development
       pool: 5
       username: root
       password:
